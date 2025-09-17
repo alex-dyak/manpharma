@@ -1,0 +1,41 @@
+# Node modules (если используешь npm/yarn)
+node_modules/
+
+# Composer зависимости (если есть)
+vendor/
+
+# Кэш OpenCart
+storage/cache/
+storage/modification/
+storage/logs/
+storage/download/
+storage/upload/
+storage/vendor/
+
+# Файлы сессий (если хранятся в storage)
+storage/session/
+
+system/
+
+# Файлы конфигурации, содержащие секреты
+config.php
+6dwt9n65/config.php
+
+# OS файлы
+.DS_Store
+Thumbs.db
+
+# IDE и редакторы
+.idea/
+.vscode/
+
+# Логи и временные файлы
+*.log
+*.tmp
+*.swp
+*.swo
+
+# Архивы, бэкапы
+*.zip
+*.tar.gz
+*.bak

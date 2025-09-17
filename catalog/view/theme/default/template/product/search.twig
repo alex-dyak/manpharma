@@ -1,0 +1,116 @@
+{{ header }}
+<div id="product-search" class="container">
+    <ul class="breadcrumb">
+        {% for breadcrumb in breadcrumbs %}
+            {% if loop.last %}
+                <li class="active">{{ breadcrumb.text }}</li>
+            {% else %}
+                <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+  <div class="row">{{ column_left }}
+    {% if column_left and column_right %}
+    {% set class = 'col-sm-6' %}
+    {% elseif column_left or column_right %}
+    {% set class = 'col-sm-9' %}
+    {% else %}
+    {% set class = 'col-sm-12' %}
+    {% endif %}
+    <div id="content" class="{{ class }}">{{ content_top }}
+      <h1>{{ heading_title }}</h1>
+      <label class="control-label" for="input-search">{{ entry_search }}</label>
+      <div class="row">
+        <div class="col-sm-4">
+          <input type="text" name="search" value="{{ search }}" placeholder="{{ text_keyword }}" id="input-search" class="form-control" />
+          <p>
+            <label class="checkbox-inline">
+              {% if description %}
+              <input type="checkbox" name="description" value="1" id="description" checked="checked" />
+              {% else %}
+              <input type="checkbox" name="description" value="1" id="description" />
+              {% endif %}
+              {{ entry_description }}</label>
+          </p>
+        </div>
+        <div class="col-sm-3">
+          <input type="button" value="{{ button_search }}" id="button-search" class="btn btn-primary" />
+        </div>
+      </div>
+
+      {% if products %}
+ 
+      <div class="row">
+        {% for product in products %}
+        <div class="col-sm-6 col-lg-3">
+            <div class="product position-relative">
+              <div class="product__title">{{ product.name }}</div>
+              <div class="product__thumb">
+                <img class="img-responsive" src="{{ product.thumb }}" alt="{{ product.name }}">
+              </div>
+              <p class="product__descr">{{ product.description }}</p>
+              <div class="text-center">
+                <a href="{{ product.href }}" class="stretched-link btn btn-primary btn-lg btn-block">{{ button_cart }}</a>
+              </div>
+            </div>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="row">
+        <div class="col-sm-6 text-left">{{ pagination }}</div>
+   
+      </div>
+      {% else %}
+      <p>{{ text_empty }}</p>
+      {% endif %}
+      {{ content_bottom }}</div>
+    {{ column_right }}</div>
+</div>
+<script type="text/javascript"><!--
+$('#button-search').bind('click', function() {
+	url = 'index.php?route=product/search';
+
+	var search = $('#content input[name=\'search\']').prop('value');
+
+	if (search) {
+		url += '&search=' + encodeURIComponent(search);
+	}
+
+	var category_id = $('#content select[name=\'category_id\']').prop('value');
+
+	if (category_id > 0) {
+		url += '&category_id=' + encodeURIComponent(category_id);
+	}
+
+	var sub_category = $('#content input[name=\'sub_category\']:checked').prop('value');
+
+	if (sub_category) {
+		url += '&sub_category=true';
+	}
+
+	var filter_description = $('#content input[name=\'description\']:checked').prop('value');
+
+	if (filter_description) {
+		url += '&description=true';
+	}
+
+	location = url;
+});
+
+$('#content input[name=\'search\']').bind('keydown', function(e) {
+	if (e.keyCode == 13) {
+		$('#button-search').trigger('click');
+	}
+});
+
+$('select[name=\'category_id\']').on('change', function() {
+	if (this.value == '0') {
+		$('input[name=\'sub_category\']').prop('disabled', true);
+	} else {
+		$('input[name=\'sub_category\']').prop('disabled', false);
+	}
+});
+
+$('select[name=\'category_id\']').trigger('change');
+--></script>
+{{ footer }}

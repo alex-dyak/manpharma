@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-xs-12">
+    <h2>Special Proposal</h2>
+  </div>
+</div>
+<div class="row">
+{% for product in products %}
+<div class="col-sm-6 col-lg-4">
+    <div class="product product-pack">
+        <div class="product__title"><a href="{{ product.href }}">{{ product.name }}</a></div>
+        <div class="product_attrs text-center">{{ product.sku }}</div>
+        <div class="product__thumb">
+        <img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" class="img-responsive" />
+        </div>
+        <p class="product__descr">{{ product.description }}</p>
+        <div class="text-center row product__footer">
+            <div class="col-xs-6 col-lg-5 col-xl-6">
+     	        {% if product.price %}
+                {% if product.special %}<p class="product__price--old">{{ product.price }}</p>{% endif %}
+                {% if product.special %}<p class="product__price">{{ product.special }}</p>{% endif %}
+                {% if not product.special %}<p class="product__price">{{ product.price }}</p>{% endif %}
+                {% endif %}
+            </div>
+            {% set discount = 0 %}
+            {% if product.price and product.special %}
+            {% set discount = 100 - (product.special * 100 / product.price) %}
+            {% endif %}
+            <div class="col-xs-6 col-lg-7 col-xl-6"><a href="javascript:void(0)" onclick="cart.add('{{ product.product_id }}');" class="btn btn-primary btn-lg btn-block btn-double">{% if discount %}<span>{{ discount }}% off</span>{% endif %}Buy now</a></div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+</div>

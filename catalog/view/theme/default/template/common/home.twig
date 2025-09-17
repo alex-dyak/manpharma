@@ -1,0 +1,103 @@
+{{ header }}
+<div id="common-home">
+  {{ content_top }}
+  {# <div class="row">{{ column_left }}
+    {% if column_left and column_right %}
+    {% set class = 'col-sm-6' %}
+    {% elseif column_left or column_right %}
+    {% set class = 'col-sm-9' %}
+    {% else %}
+    {% set class = 'col-sm-12' %}
+    {% endif %}
+    <div id="content" class="{{ class }}">{{ content_top }}{{ content_bottom }}</div>
+    {{ column_right }}</div> #}
+</div>
+
+{% if language_code == 'de-de' %}
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "{{ base }}#organization",
+      "name": "{{ name }}",
+      "url": "{{ base }}",
+      "logo": "{{ logo }}",
+      "description": "{{ description }}",
+      "email": "manpharmade@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Sendlinger Str. 28",
+        "addressLocality": "München",
+        "postalCode": "80331",
+        "addressCountry": "DE"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.84",
+        "reviewCount": "376"
+      },
+      "review": [
+        {
+          "@type": "Review",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5"
+          },
+          "author": {
+            "@type": "Person",
+            "name": "Anna Müller"
+          },
+          "reviewBody": "Ich bin absolut begeistert von dieser Website! Die Lieferung erfolgt blitzschnell und die Produkte sind von hervorragender Qualität. Die Preise sind fair und der Kundensupport ist erstklassig.",
+          "datePublished": "2025-07-10"
+        },
+        {
+          "@type": "Review",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5"
+          },
+          "author": {
+            "@type": "Person",
+            "name": "Lukas Schmidt"
+          },
+          "reviewBody": "Ich bin sehr zufrieden mit dieser Website. Die Lieferung erfolgt immer pünktlich und die Produkte sind ausgezeichnet.",
+          "datePublished": "2025-06-20"
+        },
+        {
+          "@type": "Review",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5"
+          },
+          "author": {
+            "@type": "Person",
+            "name": "Sophie Becker"
+          },
+          "reviewBody": "Die Preise sind fair, der Versand war wirklich schnell!",
+          "datePublished": "2025-06-01"
+        }
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "{{ base }}#website",
+      "url": "{{ base }}",
+      "name": "{{ name }}",
+      "inLanguage": "de",
+      "publisher": {
+        "@id": "{{ base }}#organization"
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "{{ base }}search?search={search_term}",
+        "query-input": "required name=search_term"
+      }
+    }
+  ]
+}
+</script>
+{% endif %}
+
+{{ footer }}

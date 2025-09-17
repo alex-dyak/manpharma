@@ -1,0 +1,29 @@
+{% if languages|length > 1 %}
+
+
+<div class="pull-left">
+  <form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-language" >
+   <ul class="lang-switch">
+    {% for language in languages %}
+			<li {% if language.code_mob == current_lang  %} class="active" {% endif %}>
+        <button class="language-select" name="{{ language.code }}" >{{language.code_mob }}</button>
+      </li>		
+       {% endfor %}
+		</ul>
+    <div class="btn-group pc-switcher">
+      <button class="btn btn-link dropdown-toggle" data-toggle="dropdown">
+ 
+      <span>{{ current_lang }}</span>&nbsp;<i class="fa fa-caret-down"></i></button>
+      <ul class="dropdown-menu">
+        {% for language in languages %}
+        <li>
+          <button class="btn btn-link btn-block language-select" type="button" name="{{ language.code }}">{{ language.name }}</button>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <input type="hidden" name="code" value="">
+    <input type="hidden" name="redirect" value="{{ redirect }}">
+  </form>
+</div>
+{% endif %}

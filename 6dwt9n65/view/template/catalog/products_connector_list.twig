@@ -1,0 +1,183 @@
+{{ header }}{{ column_left }}
+<div id="content">
+  <div class="page-header">
+    <div class="container-fluid">
+      <div class="pull-right"> 
+        <button type="button" data-toggle="tooltip" title="UPDATE" class="btn btn-success text-white" onclick="submitForm()"><i class="fa fa-save"></i></button>
+      </div>
+      <h1>{{ heading_title }}</h1>
+      <ul class="breadcrumb">
+        {% for breadcrumb in breadcrumbs %}
+        <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="container-fluid">
+    {% if error_warning %}
+    <div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+    {% endif %}
+    {% if success %}
+    <div class="alert alert-success alert-dismissible"><i class="fa fa-check-circle"></i> {{ success }}
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+    {% endif %}
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-list"></i> {{ text_list }}</h3>
+      </div>
+      <div class="panel-body">
+        <form action="{{ delete }}" method="post" enctype="multipart/form-data" id="form-connected-products">
+          <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>ID (Manpharma)</th>
+                  <th style="width:180px;">Name (Manpharma)</th>
+                  <th style="width:180px;">Name (Nutras)</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% if products %}
+                {% for product in products %}
+                  <tr class="success">
+                    <td>Product ID: <b>{{ product.product_id }}</b></td>
+                    <td colspan="3">{{ product.name }}</td>
+                  </tr>
+                  {% if product.options %}
+                    {% for option in product.options  %}
+                        <tr>
+                            <td>
+                              Option ID: <b>{{ option.option_value_id }}</b>
+                              <input type="hidden" name="product_id[]" value="{{ product.product_id }}">
+                              <input type="hidden" name="option_value_id[]" value="{{ option.option_value_id }}">
+                            </td>
+                            <td>{{ option.name }} - {{ option.price|number_format(2) }} €</td>
+                            <td>
+                              <select name="remote-product[]" class="remote-product-select">
+                              {% if remote_products %}
+                                {% set status = 1 %}
+                                {% for remote_product in remote_products %}
+                                  <optgroup label="{{remote_product.name}}&nbsp;ID:&nbsp;{{remote_product.product_id}}">
+                                    {% if remote_product.options %}
+                                      {% for remote_product_option in remote_product.options %}
+                                        <option data-product-id="{{remote_product.product_id}}" value="{{ remote_product_option.option_value_id }}" {% if option.connected_product.remote_product_id == remote_product.product_id and option.connected_product.remote_option_value_id == remote_product_option.option_value_id %}selected{% endif %} >{{ remote_product_option.name }}&nbsp;-&nbsp;{{ remote_product_option.price|number_format(2) }} €&nbsp;-&nbsp;PID&nbsp;{{remote_product.product_id}}</option>
+                                        {% if option.connected_product.remote_product_id == remote_product.product_id and option.connected_product.remote_option_value_id == remote_product_option.option_value_id %}
+                                          {% if remote_product_option.price != option.price %}
+                                            {% set status = 2 %}
+                                          {% else %}
+                                            {% set status = 3 %}
+                                          {% endif %}
+                                        {% endif %}
+                                      {% endfor %}
+                                    {% endif %}
+                                  </optgroup>
+                                {% endfor %}
+                              {% endif %}
+                              </select>
+                            </td>
+                            <td class="text-center">
+                            
+                              {% if status == 1 %}
+                                    <b class="text-warning">Product is not connected</b>
+                              {% elseif status == 2 %}
+                                    <b class="text-danger">Price is different</b>
+                              {% elseif status == 3 %}
+                                    <b class="text-success">OK!</b>
+                              {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                  {% endif %}
+                {% endfor %}
+                {% else %}
+                <tr>
+                  <td class="text-center" colspan="5">{{ text_no_results }}</td>
+                </tr>
+                {% endif %}
+              </tbody>
+            </table>
+          </div>
+        </form>
+        <script>
+          function submitForm() {
+            // Get the form element
+            const form = document.getElementById('form-connected-products');
+
+            // Get the table element from the form
+            const table = form.querySelector('table');
+
+            // Get all rows in the table (excluding the header row)
+            const rows = table.querySelectorAll('tbody tr:not(.success)');
+
+            // Create an array to hold the data from each row
+            const rowData = [];
+
+            // Loop through each row and extract data from input fields
+            rows.forEach((row) => {
+              const inputFields = row.querySelectorAll('input');
+              const selectField = row.querySelector('select');
+
+              // Extract the values from input fields
+              const product_id = inputFields[0].value;
+              const option_value_id = inputFields[1].value;
+
+              // Extract the selected option element from the select field
+              const selectedOption = selectField.options[selectField.selectedIndex];
+
+              // Extract the data-product-id attribute as remote_product_id
+              const remote_product_id = selectedOption.dataset.productId;
+
+              // Extract the value attribute as remote_option_value_id
+              const remote_option_value_id = selectedOption.value;
+
+              // Create an object to hold the data from the current row
+              const rowDataItem = {
+                product_id: product_id,
+                option_value_id: option_value_id,
+                remote_product_id: remote_product_id,
+                remote_option_value_id: remote_option_value_id,
+              };
+
+              // Add the rowDataItem object to the rowData array
+              rowData.push(rowDataItem);
+            });
+            console.log(rowData);
+            // At this point, you have the data from each row in the rowData array
+            // Now you can send it to the server using AJAX or Fetch API
+            const url = 'index.php?route=catalog/products_connector/save&user_token={{ user_token }}';
+
+            // For example, using Fetch API:
+            fetch(url, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(rowData),
+            })
+            .then((response) => response.json())
+            .then((data) => {
+              // Handle the response from the server if needed
+              location.reload(true);
+            })
+            .catch((error) => {
+              // Handle any errors that occurred during the request
+              console.error('Error:', error);
+            });
+        
+          }
+        </script>
+
+
+        <div class="row">
+          <div class="col-sm-6 text-left">{{ pagination }}</div>
+          <div class="col-sm-6 text-right">{{ results }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{ footer }}

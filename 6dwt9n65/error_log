@@ -1,0 +1,103 @@
+[11-Apr-2020 08:51:07 UTC] PHP Fatal error:  Uncaught Error: Class 'Controllerextensionmoduleproductcategorydescription' not found in /home3/limbopro/forcepharm_storage/storage/modification/system/engine/action.php:71
+Stack trace:
+#0 /home3/limbopro/public_html/forcepharm/admin/controller/startup/router.php(26): Action->execute(Object(Registry), Array)
+#1 /home3/limbopro/forcepharm_storage/storage/modification/system/engine/action.php(79): ControllerStartupRouter->index()
+#2 /home3/limbopro/public_html/forcepharm/system/engine/router.php(67): Action->execute(Object(Registry))
+#3 /home3/limbopro/public_html/forcepharm/system/engine/router.php(56): Router->execute(Object(Action))
+#4 /home3/limbopro/public_html/forcepharm/system/framework.php(165): Router->dispatch(Object(Action), Object(Action))
+#5 /home3/limbopro/public_html/forcepharm/system/startup.php(104): require_once('/home3/limbopro...')
+#6 /home3/limbopro/public_html/forcepharm/admin/index.php(19): start('admin')
+#7 {main}
+  thrown in /home3/limbopro/forcepharm_storage/storage/modification/system/engine/action.php on line 71
+[11-Apr-2020 08:52:42 UTC] PHP Fatal error:  Uncaught Error: Class 'Controllerextensionmoduleproductcategorydescription' not found in /home3/limbopro/forcepharm_storage/storage/modification/system/engine/action.php:71
+Stack trace:
+#0 /home3/limbopro/public_html/forcepharm/admin/controller/startup/router.php(26): Action->execute(Object(Registry), Array)
+#1 /home3/limbopro/forcepharm_storage/storage/modification/system/engine/action.php(79): ControllerStartupRouter->index()
+#2 /home3/limbopro/public_html/forcepharm/system/engine/router.php(67): Action->execute(Object(Registry))
+#3 /home3/limbopro/public_html/forcepharm/system/engine/router.php(56): Router->execute(Object(Action))
+#4 /home3/limbopro/public_html/forcepharm/system/framework.php(165): Router->dispatch(Object(Action), Object(Action))
+#5 /home3/limbopro/public_html/forcepharm/system/startup.php(104): require_once('/home3/limbopro...')
+#6 /home3/limbopro/public_html/forcepharm/admin/index.php(19): start('admin')
+#7 {main}
+  thrown in /home3/limbopro/forcepharm_storage/storage/modification/system/engine/action.php on line 71
+[12-Apr-2020 16:11:43 UTC] PHP Fatal error:  Uncaught Exception: Error: Table 'limbopro_ocar401.ocqm_banner_image_description' doesn't exist<br />Error No: 1146<br />show columns from `ocqm_banner_image_description` in /home3/limbopro/forcepharm_storage/storage/modification/system/library/db/mysqli.php:43
+Stack trace:
+#0 /home3/limbopro/public_html/forcepharm/system/library/db.php(45): DB\MySQLi->query('show columns fr...')
+#1 /home3/limbopro/forcepharm_storage/storage/modification/admin/model/design/banner.php(6): DB->query('show columns fr...')
+#2 /home3/limbopro/forcepharm_storage/storage/modification/system/engine/loader.php(248): ModelDesignBanner->addColumnTextIfNotExists()
+#3 /home3/limbopro/public_html/forcepharm/system/engine/proxy.php(47): Loader->{closure}(Array, Array)
+#4 /home3/limbopro/forcepharm_storage/storage/modification/admin/controller/design/banner.php(250): Proxy->__call('addColumnTextIf...', Array)
+#5 /home3/limbopro/forcepharm_storage/storage/modification/admin/controller/design/banner.php(76): ControllerDesignBanner->getForm()
+# in /home3/limbopro/forcepharm_storage/storage/modification/system/library/db/mysqli.php on line 43
+[18-Apr-2020 12:12:26 UTC] PHP Fatal error:  Uncaught Twig_Error_Syntax: Unknown "dump" function in "common/filemanager.twig" at line 23. in /home3/limbopro/public_html/forcepharm/system/library/template/Twig/ExpressionParser.php:574
+Stack trace:
+#0 /home3/limbopro/public_html/forcepharm/system/library/template/Twig/ExpressionParser.php(351): Twig_ExpressionParser->getFunctionNodeClass('dump', 23)
+#1 /home3/limbopro/public_html/forcepharm/system/library/template/Twig/ExpressionParser.php(144): Twig_ExpressionParser->getFunctionNode('dump', 23)
+#2 /home3/limbopro/public_html/forcepharm/system/library/template/Twig/ExpressionParser.php(84): Twig_ExpressionParser->parsePrimaryExpression()
+#3 /home3/limbopro/public_html/forcepharm/system/library/template/Twig/ExpressionParser.php(41): Twig_ExpressionParser->getPrimary()
+#4 /home3/limbopro/public_html/forcepharm/system/library/template/Twig/Parser.php(144): Twig_ExpressionParser->parseExpression()
+#5 /home3/limbopro/public_html/forcepharm/system/library/template/Twig/Parser.php(100): Twig_Parser->subparse(NU in /home3/limbopro/public_html/forcepharm/system/library/template/Twig/ExpressionParser.php on line 574
+[24-Mar-2022 11:24:54 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'Error: <br />Error No: ' in /home/manpharm/public_html/storage/modification/system/library/db/mysqli.php:10
+Stack trace:
+#0 /home/manpharm/public_html/system/library/db.php(31): DB\MySQLi->__construct('localhost', 'manpharma_shop', 'MvfORG%PwRyr', 'manpharma_shop', '3306')
+#1 /home/manpharm/public_html/system/framework.php(80): DB->__construct('mysqli', 'localhost', 'manpharma_shop', 'MvfORG%PwRyr', 'manpharma_shop', '3306')
+#2 /home/manpharm/public_html/system/startup.php(104): require_once('/home/manpharm/...')
+#3 /home/manpharm/public_html/6dwt9n65/index.php(24): start('admin')
+#4 {main}
+  thrown in /home/manpharm/public_html/storage/modification/system/library/db/mysqli.php on line 10
+[24-Mar-2022 11:24:56 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'Error: <br />Error No: ' in /home/manpharm/public_html/storage/modification/system/library/db/mysqli.php:10
+Stack trace:
+#0 /home/manpharm/public_html/system/library/db.php(31): DB\MySQLi->__construct('localhost', 'manpharma_shop', 'MvfORG%PwRyr', 'manpharma_shop', '3306')
+#1 /home/manpharm/public_html/system/framework.php(80): DB->__construct('mysqli', 'localhost', 'manpharma_shop', 'MvfORG%PwRyr', 'manpharma_shop', '3306')
+#2 /home/manpharm/public_html/system/startup.php(104): require_once('/home/manpharm/...')
+#3 /home/manpharm/public_html/6dwt9n65/index.php(24): start('admin')
+#4 {main}
+  thrown in /home/manpharm/public_html/storage/modification/system/library/db/mysqli.php on line 10
+[25-Mar-2022 09:04:33 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'Error: <br />Error No: ' in /home/manpharm/public_html/storage/modification/system/library/db/mysqli.php:10
+Stack trace:
+#0 /home/manpharm/public_html/system/library/db.php(31): DB\MySQLi->__construct('localhost', 'manpharma_shop', 'MvfORG%PwRyr', 'manpharma_shop', '3306')
+#1 /home/manpharm/public_html/system/framework.php(80): DB->__construct('mysqli', 'localhost', 'manpharma_shop', 'MvfORG%PwRyr', 'manpharma_shop', '3306')
+#2 /home/manpharm/public_html/system/startup.php(104): require_once('/home/manpharm/...')
+#3 /home/manpharm/public_html/6dwt9n65/index.php(24): start('admin')
+#4 {main}
+  thrown in /home/manpharm/public_html/storage/modification/system/library/db/mysqli.php on line 10
+[25-Mar-2022 09:04:45 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'Error: <br />Error No: ' in /home/manpharm/public_html/storage/modification/system/library/db/mysqli.php:10
+Stack trace:
+#0 /home/manpharm/public_html/system/library/db.php(31): DB\MySQLi->__construct('localhost', 'manpharma_shop', 'MvfORG%PwRyr', 'manpharma_shop', '3306')
+#1 /home/manpharm/public_html/system/framework.php(80): DB->__construct('mysqli', 'localhost', 'manpharma_shop', 'MvfORG%PwRyr', 'manpharma_shop', '3306')
+#2 /home/manpharm/public_html/system/startup.php(104): require_once('/home/manpharm/...')
+#3 /home/manpharm/public_html/6dwt9n65/index.php(24): start('admin')
+#4 {main}
+  thrown in /home/manpharm/public_html/storage/modification/system/library/db/mysqli.php on line 10
+[25-Mar-2022 09:04:49 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'Error: <br />Error No: ' in /home/manpharm/public_html/storage/modification/system/library/db/mysqli.php:10
+Stack trace:
+#0 /home/manpharm/public_html/system/library/db.php(31): DB\MySQLi->__construct('localhost', 'manpharma_shop', 'MvfORG%PwRyr', 'manpharma_shop', '3306')
+#1 /home/manpharm/public_html/system/framework.php(80): DB->__construct('mysqli', 'localhost', 'manpharma_shop', 'MvfORG%PwRyr', 'manpharma_shop', '3306')
+#2 /home/manpharm/public_html/system/startup.php(104): require_once('/home/manpharm/...')
+#3 /home/manpharm/public_html/6dwt9n65/index.php(24): start('admin')
+#4 {main}
+  thrown in /home/manpharm/public_html/storage/modification/system/library/db/mysqli.php on line 10
+[25-Mar-2022 09:04:53 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'Error: <br />Error No: ' in /home/manpharm/public_html/storage/modification/system/library/db/mysqli.php:10
+Stack trace:
+#0 /home/manpharm/public_html/system/library/db.php(31): DB\MySQLi->__construct('localhost', 'manpharma_shop', 'MvfORG%PwRyr', 'manpharma_shop', '3306')
+#1 /home/manpharm/public_html/system/framework.php(80): DB->__construct('mysqli', 'localhost', 'manpharma_shop', 'MvfORG%PwRyr', 'manpharma_shop', '3306')
+#2 /home/manpharm/public_html/system/startup.php(104): require_once('/home/manpharm/...')
+#3 /home/manpharm/public_html/6dwt9n65/index.php(24): start('admin')
+#4 {main}
+  thrown in /home/manpharm/public_html/storage/modification/system/library/db/mysqli.php on line 10
+[25-Mar-2022 09:05:03 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'Error: <br />Error No: ' in /home/manpharm/public_html/storage/modification/system/library/db/mysqli.php:10
+Stack trace:
+#0 /home/manpharm/public_html/system/library/db.php(31): DB\MySQLi->__construct('localhost', 'manpharma_shop', 'MvfORG%PwRyr', 'manpharma_shop', '3306')
+#1 /home/manpharm/public_html/system/framework.php(80): DB->__construct('mysqli', 'localhost', 'manpharma_shop', 'MvfORG%PwRyr', 'manpharma_shop', '3306')
+#2 /home/manpharm/public_html/system/startup.php(104): require_once('/home/manpharm/...')
+#3 /home/manpharm/public_html/6dwt9n65/index.php(24): start('admin')
+#4 {main}
+  thrown in /home/manpharm/public_html/storage/modification/system/library/db/mysqli.php on line 10
+[25-Mar-2022 09:05:33 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'Error: <br />Error No: ' in /home/manpharm/public_html/storage/modification/system/library/db/mysqli.php:10
+Stack trace:
+#0 /home/manpharm/public_html/system/library/db.php(31): DB\MySQLi->__construct('localhost', 'manpharma_shop', 'MvfORG%PwRyr', 'manpharma_shop', '3306')
+#1 /home/manpharm/public_html/system/framework.php(80): DB->__construct('mysqli', 'localhost', 'manpharma_shop', 'MvfORG%PwRyr', 'manpharma_shop', '3306')
+#2 /home/manpharm/public_html/system/startup.php(104): require_once('/home/manpharm/...')
+#3 /home/manpharm/public_html/6dwt9n65/index.php(24): start('admin')
+#4 {main}
+  thrown in /home/manpharm/public_html/storage/modification/system/library/db/mysqli.php on line 10

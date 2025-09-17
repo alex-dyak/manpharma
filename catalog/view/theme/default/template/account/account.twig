@@ -1,0 +1,154 @@
+{{ header }}
+<div id="account-account" class="container">
+  <ul class="breadcrumb">
+    {% for breadcrumb in breadcrumbs %}
+    <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+    {% endfor %}
+  </ul>
+  {% if success %}
+  <div class="alert alert-success alert-dismissible"><i class="fa fa-check-circle"></i> {{ success }}</div>
+  {% endif %}
+  <div class="row">{{ column_left }}
+    {% if column_left and column_right %}
+    {% set class = 'col-sm-6' %}
+    {% elseif column_left or column_right %}
+    {% set class = 'col-sm-6' %}
+    {% else %}
+    {% set class = 'col-sm-6' %}
+    {% endif %}
+
+    <div id="content" class="{{ class }}">{{ content_top }}
+      <h1 class="h3">Billing Address</h1>
+
+      <div class="row">
+        <div class="col-xs-12 col-lg-6">
+          <div class="form-group">
+            <label for="fname">{{ entry_firstname }}</label>
+            <input type="text" name="firstname" class="form-control" id="fname"  value="{{ firstname }}" placeholder="{{ entry_firstname }}">
+          </div>
+        </div>
+        <div class="col-xs-12 col-lg-6">
+          <div class="form-group">
+            <label for="lname">{{ entry_lastname }}</label>
+            <input type="text" name="firstname"  class="form-control" id="lname" value="{{ lastname }}" placeholder="{{ entry_lastname }}">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-lg-6">
+          <div class="form-group">
+            <label for="phone">{{ entry_telephone }}</label>
+            <input type="text" class="form-control" id="phone" placeholder="{{ entry_telephone }}" value="{{ telephone }}" name="telephone">
+          </div>
+        </div>
+        <div class="col-xs-12 col-lg-6">
+          <div class="form-group">
+            <label for="email">{{ entry_email }}</label>
+            <input type="email" class="form-control" id="email" placeholder="{{ entry_email }}" name="email" value="{{ email }}">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="address">{{ entry_address_1 }}</label>
+            <input type="text" class="form-control" id="address" placeholder="{{ entry_address_1 }}" name="address_1" value="{{ address_1 }}">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-lg-6">
+          <div class="form-group">
+            <label for="city">{{ entry_city }}</label>
+            <input type="text" class="form-control" id="city" placeholder="{{ entry_city }}" name="city" value="{{ city }}">
+          </div>
+        </div>
+        <div class="col-xs-12 col-lg-6">
+          <div class="form-group">
+            <label for="input-country">{{ entry_country }}</label>
+            <select name="country_id" id="input-country" class="form-control">
+              <option value="">{{ text_select }}</option>
+              {% for country in countries %}
+                {% if country.country_id == country_id %}
+                  <option value="{{ country.country_id }}" selected="selected">{{ country.name }}</option>
+                {% else %}
+                  <option value="{{ country.country_id }}">{{ country.name }}</option>
+                {% endif %}
+              {% endfor %}
+              </select>
+            {% if error_country %}
+              <div class="text-danger">{{ error_country }}</div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-lg-6">
+          <div class="form-group">
+            <label for="state">State / Province</label>
+              <select class="form-control">
+                <option selected>State</option>
+                <option>State</option>
+                <option>State</option>
+                <option>State</option>
+                <option>State</option>
+              </select>
+          </div>
+        </div>
+        <div class="col-xs-12 col-lg-6">
+          <div class="form-group">
+            <label for="city">Zip Code</label>
+            <input type="text" class="form-control" id="city" placeholder="">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <button type="submit" class="btn btn-wide btn-lg btn-primary">Save</button>
+        </div>
+      </div>
+
+      {# <ul class="list-unstyled">
+        <li><a href="{{ edit }}">{{ text_edit }}</a></li>
+        <li><a href="{{ password }}">{{ text_password }}</a></li>
+        <li><a href="{{ address }}">{{ text_address }}</a></li>
+        <li><a href="{{ wishlist }}">{{ text_wishlist }}</a></li>
+      </ul>
+      {% if credit_cards %}
+      <h2>{{ text_credit_card }}</h2>
+      <ul class="list-unstyled">
+        {% for credit_card in credit_cards %}
+        <li><a href="{{ credit_card.href }}">{{ credit_card.name }}</a></li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      <h2>{{ text_my_orders }}</h2>
+      <ul class="list-unstyled">
+        <li><a href="{{ order }}">{{ text_order }}</a></li>
+        <li><a href="{{ download }}">{{ text_download }}</a></li>
+        {% if reward %}
+        <li><a href="{{ reward }}">{{ text_reward }}</a></li>
+        {% endif %}
+        <li><a href="{{ return }}">{{ text_return }}</a></li>
+        <li><a href="{{ transaction }}">{{ text_transaction }}</a></li>
+        <li><a href="{{ recurring }}">{{ text_recurring }}</a></li>
+      </ul>
+      <h2>{{ text_my_affiliate }}</h2>
+      <ul class="list-unstyled">
+        {% if not tracking %}
+        <li><a href="{{ affiliate }}">{{ text_affiliate_add }}</a></li>
+        {% else %}
+        <li><a href="{{ affiliate }}">{{ text_affiliate_edit }}</a></li>
+        <li><a href="{{ tracking }}">{{ text_tracking }}</a></li>
+        {% endif %}
+      </ul>
+      <h2>{{ text_my_newsletter }}</h2>
+      <ul class="list-unstyled">
+        <li><a href="{{ newsletter }}">{{ text_newsletter }}</a></li>
+      </ul> #}
+
+      {{ content_bottom }}</div>
+
+    {{ column_right }}</div>
+</div>
+{{ footer }}

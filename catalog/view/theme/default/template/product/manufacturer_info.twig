@@ -1,0 +1,89 @@
+{{ header }}
+<div id="product-category" class="container">
+    <ul class="breadcrumb">
+        {% for breadcrumb in breadcrumbs %}
+            {% if loop.last %}
+                <li class="active">{{ breadcrumb.text }}</li>
+            {% else %}
+                <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+    <div id="content" class="col-sm-12 ">
+      {{ content_top }} 
+      <div class="row">
+        {{column_left}}
+        <div class="{% if column_left or column_right %}col-lg-9{% else %}col-lg-12{% endif %}">
+            <h1>{{ heading_title }}</h1>
+            {% if products %}
+            <div class="row">
+            {% for product in products %}
+            <div class="col-sm-6 col-lg-4">
+                {% if category_id == 61 %}
+                <div class="product position-relative product-pack">
+                  <div class="product__title"><a href="{{ product.href }}">{{ product.name }}</a></div>
+                  <div class="product_attrs text-center"></div>
+                  <div class="product__thumb">
+                  <a href="{{ product.href }}"><img src="{{ product.thumb }}" alt="{{ product.name }}" class="img-responsive"></a>
+                  </div>
+                  <p class="product__descr">{{ product.description }}</p>
+                  <div class="text-center row product__footer">
+                      <div class="col-xs-6 col-lg-5 col-xl-6">
+                    {% if product.price %}
+                      {% if product.special %}<p class="product__price--old">{{ product.price }}</p>{% endif %}
+                      {% if product.special %}<p class="product__price">{{ product.special }}</p>{% endif %}
+                      {% if not product.special %}<p class="product__price">{{ product.price }}</p>{% endif %}
+                      {% endif %}
+                  </div>
+                    {% set discount = 0 %}
+                    {% if product.price and product.special %}
+                      {% set discount = 100 - (product.special * 100 / product.price) %}
+                    {% endif %}
+                      <div class="col-xs-6 col-lg-7 col-xl-6"><a href="javascript:void(0)" onclick="cart.add('{{ product.product_id }}');" class="btn stretched-link btn-primary btn-lg btn-block btn-double">{% if discount %}<span>{{ discount }}% off</span>{% endif %}Buy now</a></div>
+                  </div>
+              </div>
+                {% else %}
+                <div class="product position-relative">
+                  <div class="product__title">{{ product.name }}</div>
+                  <div class="product__thumb">
+                    <img class="img-responsive" src="{{ product.thumb }}" alt="{{ product.name }}">
+                  </div>
+                  <p class="product__descr">{{ product.description }}</p>
+                  <div class="text-center">
+                    <a href="{{ product.href }}" class="stretched-link btn btn-primary btn-lg btn-block">{{ button_cart }}</a>
+                  </div>
+                </div>
+                {% endif %}
+    
+            </div>
+            {% endfor %} 
+          </div>
+          {% endif %}
+        </div>
+        {{column_right}}
+      </div>
+
+
+      {# <div class="row">
+        <div class="col-sm-6 text-left">{{ pagination }}</div>
+        <div class="col-sm-6 text-right">{{ results }}</div>
+      </div> #}
+      
+      {% if not categories and not products %}
+      <p>{{ text_empty }}</p>
+      <div class="buttons">
+        <div class="pull-right"><a href="{{ continue }}" class="btn btn-primary">{{ button_continue }}</a></div>
+      </div>
+      {% endif %}
+      {% if description %}
+      <div class="row">
+        <div class="col-xs-12">
+            {{ description }}
+        </div>
+      </div>
+      {% endif %}
+      {{ content_bottom }}
+    </div>
+    {# {{ column_right }} #}</div> 
+ 
+{{ footer }} 

@@ -1,0 +1,91 @@
+<div id="login" class="hidden-xs">
+  <div class="col-sm-6 text-left">
+	<label class="col-sm-3" for="input-login-email">{{ entry_email }}</label>
+	<div class="col-sm-9">
+	  <input type="text" name="email" value="" class="form-control" id="input-login-email" />
+	</div>
+  </div>
+  <div class="col-sm-6 text-left">
+	<label class="col-sm-3" for="input-login-password">{{ entry_password }} <a href="{{ forgotten }}" title="{{ text_forgotten }}" data-toggle="tooltip"><i class="fa fa-question-circle"></i></a></label>
+	<div class="col-sm-9">
+	  <div class="input-group">
+		<input type="password" name="password" value="" class="form-control" />
+		<span class="input-group-btn">
+		  <button type="button" id="button-login" data-loading-text="{{ text_loading }}" class="btn btn-primary">{{ button_login }}</button>
+		</span>
+	  </div>
+	</div>
+  </div>
+</div>
+
+<script type="text/javascript"><!--
+$('#login input').keydown(function(e) {
+	if (e.keyCode == 13) {
+		$('#button-login').click();
+	}
+});
+//--></script>   
+
+
+<div id="signinModal"  role="dialog" class="hidden-md hidden-lg">
+  <div class="" role="document">
+    <div class="modal-content ">
+
+      <div class="modal-body">
+        <div>
+        
+          <!-- Nav tabs -->
+          <ul class="nav nav-tabs nav-tabs--minimal" role="tablist">
+            <li role="presentation" class="active"><a href="#signup_c" aria-controls="signup" role="tab" data-toggle="tab">{{ text_register }}</a></li>
+            <li role="presentation"><a href="#login_c" aria-controls="login" role="tab" data-toggle="tab">{{ text_login }}</a></li>
+          </ul>
+
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="signup_c">
+              <form id="signup-form" class="form-modal">
+                <div class="form-group">
+                  <label for="InputEmail1">{{ text_email }}*</label>
+                  <input type="email" name="email" class="form-control" id="InputEmail1" placeholder="" required>
+                </div>
+                <div class="form-group">
+                  <label for="InputPassword1">{{ text_password }}*</label>
+                  <input type="password" name="password" class="form-control" id="InputPassword1" placeholder="" required>
+                </div>
+                <div class="form-group">
+                  <label for="InputPassword2">{{ text_confirm_password }}*</label>
+                  <input type="password" name="confirm" class="form-control" id="InputPassword2" placeholder="" required>
+                </div>
+                <div class="form-group hidden form-response"></div>
+                <button type="submit" class="btn btn-primary btn-block"><svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M7.5 0.333008C5.7511 0.333008 4.33333 1.75077 4.33333 3.49967C4.33333 5.24858 5.7511 6.66634 7.5 6.66634C9.2489 6.66634 10.6667 5.24858 10.6667 3.49967C10.6667 1.75077 9.2489 0.333008 7.5 0.333008ZM7.5 7.99967C2.63688 7.99967 0.5 10.6472 0.5 12.333C0.5 12.9934 0.638982 13.6231 1.0911 14.0752C1.54321 14.5274 2.17297 14.6663 2.83333 14.6663H12.1667C13.0289 14.6663 13.8146 14.4209 14.2251 13.6446C14.4292 13.2586 14.5 12.807 14.5 12.333C14.5 10.6472 12.3631 7.99967 7.5 7.99967Z" fill="white"/>
+</svg> {{ text_register }}</button>
+                <input type="hidden" name="agree" value="1">
+                <p class="agreement-notice">{{ text_privacy }}</p>
+              </form>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="login_c">
+              <form id="signin-form" class="form-modal">
+                <div class="form-group">
+                  <label for="InputEmailLogin">{{  text_email }}*</label>
+                  <input name="email" type="email" class="form-control" id="InputEmailLogin" placeholder="" required>
+                </div>
+                <div class="form-group">
+                  <label for="InputPasswordLogin">{{ text_password }}*</label>
+                  <input name="password" type="password" class="form-control" id="InputPasswordLogin" placeholder="" required>
+                </div>
+                <div class="form-group hidden form-response"></div>
+                <button type="submit" class="btn btn-primary btn-block"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M5.16634 8.99992C2.76634 8.99992 0.833008 7.06659 0.833008 4.66658C0.833008 2.26659 2.76634 0.333252 5.16634 0.333252C7.56634 0.333252 9.49967 2.26659 9.49967 4.66658C9.49967 4.95199 9.47231 5.21003 9.43631 5.42596C9.38305 5.74553 9.35642 5.90531 9.36788 6.00033C9.38024 6.10283 9.39525 6.14968 9.44477 6.24027C9.49067 6.32425 9.57995 6.41352 9.7585 6.59208L12.8958 9.72933C13.2417 10.0752 13.4146 10.2482 13.5383 10.45C13.6479 10.629 13.7288 10.824 13.7777 11.0281C13.833 11.2583 13.833 11.5029 13.833 11.9921V12.0666C13.833 12.6266 13.833 12.9067 13.724 13.1206C13.6281 13.3087 13.4752 13.4617 13.287 13.5576C13.0731 13.6666 12.7931 13.6666 12.233 13.6666H11.2997C11.0196 13.6666 10.8796 13.6666 10.7727 13.6121C10.6786 13.5642 10.6021 13.4877 10.5542 13.3936C10.4997 13.2866 10.4997 13.1466 10.4997 12.8666V12.7999C10.4997 12.5199 10.4997 12.3799 10.4452 12.2729C10.3972 12.1788 10.3208 12.1024 10.2267 12.0544C10.1197 11.9999 9.9797 11.9999 9.69967 11.9999H9.63301C9.35298 11.9999 9.21297 11.9999 9.10601 11.9454C9.01193 11.8975 8.93544 11.821 8.8875 11.7269C8.83301 11.62 8.83301 11.4799 8.83301 11.1999V11.1333C8.83301 10.8532 8.83301 10.7132 8.77851 10.6063C8.73057 10.5122 8.65408 10.4357 8.56 10.3877C8.45305 10.3333 8.31303 10.3333 8.03301 10.3333H7.87345C7.68067 10.3333 7.58429 10.3333 7.50653 10.307C7.3586 10.2571 7.24247 10.141 7.19257 9.99306C7.16634 9.91531 7.16634 9.81892 7.16634 9.62614V9.59173C7.16634 9.54123 7.16634 9.51599 7.16397 9.49173C7.15433 9.39305 7.11556 9.29946 7.0526 9.22286C7.03713 9.20404 7.01928 9.18618 6.98357 9.15048C6.89743 9.06434 6.85436 9.02127 6.82227 8.99619C6.66759 8.8753 6.55662 8.84176 6.36087 8.85674C6.32028 8.85985 6.23905 8.87618 6.07659 8.90884L6.07652 8.90885L6.07651 8.90885C5.83447 8.95751 5.52161 8.99992 5.16634 8.99992ZM4.66634 5.33325C5.31067 5.33325 5.83301 4.81092 5.83301 4.16658C5.83301 3.52225 5.31067 2.99992 4.66634 2.99992C4.02201 2.99992 3.49967 3.52225 3.49967 4.16658C3.49967 4.81092 4.02201 5.33325 4.66634 5.33325Z" fill="white"/>
+</svg> {{ text_login }}</button>
+                <a class="btn p-3 btn-block text-center" href="{{ forgot }}">{{ text_forgot }}</a>
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

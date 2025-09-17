@@ -1,0 +1,609 @@
+{{ header }}
+{% if language_code != 'de-de' %}
+	{% if jsonld %}
+		<script type="application/ld+json">
+			{{ jsonld }}
+		</script>
+	{% endif %}
+{% endif %}
+
+
+<div id="product-product" class="container">
+	<ul class="breadcrumb">
+		{% for breadcrumb in breadcrumbs %}
+			{% if loop.last %}
+				<li class="active">{{ breadcrumb.text }}</li>
+			{% else %}
+				<li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+			{% endif %}
+		{% endfor %}
+	</ul>
+  <div class="row">{{ column_left }}
+    <div id="content" class="{% if column_left or column_right %}col-lg-9{% else %}col-lg-12{% endif %}">{{ content_top }}
+        <div class="row div col-xs-12">
+			<h1>
+				{% if custom_h1 %}
+					{{ custom_h1 }}
+				{% else %}
+					{{ heading_title }}
+				{% endif %}
+			</h1>
+        </div>
+        <div class="row single-product__top">
+            <div class="col-xs-12 col-sm-3">
+				<div class="product-img">
+                	<img src="{{ thumb }}" title="{{ heading_title }}" class="img-responsive thumb" alt="{{ heading_title }}" />
+					<div class="product-img-hidden">
+						<img src="{{ popup }}" title="{{ heading_title }}" class="img-responsive thumb" alt="{{ heading_title }}" />
+					</div>
+				</div>
+            </div>
+            <div class="col-xs-12 col-sm-9">
+                <div class="clearfix single-product__descr">
+                {{ description }}
+                </div>
+                <div class="clearfix">
+					{% if quantity > 0 %}
+						{% if doses and doses_count > 1 %}
+						<div class="select-dose">
+							<span class="select-dose__lable">{{ text_select_dose }}:</span>
+							{% for dose in doses %}
+				 				{% if dose.active %}
+									<span class="btn btn-outline-primary is-active">{{dose.text}}</span>
+								{% else %}
+									<a href="{{dose.href}}" class="btn btn-outline-primary">{{dose.text}}</a>
+								{% endif %}
+							{% endfor %}
+						</div>
+						{% endif %}
+					{% else %}
+					<div class="well well-lg">
+						<div class="text-danger">{{ text_out_of_stock }}</div>
+					</div>
+					
+					{% if products %}
+						<div class="row">
+							{% for product in products %}
+							<div class="col-xs-12 col-lg-6">
+								<div class="product-horizontal position-relative">
+									<div class="product__thumb">
+										<img class="img-responsive" src="{{product.thumb}}" alt="{{product.name}}">
+									</div>
+									<div class="product__right">
+										<div class="product__title">{{product.name}}</div>
+										<div class="text-center">
+											<a href="{{product.href}}" class="stretched-link btn btn-primary btn-block">{{button_cart}}</a>
+										</div>
+									</div>
+								</div>							
+							</div>
+							{% endfor %}							
+						</div>
+					{% endif %}
+				{% endif %}
+                </div>
+            </div>
+        </div>
+ 
+		<div id="product">
+			{% if options and quantity > 0 %}
+				{% for option in options %}
+					{% if option.type == 'radio' and option.option_id == 14 %}
+						
+								<div class="variant_wrap">
+								{% set base_price_per_item = 0 %}
+								{% for option_value in option.product_option_value %}
+									{% if option_value.quantity > 0 %}
+								 
+										{% set base_price_per_item = base_price_per_item ? base_price_per_item : option_value.price_per_item_raw %}
+
+										<div class="variant">
+											<div class="variant__volume p">
+												<p class="variant__row"><strong>{{ option_value.name }}</strong></p>
+												<p class="variant__row">{{ dose_current }}</p>
+											</div>
+											<div class="variant__thumb hidden-xs p">
+												<img class="img-responsive" src="{{ images[0]['thumb'] }}" alt="{{ heading_title }}">
+											</div>
+											<div class="variant__price p">
+												<p class="variant__row"><strong>{{ option_value.price }}</strong></p>
+												<p class="variant__row">{{option_value.price_per_item}}&nbsp;{{option_value.text_per_item}}</p>
+											</div>
+											<div class="variant__profit hidden-xs p">
+												<div class="profit-block">
+													<svg class="icon icon-present">
+													<use xlink:href="#icon-present" />
+													</svg>
+													<p class="variant__row">{{ text_package_delivery }}</p>
+													<p class="variant__row">{{ text_next_purchase }}</p>
+												</div>
+											</div>
+											<div class="p variant__save {% if option_value.x2 %} wrap_sale{% endif %}">
+											 
+											 {% if option_value.x2 %}
+												<p class="variant__row variant_text_sale">
+												<svg width="41" height="40" viewBox="0 0 41 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+												<rect x="0.0603027" width="40" height="40" rx="20" fill="#43BA3A"/>
+												<path fill-rule="evenodd" clip-rule="evenodd" d="M16.2798 25.7639V20.3333C16.2798 19.4678 16.5605 18.6257 17.0798 17.9333L18.4798 16.0667C18.9991 15.3743 19.2798 14.5322 19.2798 13.6667V13C19.2798 12.4477 19.7275 12 20.2798 12C21.3844 12 22.2798 12.8954 22.2798 14V18H25.8402C27.1023 18 28.0489 19.1547 27.8014 20.3922L26.6014 26.3922C26.4144 27.3271 25.5936 28 24.6402 28H19.2241C18.6031 28 17.9906 27.8554 17.4352 27.5777L17.3854 27.5528C16.7078 27.214 16.2798 26.5215 16.2798 25.7639ZM13.7798 19C12.9514 19 12.2798 19.6716 12.2798 20.5V26.5C12.2798 27.3284 12.9514 28 13.7798 28C14.6082 28 15.2798 27.3284 15.2798 26.5V20.5C15.2798 19.6716 14.6082 19 13.7798 19Z" fill="white"/>
+												</svg>
+
+												{{ option_value.text_x2_sale }}</p>
+											
+											{% else %}
+												{% set product_price = base_price_per_item * option_value.items_in_pack %}
+												{% set discount = product_price - option_value.price_raw %}
+						
+												{%  if discount  %}
+												<p class="variant__row"><strong>{{ text_you_save }}:</strong></p>
+												<p class="variant__row text-success"><strong>{{ "%.2f€"|format(discount) }}
+												</strong></p>
+												{% endif %}
+												{% endif %}
+											</div>
+											<div class="variant__buy p">
+												
+												<input class="js-product_options" type="hidden" name="option[{{ option.product_option_id }}]" value="{{ option_value.product_option_value_id }}">
+												<input class="js-product_options" type="hidden" name="product_id" value="{{ product_id }}">
+												<input class="js-product_options" type="hidden" name="quantity" value="1">
+												<a href="javascript:void(0);" class="btn btn-primary btn-block js-add-to-cart" data-checkout="1">{{ button_cart }}</a>
+												<a href="javascript:void(0);" class="btn btn-outline-primary btn-outline-primary-simple btn-block js-add-to-cart">{{ button_cart_add }}</a>
+											</div>
+										</div>
+									{% endif %}
+								{% endfor %}
+								</div>
+						
+					{% endif %}
+				{% endfor %}
+			{% endif %}
+		</div>
+	   
+		<div class="reviews-section row">
+			<div class="col-xs-12"> 
+				{% if reviews %}
+				<h2 class="text-primary">{{ reviews }}</h2>
+				{% endif %}
+				<div id="review"></div>
+				<div class="form-review-wrp clearfix">
+					<div class="h3 text-primary">{{ text_write }}</div>
+					{% if review_guest %}
+					<div class="clearfix">
+						<form id="form-review">
+								<div class="col-xs-12 col-lg-6">
+									<div class="form-group required">
+										<label class="control-label" for="input-review">{{ entry_review }}</label>
+										<textarea name="text" rows="9" id="input-review" class="form-control"></textarea>
+									</div>
+								</div>
+								<div class="col-xs-12 col-lg-6">
+									<div class="form-group required">					
+										<label class="control-label" for="input-name">{{ entry_name }}</label>
+										<input type="text" name="name" value="{{ customer_name }}" id="input-name" class="form-control" />
+									</div>
+									<div class="form-group required">
+										<label class="control-label">{{ entry_rating }}</label>
+										<div class="rating">
+											{% for i in 1..5 %}<span data-rating-value="{{ i }}" class="fa fa-stack">
+											<i class="fa fa-star-{{ i }} fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>{% endfor %}
+											<input id="input-rating" type="hidden" name="rating" value="0" />		  
+										</div>
+									</div>
+									<div class="form-group">
+										<div>{{ captcha }}</div>
+										<button type="button" id="button-review" data-loading-text="{{ text_loading }}" class="btn btn-primary">{{ text_send_review }}</button>	
+									</div>
+								</div>
+						</form>
+					</div>
+					<div id="review-error" class="clearfix"></div>
+					 {% else %}
+					 {{ text_login }}
+					 {% endif %}
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 single-product__bottom">
+				{{ description_bottom }}
+			</div>
+		</div>
+
+      	{{ content_bottom }}
+      </div>
+    {{ column_right }} 
+ 	</div> 
+</div>
+<script type="text/javascript"> 
+window.addEventListener("load", function(){
+	$('.js-show-warning').on('click', function(e) {
+		e.preventDefault();
+		
+		$('#brandedModal .btns .js-product_options').remove();
+		let data = $(this).parent().find('.js-product_options');
+		let gurl = '{{ generic_url }}';
+		$('#brandedModal .btn-goto-generic').attr('href', gurl);
+		data.appendTo( "#brandedModal .btns" );
+		$('#brandedModal').modal('show')
+	});
+
+	$(document).on('click', '.js-add-to-cart', function (e){
+		e.preventDefault();
+		let data = $(this).parent().find('.js-product_options'),
+			redirect = $(this).data('checkout') ? 1 : 0;
+		$.ajax({
+				url: 'index.php?route=checkout/cart/add',
+				type: 'post',
+				data: data,
+				dataType: 'json',
+				beforeSend: function() {
+					// $(this).button('loading');
+				},
+				complete: function() {
+					//$(this).button('reset');
+				},
+				success: function(json) {
+					$('.alert-dismissible, .text-danger').remove();
+					$('.form-group').removeClass('has-error');
+					if (json['error']) {
+						// Highlight any found errors
+						$('.text-danger').parent().addClass('has-error');
+					}
+					if (json['success'] && !redirect) {
+						$('.breadcrumb').after('<div class="alert alert-success alert-dismissible">' + json['success'] + '<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+						let total = parseInt(json['total']);
+						$('#cart-total').html(total);
+						$('html, body').animate({ scrollTop: 0 }, 'slow');
+					}
+					if (redirect) {
+						window.location.replace("index.php?route=extension/quickcheckout/checkout");
+					}
+					let time = {{ 'now'|date('U') }};
+$("#mini-cart").load(
+            "index.php?route=common/cart/info #mini-cart .products1, .mobile-down,.dropdown-header"
+          );
+				},
+				error: function(xhr, ajaxOptions, thrownError) {
+					alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+				}
+		});
+	});
+
+{# $('select[name=\'recurring_id\'], input[name="quantity"]').change(function(){
+	$.ajax({
+		url: 'index.php?route=product/product/getRecurringDescription',
+		type: 'post',
+		data: $('input[name=\'product_id\'], input[name=\'quantity\'], select[name=\'recurring_id\']'),
+		dataType: 'json',
+		beforeSend: function() {
+			$('#recurring-description').html('');
+		},
+		success: function(json) {
+			$('.alert-dismissible, .text-danger').remove();
+
+			if (json['success']) {
+				$('#recurring-description').html(json['success']);
+			}
+		}
+	});
+}); #}
+ 
+$('#button-cart').on('click', function() {
+	$.ajax({
+		url: 'index.php?route=checkout/cart/add',
+		type: 'post',
+		data: $('#product input[type=\'text\'], #product input[type=\'hidden\'], #product input[type=\'radio\']:checked, #product input[type=\'checkbox\']:checked, #product select, #product textarea'),
+		dataType: 'json',
+		beforeSend: function() {
+			$('#button-cart').button('loading');
+		},
+		complete: function() {
+			$('#button-cart').button('reset');
+		},
+		success: function(json) {
+			$('.alert-dismissible, .text-danger').remove();
+			$('.form-group').removeClass('has-error');
+
+			if (json['error']) {
+				if (json['error']['option']) {
+					for (i in json['error']['option']) {
+						var element = $('#input-option' + i.replace('_', '-'));
+
+						if (element.parent().hasClass('input-group')) {
+							element.parent().after('<div class="text-danger">' + json['error']['option'][i] + '</div>');
+						} else {
+							element.after('<div class="text-danger">' + json['error']['option'][i] + '</div>');
+						}
+					}
+				}
+
+				if (json['error']['recurring']) {
+					$('select[name=\'recurring_id\']').after('<div class="text-danger">' + json['error']['recurring'] + '</div>');
+				}
+
+				// Highlight any found errors
+				$('.text-danger').parent().addClass('has-error');
+			}
+
+			if (json['success']) {
+				$('.breadcrumb').after('<div class="alert alert-success alert-dismissible">' + json['success'] + '<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+
+                let total = parseInt(json['total']);
+                $('#cart-total').html(total);
+
+				$('html, body').animate({ scrollTop: 0 }, 'slow');
+
+ $("#mini-cart .products1").load(
+            "index.php?route=common/cart/info #mini-cart .products1"
+          );			}
+		},
+        error: function(xhr, ajaxOptions, thrownError) {
+            alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+	});
+});
+
+{# $('.date').datetimepicker({
+	language: '{{ datepicker }}',
+	pickTime: false
+});
+
+$('.datetime').datetimepicker({
+	language: '{{ datepicker }}',
+	pickDate: true,
+	pickTime: true
+});
+
+$('.time').datetimepicker({
+	language: '{{ datepicker }}',
+	pickDate: false
+});
+
+$('button[id^=\'button-upload\']').on('click', function() {
+	var node = this;
+
+	$('#form-upload').remove();
+
+	$('body').prepend('<form enctype="multipart/form-data" id="form-upload" style="display: none;"><input type="file" name="file" /></form>');
+
+	$('#form-upload input[name=\'file\']').trigger('click');
+
+	if (typeof timer != 'undefined') {
+    	clearInterval(timer);
+	}
+
+	timer = setInterval(function() {
+		if ($('#form-upload input[name=\'file\']').val() != '') {
+			clearInterval(timer);
+
+			$.ajax({
+				url: 'index.php?route=tool/upload',
+				type: 'post',
+				dataType: 'json',
+				data: new FormData($('#form-upload')[0]),
+				cache: false,
+				contentType: false,
+				processData: false,
+				beforeSend: function() {
+					$(node).button('loading');
+				},
+				complete: function() {
+					$(node).button('reset');
+				},
+				success: function(json) {
+					$('.text-danger').remove();
+
+					if (json['error']) {
+						$(node).parent().find('input').after('<div class="text-danger">' + json['error'] + '</div>');
+					}
+
+					if (json['success']) {
+						alert(json['success']);
+
+						$(node).parent().find('input').val(json['code']);
+					}
+				},
+				error: function(xhr, ajaxOptions, thrownError) {
+					alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+				}
+			});
+		}
+	}, 500);
+});
+#}
+$('#review').delegate('.pagination a', 'click', function(e) {
+    e.preventDefault();
+
+    $('#review').fadeOut('slow');
+
+    $('#review').load(this.href);
+
+    $('#review').fadeIn('slow');
+});
+
+$('.rating .fa-stack').on('click', function() {
+	setRating($(this).data('rating-value'));
+});
+
+function setRating(rating) {
+	$('#form-review .rating input[name=\'rating\']').val(rating);
+}
+ 
+$('#form-review .rating span').mouseover(function() {
+	
+	var rating = $(this).data('rating-value');
+	console.log(rating);
+	for (var i = 1; i <= 5; i++) {
+		if (rating >= i) {
+			$('#form-review .rating .fa-star-' + i).addClass('fa-star');
+		} else {
+			$('#form-review .rating .fa-star-' + i).removeClass('fa-star');
+		}
+	}
+});
+
+$('#form-review .rating').mouseout(function() {
+	
+	var rating = $('#form-review .rating input[name=\'rating\']').val();
+	console.log(rating);
+	for (var i = 1; i <= 5; i++) {
+		if (rating >= i) {
+			$('#form-review .rating .fa-star-' + i).addClass('fa-star');
+		} else {
+			$('#form-review .rating .fa-star-' + i).removeClass('fa-star');
+		}
+	}
+});
+
+$('#review').load('index.php?route=product/product/review&product_id={{ product_id }}');
+
+$('#button-review').on('click', function() {
+	$.ajax({
+		url: 'index.php?route=product/product/write&product_id={{ product_id }}',
+		type: 'post',
+		dataType: 'json',
+		data: $("#form-review").serialize(),
+		beforeSend: function() {
+			$('#button-review').button('loading');
+		},
+		complete: function() {
+			$('#button-review').button('reset');
+		},
+		success: function(json) {
+			$('.alert-dismissible').remove();
+
+			if (json['error']) {
+				$('#review-error').html('<div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> ' + json['error'] + '</div>');
+			}
+
+			if (json['success']) {
+				$('#review-error').html('<div class="alert alert-success alert-dismissible"><i class="fa fa-check-circle"></i> ' + json['success'] + '</div>');
+
+				$('input[name=\'name\']').val('');
+				$('textarea[name=\'text\']').val('');
+				$('input[name=\'rating\']:checked').prop('checked', false);
+			}
+		}
+	});
+}); 
+
+
+$(document).on('click','.js-btn', function(e){
+	e.preventDefault();
+	let id = $(this).data('id');
+	$('.is-active').removeClass('is-active');
+	$(this).addClass('is-active');
+	$('#parent-id-'+id).addClass('is-active');
+});
+
+{# $('.thumbnails').magnificPopup({
+	type:'image',
+	delegate: 'a',
+	gallery: {
+		enabled: true
+	}
+}); #}
+ 
+});
+</script>
+
+
+{% if language_code == 'de-de' %}
+	<script type="application/ld+json">
+		{
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "Product",
+              "@id": "{{ product.href }}#product",
+      "name": "{{ product.name   }}",
+      "url": "{{ product.href }}",
+      "image": "{{ base }}{{ product.image }}",
+      "description": "{{ product.description|escape('js') }}",
+      "sku": "{{ product.sku }}",
+      "mpn": "{{ product.mpn }}",
+      "brand": {
+        "@type": "Brand",
+        "name": "{{ product.manufacturer ?: 'Unknown Brand' }}"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": "{{ product.href }}",
+        "priceCurrency": "EUR",
+        "price": "{{ product.price|replace({'€': '', ',': '.'}) }}",
+        "priceValidUntil": "{{ product.price_valid_until ?: '2025-12-31' }}",
+        "itemCondition": "https://schema.org/NewCondition",
+        "availability": "{{ product.stock ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock' }}",
+        "seller": {
+          "@id": "{{ base }}#organization"
+        },
+        "shippingDetails": [
+          {
+            "@type": "OfferShippingDetails",
+            "shippingRate": {
+              "@type": "MonetaryAmount",
+              "value": "10.00",
+              "currency": "EUR"
+            },
+            "shippingDestination": {
+              "@type": "DefinedRegion",
+              "addressCountry": "EU"
+            },
+            "deliveryTime": {
+              "@type": "ShippingDeliveryTime",
+              "handlingTime": {
+                "@type": "QuantitativeValue",
+                "minValue": 0,
+                "maxValue": 1,
+                "unitCode": "DAY"
+              },
+              "transitTime": {
+                "@type": "QuantitativeValue",
+                "minValue": 7,
+                "maxValue": 10,
+                "unitCode": "DAY"
+              }
+            }
+          }
+        ]
+      },
+		{% if reviews %}
+      "review": [
+        {% for review in reviews %}
+        {
+          "@type": "Review",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "{{ review.rating }}"
+          },
+          "reviewBody": "{{ review.text   }}",
+          "datePublished": "{{ review.date_added }}"
+        }{% if not loop.last %},{% endif %}
+		{% endfor %}
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "{{ product.rating }}",
+        "reviewCount": "{{ product.reviews }}"
+      }
+      {% endif %}
+		},
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+		{% for breadcrumb in breadcrumbs %}
+        {
+          "@type": "ListItem",
+          "position": {{ loop.index }},
+          "name": "{{ breadcrumb.text   }}",
+          "item": "{{ breadcrumb.href }}"
+        }{% if not loop.last %},{% endif %}
+		{% endfor %}
+		]
+      }
+    ]
+  }
+	</script>
+{% endif %}
+
+
+{{ footer }} 

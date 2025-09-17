@@ -1,0 +1,200 @@
+{{ header }}{{ column_left }}
+<div id="content">
+  <div class="page-header">
+    <div class="container-fluid">
+      <div class="pull-right">
+        <button type="submit" form="form-payment" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fa fa-save"></i></button>
+        <a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-default"><i class="fa fa-reply"></i></a>
+      </div>
+      <h1>{{ heading_title }}</h1>
+      <ul class="breadcrumb">
+        {% for breadcrumb in breadcrumbs %}
+        <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  
+  <div class="container-fluid">
+    {% if error_warning %}
+    <div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+    {% endif %}
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-pencil"></i> {{ text_edit }}</h3>
+      </div>
+      <div class="panel-body">
+        
+        <!-- Tab headings -->
+        <ul class="nav nav-tabs">
+          <li class="active"><a data-toggle="tab" href="#settings">Settings</a></li>
+          <li><a data-toggle="tab" href="#payments">Recent Payments</a></li>
+        </ul>
+        <!-- Tab headings -->
+        <div class="tab-content">
+          <!-- Settings Tab -->
+          <div id="settings" class="tab-pane fade in active">
+            <form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-payment" class="form-horizontal">               
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="input-status">{{ entry_status }}</label>
+                    <div class="col-sm-2">
+                      <select name="payment_electroneum_instant_status" id="input-status" class="form-control">
+                        {% if payment_electroneum_instant_status %}
+                        <option value="1" selected="selected">{{ text_enabled }}</option>
+                        <option value="0">{{ text_disabled }}</option>
+                        {% else %}
+                        <option value="1">{{ text_enabled }}</option>
+                        <option value="0" selected="selected">{{ text_disabled }}</option>
+                        {% endif %}
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group required">
+                    <label class="col-sm-2 control-label" for="input-api-key"><span data-toggle="tooltip" title="{{ help_api_key }}">{{ entry_api_key }}</span></label>
+                    <div class="col-sm-6">
+                      <input type="password" name="payment_electroneum_instant_api_key" value="{{ payment_electroneum_instant_api_key }}" placeholder="{{ entry_api_key }}" id="input-api-key" class="form-control" aria-describedby="keySummaryHelpBlock" />
+                      <small id="keyHelpBlock" class="form-text text-muted">
+                          {{ api_key_ob }}
+                      </small>
+                    </div>
+                    {% if error_api_key %}
+                      <div class="text-danger">{{ error_api_key }}</div>
+                    {% endif %} 
+                  </div>
+                  <div class="form-group required">
+                    <label class="col-sm-2 control-label" for="input-api-secret"><span data-toggle="tooltip" title="{{ help_api_secret }}">{{ entry_api_secret }}</span></label>
+                    <div class="col-sm-6">
+                      <input type="password" name="payment_electroneum_instant_api_secret" value="{{ payment_electroneum_instant_api_secret }}" placeholder="{{ entry_api_secret }}" id="input-api-secret" class="form-control"  aria-describedby="secretHelpBlock"/>
+                      <small id="secretHelpBlock" class="form-text text-muted">
+                        {{ api_secret_ob }}
+                      </small>
+                    </div>
+                    {% if error_api_secret %}
+                      <div class="text-danger">{{ error_api_secret }}</div>
+                    {% endif %}            
+                  </div>
+                  <div class="form-group required">
+                    <label class="col-sm-2 control-label" for="input-outlet-id"><span data-toggle="tooltip" title="{{ help_outlet_id }}">{{ entry_outlet_id }}</span></label>
+                    <div class="col-sm-4">
+                      <input type="text" name="payment_electroneum_instant_outlet_id" value="{{ payment_electroneum_instant_outlet_id }}" placeholder="{{ entry_outlet_id }}" id="input-outlet-id" class="form-control" />
+                    </div>
+                    {% if error_outlet_id %}
+                      <div class="text-danger">{{ error_outlet_id }}</div>
+                    {% endif %} 
+                  </div> 
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="input-min-order"><span data-toggle="tooltip" title="{{ help_min_order }}">{{ entry_min_order }}</span></label>
+                    <div class="col-sm-2">
+                      <input type="text" name="payment_electroneum_instant_min_order" value="{{ payment_electroneum_instant_min_order }}" placeholder="{{ entry_min_order }}" id="input-min-order" class="form-control" />
+                    </div>
+              
+                    <label class="col-sm-2 control-label" for="input-max-order"><span data-toggle="tooltip" title="{{ help_max_order }}">{{ entry_max_order }}</span></label>
+                    <div class="col-sm-2">
+                      <input type="text" name="payment_electroneum_instant_max_order" value="{{ payment_electroneum_instant_max_order }}" placeholder="{{ entry_max_order }}" id="input-max-order" class="form-control" />
+                    </div>
+                  </div>
+                  {% for language in languages %}
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="input-instructions{{ language.language_id }}"><span data-toggle="tooltip" title="{{ help_instructions }}">{{ entry_instructions }}</span></label>
+                    <div class="col-sm-10">
+                      <div class="input-group"><span class="input-group-addon"><img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" /></span>
+                        <textarea name="payment_electroneum_instant_instructions{{ language.language_id }}" cols="80" rows="10" placeholder="{{ entry_instructions }}" id="input-instructions{{ language.language_id }}" class="form-control">{% if payment_electroneum_instant_instructions[language.language_id] %}{{ payment_electroneum_instant_instructions[language.language_id] }}{% endif %}</textarea>
+                      </div>
+                      {% if error_instructions[language.language_id] %}
+                      <div class="text-danger">{{ error_instructionsk[language.language_id] }}</div>
+                      {% endif %}
+                    </div>
+                  </div>
+                  {% endfor %}
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="input-order-status-paid" ><span data-toggle="tooltip" title="{{ help_order_status_paid }}">{{ entry_order_status_paid }}</span></label>
+                    <div class="col-sm-10">
+                      <select name="payment_electroneum_instant_order_status_id_paid" id="input-order-status-paid" class="form-control">
+                        {% for order_status in order_statuses %}
+                        {% if order_status.order_status_id == payment_electroneum_instant_order_status_id_paid %}
+                        <option value="{{ order_status.order_status_id }}" selected="selected">{{ order_status.name }}</option>
+                        {% else %}
+                        <option value="{{ order_status.order_status_id }}">{{ order_status.name }}</option>
+                        {% endif %}
+                        {% endfor %}
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="input-order-status-unpaid"><span data-toggle="tooltip" title="{{ help_order_status_unpaid }}">{{ entry_order_status_unpaid }}</span></label>
+                    <div class="col-sm-10">
+                      <select name="payment_electroneum_instant_order_status_id_unpaid" id="input-order-status-unpaid" class="form-control">
+                          {% for order_status in order_statuses %}
+                              {% if order_status.order_status_id == payment_electroneum_instant_order_status_id_unpaid %}
+                                <option value="{{ order_status.order_status_id }}" selected="selected">{{ order_status.name }}</option>
+                              {% else %}
+                                <option value="{{ order_status.order_status_id }}">{{ order_status.name }}</option>
+                              {% endif %}
+                          {% endfor %}
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="input-geo-zone"><span data-toggle="tooltip" title="{{ help_geo_zone }}">{{ entry_geo_zone }}</span></label>
+                    <div class="col-sm-10">
+                      <select name="payment_electroneum_instant_geo_zone_id" id="input-geo-zone" class="form-control">
+                        <option value="0">{{ text_all_zones }}</option>
+                        {% for geo_zone in geo_zones %}
+                        {% if geo_zone.geo_zone_id == payment_electroneum_instant_geo_zone_id %}
+                        <option value="{{ geo_zone.geo_zone_id }}" selected="selected">{{ geo_zone.name }}</option>
+                        {% else %}
+                        <option value="{{ geo_zone.geo_zone_id }}">{{ geo_zone.name }}</option>
+                        {% endif %}
+                        {% endfor %}
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="input-sort-order"><span data-toggle="tooltip" title="{{ help_sort_order }}">{{ entry_sort_order }}</span></label>
+                    <div class="col-sm-10">
+                      <input type="text" name="payment_electroneum_instant_sort_order" value="{{ payment_electroneum_instant_sort_order }}" placeholder="{{ entry_sort_order }}" id="input-sort-order" class="form-control" />
+                    </div>
+                  </div>
+            </form>     
+          </div>
+          <!-- Settings Tab -->
+
+          <!-- Payments Tab -->
+          <div id="payments" class="tab-pane fade">
+
+            <table class="table table-hover text-center">
+              <thead>
+                <tr>
+                  <th scope="col" class="text-center">Sent</th>
+                  <th scope="col" class="text-center">Type</th>
+                  <th scope="col" class="text-center">Customer Email</th>
+                  <th scope="col" class="text-center">Amount (ETN)</th>                        
+                  <th scope="col" class="text-center">Reference</th>
+                  <th scope="col" class="text-center">Payment ID</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for payment in payments %}
+                    <tr>
+                      <td>{{ payment.payment_date }}</td>
+                      <td>{{ payment.payment_event }}</td>
+                      <td><a href="{{ userUrl }}{{ payment.payment_email }}">{{ payment.payment_email }}</a></td>
+                      <td>{{ payment.payment_amount }}</td>
+                      <td>{{ payment.payment_ref }}</td>
+                      <td><a href="{{ orderUrl }}{{ payment.payment_id }}">{{ payment.payment_id }}</a></td>                         
+                    </tr>
+                {% endfor %}
+              </tbody>
+            </table>  
+                      
+          </div> 
+          <!-- Payments Tab -->
+        </div> 
+    </div> 
+  </div>
+</div>
+{{ footer }}

@@ -1,0 +1,356 @@
+{{ header }}
+<div class="container">
+	<ul class="breadcrumb">
+		{% for breadcrumb in breadcrumbs %}
+			{% if loop.last %}
+				<li class="active">{{ breadcrumb.text }}</li>
+			{% else %}
+				<li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+			{% endif %}
+		{% endfor %}
+	</ul>
+  <div class="row"> 
+    <div id="content" class="col-xs-12 col-md-8">
+ 
+	  {{ content_top }}
+      <h1>{{ heading_title }}</h1>
+	  {% if description %}
+	  <div class="row">
+	    <div class="col-md-12">
+	    {{ description }}
+	    </div>
+	  </div>
+	  {% endif %}
+	  <div class="row">
+	    <div class="col-md-4">
+          <div class="form-group input-group input-group-sm">
+            <label class="input-group-addon" for="input-sort">{{ text_sort }}</label>
+			<select id="input-sort" class="form-control" onchange="location = this.value;">
+              {% for sorts in sorts %}
+              {% if sorts.value == '%s-%s'|format(sort, order) %}
+              <option value="{{ sorts.href }}" selected="selected">{{ sorts.text }}</option>
+              {% else %}
+              <option value="{{ sorts.href }}">{{ sorts.text }}</option>
+              {% endif %}
+              {% endfor %}
+            </select>
+          </div>
+		</div>
+		<div class="col-md-2">
+		  <div class="form-group input-group input-group-sm">
+            <label class="input-group-addon" for="input-limit">{{ text_limit }}</label>
+            <select id="input-limit" class="form-control" onchange="location = this.value;">
+              {% for limits in limits %}
+              {% if limits.value == limit %}
+              <option value="{{ limits.href }}" selected="selected">{{ limits.text }}</option>
+              {% else %}
+              <option value="{{ limits.href }}">{{ limits.text }}</option>
+              {% endif %}
+              {% endfor %}
+            </select>
+          </div>
+		</div>
+	  </div>
+	  <div id="testimonial">
+		{% if testimonials %}    
+		 
+		<div class="reviews">
+			{% for testimonial in testimonials %}
+				<div>
+					<div class="reviews__meta">
+						{% if testimonial.name %}<span class="text-primary author">{{ testimonial.name }}</span>{% endif %}&nbsp;
+						{% if testimonial.rating %}
+						<span class="rating">
+							{% for i in 1..5 %}
+								{% if testimonial.rating < i %}
+								<span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
+								{% else %}
+								<span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
+								{% endif %}
+							{% endfor %}
+			    		</span>
+						{% endif %}
+						&nbsp;
+						{% if testimonial.date_added %}<span class="small">{{ testimonial.date_added }}</span>{% endif %}
+					</div>
+					{% if testimonial.text %}<div class="reviews__text">{{ testimonial.text }}</div>{% endif %}
+				</div>
+			{% endfor %}
+		</div>
+		<div class="text-center">{{ pagination }}</div>
+		{% endif %}
+	  </div>
+      {{ content_bottom }}
+	  </div>
+	  	<div class="col-xs-12 col-md-4">
+			{% if not form_position %}
+			{% if form %}
+			<div class="h3 text-primary">{{ text_write }}</div>
+			{% else %}
+			<div class="buttons clearfix">
+				<div class="pull-right">
+				<button type="button" id="button-toggle" class="btn btn-primary">{{ text_write }} <i class="fa fa-chevron-down"></i></button>
+				</div>
+			</div>
+			{% endif %}
+			<div class="row">
+				<form {% if not form %}style="display: none;" {% endif %} id="form-testimonial" enctype="multipart/form-data" method="post">
+					{% if guest %}
+					{% if field_title %}
+					<div class="form-group{% if field_title == 2 %} required{% endif %} clearfix">
+						<div class="col-sm-12">
+							<label class="control-label" for="input-title">{{ entry_title }}</label>
+							<input type="text" name="title" value="" id="input-title" class="form-control" />
+						</div>
+					</div>
+					{% endif %}
+					{% if field_city %}
+					<div class="form-group{% if field_city == 2 %} required{% endif %} clearfix">
+						<div class="col-sm-12">
+							<label class="control-label" for="input-city">{{ entry_city }}</label>
+							<input type="text" name="city" value="" id="input-city" class="form-control" />
+						</div>
+					</div>
+					{% endif %}
+					{% if field_email %}
+					<div class="form-group{% if field_email == 2 %} required{% endif %} clearfix">
+						<div class="col-sm-12">
+							<label class="control-label" for="input-email">{{ entry_email }}</label>
+							<input type="text" name="email" value="{{ email }}" id="input-email" class="form-control" />
+						</div>
+					</div>
+					{% endif %}
+					{% if field_name %}
+					<div class="form-group{% if field_name == 2 %} required{% endif %} clearfix">
+						<div class="col-sm-12">
+							<label class="control-label" for="input-name">{{ entry_name }}</label>
+							<input type="text" name="name" value="{{ name }}" id="input-name" class="form-control" />
+						</div>
+					</div>
+					{% endif %}
+					{% if field_text %}
+					<div class="form-group{% if field_text == 2 %} required{% endif %} clearfix">
+						<div class="col-sm-12">
+							<label class="control-label" for="input-text">{{ entry_text }}</label>
+							<textarea name="text" rows="5" id="input-text" class="form-control wysibb"></textarea>
+						</div>
+					</div>
+					{% endif %}
+					{% if field_good %}
+					<div class="form-group{% if field_good == 2 %} required{% endif %} clearfix">
+						<div class="col-sm-12">
+							<label class="control-label" for="input-good">{{ entry_good }}</label>
+							<textarea name="good" rows="5" id="input-good" class="form-control wysibb"></textarea>
+						</div>
+					</div>
+					{% endif %}
+					{% if field_bad %}
+					<div class="form-group{% if field_bad == 2 %} required{% endif %} clearfix">
+						<div class="col-sm-12">
+							<label class="control-label" for="input-bad">{{ entry_bad }}</label>
+							<textarea name="bad" rows="5" id="input-bad" class="form-control"></textarea>
+						</div>
+					</div>
+					{% endif %}
+					{% if field_rating %}
+					<div class="form-group{% if field_rating == 2 %} required{% endif %} clearfix">
+						<div class="col-xs-12">
+							<label class="control-label">{{ entry_rating }}</label>
+							<div class="rating">
+							{% for i in 1..5 %}<span data-rating-value="{{ i }}" class="fa fa-stack">
+							<i class="fa fa-star-{{ i }} fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>{% endfor %}
+							<input id="input-rating" type="hidden" name="rating" value="0" />		  
+							</div>
+						</div>
+					</div>
+					{% endif %}
+					{{ captcha }}
+					<div class="col-xs-12">
+						<button type="button" id="button-testimonial" data-loading-text="{{ text_loading }}" class="btn btn-block btn-lg btn-primary">{{ button_submit }}</button>
+					</div>
+					{% else %}
+					{{ text_login }}
+					{% endif %}
+				</form>
+			</div>
+		{% endif %}
+		</div>
+    </div>
+
+</div>
+<script type="text/javascript"><!--
+window.addEventListener("load", function(){
+{% if field_avatar %}
+$('#input-avatar').on('change', function() {
+	$('#label-avatar').html(this.files[0].name); 
+	$('#button-clear').show();
+});
+$('#button-clear').on('click', function() {
+	$('#input-avatar').val('');
+	$('#button-clear').hide();
+	$('#label-avatar').empty();
+});
+{% endif %}
+{% if field_image %}
+
+var row = 0;
+
+$('#button-add-image').on('click', function() {
+	if ($('#image-list .image-row').length < '{{ image_limit }}') {
+		html = '<div class="image-row image-row' + row + '"><label class="btn btn-primary btn-sm" for="input-image' + row + '"><input id="input-image' + row + '" type="file" name="image[]" onchange="$(\'#label-image' + row + '\').html(this.files[0].name);" accept="image/jpeg,image/png"><i class="fa fa-upload"></i> <span class="hidden-xs hidden-sm hidden-md">{{ button_upload }}</span></label> <button type="button" data-toggle="tooltip" rel="tooltip" title="{{ button_remove }}" onclick="$(this).tooltip(\'destroy\'); $(\'.image-row' + row + '\').remove(); $(\'#button-add-image\').removeAttr(\'disabled\');" class="btn btn-danger btn-sm"><i class="fa fa-remove"></i></button> <span class="label label-info" id="label-image' + row + '"></span></div>';
+			
+		$('#image-list').append(html);
+		$('[rel=tooltip]').tooltip();
+		
+		row++;
+	}
+	
+	if ($('#image-list .image-row').length == '{{ image_limit }}') {
+		$('#button-add-image').attr('disabled', 'disabled');
+	}
+});
+{% endif %}
+{% if not form %}
+$('#button-toggle').on('click', function() {
+	if ($('#button-toggle i').hasClass('fa-chevron-down')) {
+		$('#button-toggle i').removeClass('fa-chevron-down').addClass('fa-chevron-up');
+	} else {
+		$('#button-toggle i').removeClass('fa-chevron-up').addClass('fa-chevron-down');
+	}
+	
+	$('#form-testimonial').slideToggle();
+});
+{% endif %}
+{% if field_rating %}
+
+$('.rating .fa-stack').on('click', function() {
+	setRating($(this).data('rating-value'));
+});
+
+function setRating(rating) {
+	$('#form-testimonial .rating input[name=\'rating\']').val(rating);
+}
+
+$('#form-testimonial .rating span').mouseover(function() {
+	
+	var rating = $(this).data('rating-value');
+	
+	for (var i = 1; i <= 5; i++) {
+		if (rating >= i) {
+			$('#form-testimonial .rating .fa-star-' + i).addClass('fa-star');
+		} else {
+			$('#form-testimonial .rating .fa-star-' + i).removeClass('fa-star');
+		}
+	}
+});
+
+$('#form-testimonial .rating').mouseout(function() {
+	
+	var rating = $('#form-testimonial .rating input[name=\'rating\']').val();
+	
+	for (var i = 1; i <= 5; i++) {
+		if (rating >= i) {
+			$('#form-testimonial .rating .fa-star-' + i).addClass('fa-star');
+		} else {
+			$('#form-testimonial .rating .fa-star-' + i).removeClass('fa-star');
+		}
+	}
+});
+{% endif %}
+{% if editor %}
+$(document).ready(function() {
+	var wbbOpt = {
+        buttons:'bold,italic,underline,strike,fontcolor,fontsize,|,bullist,numlist,|,video,link,smilebox',
+		lang: '{{ wysibb_language }}',
+		smileList: [
+			{% if smiles %}
+			{% for smile in smiles %}
+			{title: '', img: '<img src="{{ smile.url }}" class="smile">', bbcode:":{{ smile.name }}:"},
+			{% endfor %}
+			{% endif %}
+		]
+	}
+{% if field_text %}
+	$("#input-text").wysibb(wbbOpt);
+{% endif %}
+{% if field_good %}
+	$("#input-good").wysibb(wbbOpt);
+{% endif %}
+{% if field_bad %}
+	$("#input-bad").wysibb(wbbOpt);
+{% endif %}
+});
+{% endif %}
+$('#button-testimonial').on('click', function() {
+	{% if editor %}
+	{% if field_text %}
+	$("#input-text").sync();
+	{% endif %}
+	{% if field_good %}
+	$("#input-good").sync();
+	{% endif %}
+	{% if field_bad %}
+	$("#input-bad").sync();
+	{% endif %}
+	{% endif %}
+	$.ajax({
+		url: 'index.php?route=information/testimonial/write',
+		type: 'post',
+		dataType: 'json',
+		data: new FormData($('#form-testimonial').get(0)),
+		cache: false,
+		contentType: false,
+		processData: false,
+		beforeSend: function() {
+			$('#button-testimonial').button('loading');
+		},
+		complete: function() {
+			$('#button-testimonial').button('reset');
+		},
+		success: function(json) {
+			$('.alert-success, .alert-danger').remove();
+
+			if (json['error']) {
+				$('#content').parent().before('<div class="testimonial-alert alert alert-danger"><i class="fa fa-check-circle"></i> ' + json['error'] + ' <button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+				
+				setTimeout(function () {
+					$('.testimonial-alert').fadeOut();
+				}, 3000);
+			}
+
+			if (json['success']) {
+				$('#content').parent().before('<div class="testimonial-alert alert alert-success"><i class="fa fa-check-circle"></i> ' + json['success'] + ' <button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+				
+				setTimeout(function () {
+					$('.testimonial-alert').fadeOut();
+				}, 3000);
+				{% if not moderation %}
+				$('#testimonial-total').load('index.php?route=information/testimonial/total');
+				$('#testimonial').load('index.php?route=information/testimonial/testimonial_list');
+				{% endif %}
+				// Clear form
+				$('#form-testimonial').get(0).reset();
+				{% if field_rating %}
+				$('#form-testimonial .rating span i').removeClass('fa-star');
+				$('#form-testimonial input[name=\'rating\']').val('');
+				{% endif %}
+				{% if field_avatar or field_image %}
+				$('#form-testimonial .label-info').empty();
+				{% endif %}
+				{% if field_avatar %}
+				$('#button-clear').hide();
+				{% endif %}
+				{% if field_image %}
+				$("#form-testimonial .image-row").remove();
+				$('#button-add-image').removeAttr('disabled');
+				{% endif %}
+				{% if editor %}
+				$('#form-testimonial .wysibb-text-editor').empty();
+				{% endif %}
+			}
+		}
+	});
+});
+});
+//--></script>
+{{ footer }}

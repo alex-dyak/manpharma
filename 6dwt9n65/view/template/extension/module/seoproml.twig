@@ -1,0 +1,203 @@
+{{ header }}{{ column_left }}
+<div id="content">
+	<div class="page-header">
+		<div class="container-fluid">
+			<div class="pull-right form-inline">
+				<button type="submit" form="form-module" name="apply" data-toggle="tooltip" title="{{ button_apply }}" class="btn btn-success"><i class="fa fa-check"></i></button>
+				<button type="submit" form="form-module" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fa fa-save"></i></button>
+				<a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-default"><i class="fa fa-reply"></i></a>
+			</div>
+			<h1>{{ heading_title }}</h1>
+			<ul class="breadcrumb">
+				{% for breadcrumb in breadcrumbs %}
+					<li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+	<div class="container-fluid">
+		{% if error_warning %}
+			<div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+			</div>
+		{% endif %}
+		{% if success %}
+			<div class="alert alert-success alert-dismissible"><i class="fa fa-exclamation-circle"></i> {{ success }}
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+			</div>
+		{% endif %}
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title"><i class="fa fa-pencil"></i> {{ text_edit }}</h3>
+			</div>
+			<div class="panel-body">
+				<ul class="nav nav-tabs">
+					<li class="active"><a href="#tab-main" data-toggle="tab">{{ tab_main }}</a></li>
+					<li><a href="#tab-home" data-toggle="tab">{{ tab_home }}</a></li>
+					<li><a href="#tab-logo" data-toggle="tab">{{ tab_logo }}</a></li>
+					<li><a href="#tab-license" data-toggle="tab">{{ tab_license }}</a></li>
+				</ul>
+				<form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-module" class="form-horizontal">
+					<div class="tab-content">
+						<div class="tab-pane active form-horizontal" id="tab-main">
+							<div class="form-group">
+								<label class="col-sm-2 control-label" for="input-status"><span class="help" title="{{ help_status }}" data-toggle="tooltip">{{ entry_status }}</span></label>
+								<div class="col-sm-10">
+									<select name="module_seoproml_status" id="input-status" class="form-control">
+										<option value="0" {{ "0" == module_seoproml_status ? "selected" : "" }}>{{ text_disabled }}</option>
+										<option value="1" {{ "1" == module_seoproml_status ? "selected" : "" }}>{{ text_enabled }}</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label"><span class="help" title="{{ help_prefix }}" data-toggle="tooltip">{{ entry_prefix }}</span></label>
+								<div class="col-sm-10">
+									{% for language in languages %}
+										<div class="input-group">
+											<span class="input-group-addon">
+												<img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" />
+											</span>
+											<input type="text" name="module_seoproml_prefix[{{ language.code }}]" value="{{ module_seoproml_prefix[language.code] ? module_seoproml_prefix[language.code] : language.code }}" placeholder="{{ language.code }}" class="form-control" />
+										</div>
+									{% endfor %}
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label"><span class="help" title="{{ help_hreflang }}" data-toggle="tooltip">{{ entry_hreflang }}</span></label>
+								<div class="col-sm-10">
+									{% for language in languages %}
+										<div class="input-group">
+											<span class="input-group-addon">
+												<img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" />
+											</span>
+											<input type="text" name="module_seoproml_hreflang[{{ language.language_id }}]" value="{{ module_seoproml_hreflang[language.language_id] ? module_seoproml_hreflang[language.language_id] : language.code }}" placeholder="{{ language.code }}" class="form-control" />
+										</div>
+									{% endfor %}
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label" for="input-xdefault"><span class="help" title="{{ help_xdefault }}" data-toggle="tooltip">{{ entry_xdefault }}</span></label>
+								<div class="col-sm-10">
+									<select name="module_seoproml_xdefault" id="input-xdefault" class="form-control">
+										<option value="0" {{ "0" == module_seoproml_xdefault ? "selected" : "" }}>{{ text_disabled }}</option>
+										{% for language in languages %}
+										<option value="{{ language.code }}" {{ language.code == module_seoproml_xdefault ? "selected" : "" }}>{{ language.code }}</option>
+										{% endfor %}
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label" for="input-sameurl"><span class="help" title="{{ help_sameurl }}" data-toggle="tooltip">{{ entry_sameurl }}</span></label>
+								<div class="col-sm-10">
+									<select name="module_seoproml_sameurl" id="input-sameurl" class="form-control">
+										<option value="0" {{ "0" == module_seoproml_sameurl ? "selected" : "" }}>{{ text_disabled }}</option>
+										<option value="1" {{ "1" == module_seoproml_sameurl ? "selected" : "" }}>{{ text_enabled }}</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div id="tab-home" class="tab-pane">
+							<ul class="nav nav-tabs" id="language-home">
+								{% for language in languages %}
+									<li><a href="#home-language{{ language.language_id }}" data-toggle="tab"><img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" /> {{ language.name }}</a></li>
+								{% endfor %}
+							</ul>
+							<div class="tab-content">
+								{% for language in languages %}
+									<div class="tab-pane" id="home-language{{ language.language_id }}">
+										<div class="form-group">
+											<label class="col-sm-2 control-label">{{ entry_h1 }}</label>
+											<div class="col-sm-10">
+												<input type="text" name="module_seoproml_tags[{{ language.language_id }}][home][h1]" value="{{ module_seoproml_tags[language.language_id]['home']['h1'] }}" placeholder="{{ entry_h1 }}" class="form-control">
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-2 control-label">{{ entry_description }}</label>
+											<div class="col-sm-10">
+												<textarea name="module_seoproml_tags[{{ language.language_id }}][home][description]" placeholder="{{ entry_description }}" data-toggle="summernote" data-lang="{{ language.locale }}" class="form-control">{{ module_seoproml_tags[language.language_id]['home']['description'] }}</textarea>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-2 control-label">{{ entry_meta_title }}</label>
+											<div class="col-sm-10">
+												<input type="text" name="module_seoproml_tags[{{ language.language_id }}][home][meta_title]" value="{{ module_seoproml_tags[language.language_id]['home']['meta_title'] }}" placeholder="{{ entry_meta_title }}" class="form-control">
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-2 control-label">{{ entry_meta_description }}</label>
+											<div class="col-sm-10">
+												<textarea name="module_seoproml_tags[{{ language.language_id }}][home][meta_description]" placeholder="{{ entry_meta_description }}" rows="4" class="form-control">{{ module_seoproml_tags[language.language_id]['home']['meta_description'] }}</textarea>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-2 control-label">{{ entry_meta_keywords }}</label>
+											<div class="col-sm-10">
+												<input type="text" name="module_seoproml_tags[{{ language.language_id }}][home][meta_keywords]" value="{{ module_seoproml_tags[language.language_id]['home']['meta_keywords'] }}" placeholder="{{ entry_meta_keywords }}" class="form-control">
+											</div>
+										</div>
+									</div>
+								{% endfor %}
+							</div>
+						</div>
+						<div class="tab-pane form-horizontal" id="tab-logo">
+							<div class="form-group">
+								<label class="col-sm-2 control-label" for="input-logo-status">{{ entry_logo_status }}</label>
+								<div class="col-sm-10">
+									<select name="module_seoproml_logo_status" id="input-logo-status" class="form-control">
+										<option value="0" {{ "0" == module_seoproml_logo_status ? "selected" : "" }}>{{ text_disabled }}</option>
+										<option value="1" {{ "1" == module_seoproml_logo_status ? "selected" : "" }}>{{ text_enabled }}</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">{{ entry_logo }}</label>
+								<div class="col-sm-10">
+									{% for language in languages %}
+										<div class="input-group">
+											<span class="input-group-addon">
+												<img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" />
+											</span>
+											<a href="" id="thumb-logo-{{ language.language_id }}" data-toggle="image" class="img-thumbnail">
+												<img src="{{ thumb[language.language_id] }}" alt="" title="" data-placeholder="{{ placeholder }}" />
+											</a>
+											<input type="hidden" name="module_seoproml_logo[{{ language.language_id }}]" value="{{ module_seoproml_logo[language.language_id] }}" id="input-logo-{{ language.language_id }}" />
+										</div><br>
+									{% endfor %}
+								</div>
+							</div>
+						</div>
+						<div class="tab-pane form-horizontal" id="tab-license">
+							<div class="form-group">
+								<label class="col-sm-2 control-label" for="seoproml_license">
+									<span data-toggle="tooltip" title="{{ help_license }}">{{ entry_license }}</span>
+								</label>
+								<div class="col-sm-10">
+									<input type="text" name="module_seoproml_license" id="seoproml_license" value="{{ module_seoproml_license }}" class="form-control"/>
+									<br>
+									{{ text_copyright }}
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<link href="view/javascript/codemirror/lib/codemirror.css" rel="stylesheet" />
+<link href="view/javascript/codemirror/theme/monokai.css" rel="stylesheet" />
+<script type="text/javascript" src="view/javascript/codemirror/lib/codemirror.js"></script> 
+<script type="text/javascript" src="view/javascript/codemirror/lib/xml.js"></script> 
+<script type="text/javascript" src="view/javascript/codemirror/lib/formatting.js"></script> 
+  
+<script type="text/javascript" src="view/javascript/summernote/summernote.min.js"></script>
+<link href="view/javascript/summernote/summernote.css" rel="stylesheet" />
+<script type="text/javascript" src="view/javascript/summernote/summernote-image-attributes.js"></script>
+<script type="text/javascript" src="view/javascript/summernote/opencart.js"></script>
+
+<script type="text/javascript"><!--
+$('#language-home a:first').tab('show');
+//--></script>
+
+{{ footer }}

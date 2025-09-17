@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html dir="{{ direction }}" lang="{{ lang }}">
+<head>
+<meta charset="UTF-8" />
+<title>{{ title }}</title>
+<base href="{{ base }}" />
+<style>
+ /**
+ * Automatic version:
+ * Uses light theme by default but switches to dark theme
+ * if a system-wide theme preference is set on the user's device.
+ */
+
+:root {
+  --background-body: #fff;
+  --background: #efefef;
+  --background-alt: #f7f7f7;
+  --selection: #9e9e9e;
+  --text-main: #363636;
+  --text-bright: #000;
+  --text-muted: #70777f;
+  --links: #0076d1;
+  --focus: #0096bfab;
+  --border: #dbdbdb;
+  --code: #000;
+  --animation-duration: 0.1s;
+  --button-base: #d0cfcf;
+  --button-hover: #9b9b9b;
+  --scrollbar-thumb: rgb(170, 170, 170);
+  --scrollbar-thumb-hover: var(--button-hover);
+  --form-placeholder: #949494;
+  --form-text: #1d1d1d;
+  --variable: #39a33c;
+  --highlight: #ff0;
+  --select-arrow: url("data:image/svg+xml;charset=utf-8,%3C?xml version='1.0' encoding='utf-8'?%3E %3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' height='62.5' width='116.9' fill='%23161f27'%3E %3Cpath d='M115.3,1.6 C113.7,0 111.1,0 109.5,1.6 L58.5,52.7 L7.4,1.6 C5.8,0 3.2,0 1.6,1.6 C0,3.2 0,5.8 1.6,7.4 L55.5,61.3 C56.3,62.1 57.3,62.5 58.4,62.5 C59.4,62.5 60.5,62.1 61.3,61.3 L115.2,7.4 C116.9,5.8 116.9,3.2 115.3,1.6Z'/%3E %3C/svg%3E");
+}
+
+ 
+ 
+ 
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif;
+  line-height: 1.4;
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 0 10px;
+  word-wrap: break-word;
+  color: #363636;
+  color: #000;
+  background: #fff;
+  background: #fff;
+  text-rendering: optimizeLegibility;
+}
+ 
+ 
+ 
+
+h1 {
+  font-size: 2.2em;
+  margin-top: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom: 12px;
+  margin-top: 24px;
+}
+
+h1 {
+  color: #000;
+ 
+}
+
+ 
+
+h2 {
+  color: #000;
+ 
+}
+ 
+
+h3 {
+  color: #000;
+ 
+}
+
+ 
+h4 {
+  color: #000;
+ 
+}
+ 
+
+h5 {
+  color: #000;
+ 
+}
+
+ 
+
+h6 {
+  color: #000;
+ 
+}
+
+ 
+
+strong {
+  color: #000;
+ 
+}
+
+ 
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+b,
+strong,
+th {
+  font-weight: 600;
+}
+
+q::before {
+  content: none;
+}
+
+q::after {
+  content: none;
+}
+
+blockquote {
+  border-left: 4px solid #0096bfab;
+ 
+  margin: 1.5em 0;
+  padding: 0.5em 1em;
+  font-style: italic;
+}
+
+@media (prefers-color-scheme: dark) {
+
+  blockquote {
+  border-left: 4px solid #0096bfab;
+ 
+  }
+}
+
+q {
+  border-left: 4px solid #0096bfab;
+ 
+  margin: 1.5em 0;
+  padding: 0.5em 1em;
+  font-style: italic;
+}
+
+ 
+blockquote > footer {
+  font-style: normal;
+  border: 0;
+}
+
+blockquote cite {
+  font-style: normal;
+}
+
+address {
+  font-style: normal;
+}
+
+ 
+mark {
+  background-color: #ff0;
+ 
+  border-radius: 2px;
+  padding: 0 2px 0 2px;
+  color: #000;
+}
+ 
+
+a > code,
+a > strong {
+  color: inherit;
+}
+
+button,
+select,
+input[type='submit'],
+input[type='reset'],
+input[type='button'],
+input[type='checkbox'],
+input[type='range'],
+input[type='radio'] {
+  cursor: pointer;
+}
+
+input,
+select {
+  display: block;
+}
+
+[type='checkbox'],
+[type='radio'] {
+  display: initial;
+}
+
+input {
+  color: #1d1d1d;
+ 
+  background-color: #efefef;
+ 
+  font-family: inherit;
+  font-size: inherit;
+  margin-right: 6px;
+  margin-bottom: 6px;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  outline: none;
+}
+ 
+ 
+
+button {
+  color: #1d1d1d;
+ 
+  background-color: #efefef;
+ 
+  font-family: inherit;
+  font-size: inherit;
+  margin-right: 6px;
+  margin-bottom: 6px;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  outline: none;
+}
+
+ 
+ 
+
+textarea {
+  color: #1d1d1d;
+ 
+  background-color: #efefef;
+ 
+  font-family: inherit;
+  font-size: inherit;
+  margin-right: 6px;
+  margin-bottom: 6px;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  outline: none;
+}
+ 
+select {
+  color: #1d1d1d;
+ 
+  background-color: #efefef;
+ 
+  font-family: inherit;
+  font-size: inherit;
+  margin-right: 6px;
+  margin-bottom: 6px;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  outline: none;
+}
+ 
+
+ 
+button {
+  background-color: #d0cfcf;
+ 
+  padding-right: 30px;
+  padding-left: 30px;
+}
+
+ 
+
+input[type='submit'] {
+  background-color: #d0cfcf;
+ 
+  padding-right: 30px;
+  padding-left: 30px;
+}
+ 
+
+input[type='reset'] {
+  background-color: #d0cfcf;
+ 
+  padding-right: 30px;
+  padding-left: 30px;
+}
+ 
+input[type='button'] {
+  background-color: #d0cfcf;
+ 
+  padding-right: 30px;
+  padding-left: 30px;
+}
+
+ 
+
+button:hover {
+  background: #9b9b9b;
+ 
+}
+ 
+
+input[type='submit']:hover {
+  background: #9b9b9b;
+ 
+}
+
+ 
+
+input[type='reset']:hover {
+  background: #9b9b9b;
+ 
+}
+
+ 
+input[type='button']:hover {
+  background: #9b9b9b;
+ 
+}
+
+ 
+input[type='color'] {
+  min-height: 2rem;
+  padding: 8px;
+  cursor: pointer;
+}
+
+input[type='checkbox'],
+input[type='radio'] {
+  height: 1em;
+  width: 1em;
+}
+
+input[type='radio'] {
+  border-radius: 100%;
+}
+
+input {
+  vertical-align: top;
+}
+
+label {
+  vertical-align: middle;
+  margin-bottom: 4px;
+  display: inline-block;
+}
+
+input:not([type='checkbox']):not([type='radio']),
+input[type='range'],
+select,
+button,
+textarea {
+  -webkit-appearance: none;
+}
+
+textarea {
+  display: block;
+  margin-right: 0;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
+textarea:not([cols]) {
+  width: 100%;
+}
+
+textarea:not([rows]) {
+  min-height: 40px;
+  height: 140px;
+}
+
+select {
+  background: #efefef url("data:image/svg+xml;charset=utf-8,%3C?xml version='1.0' encoding='utf-8'?%3E %3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' height='62.5' width='116.9' fill='%23161f27'%3E %3Cpath d='M115.3,1.6 C113.7,0 111.1,0 109.5,1.6 L58.5,52.7 L7.4,1.6 C5.8,0 3.2,0 1.6,1.6 C0,3.2 0,5.8 1.6,7.4 L55.5,61.3 C56.3,62.1 57.3,62.5 58.4,62.5 C59.4,62.5 60.5,62.1 61.3,61.3 L115.2,7.4 C116.9,5.8 116.9,3.2 115.3,1.6Z'/%3E %3C/svg%3E") calc(100% - 12px) 50% / 12px no-repeat;
+  
+  padding-right: 35px;
+}
+ 
+select::-ms-expand {
+  display: none;
+}
+
+select[multiple] {
+  padding-right: 10px;
+  background-image: none;
+  overflow-y: auto;
+}
+
+input:focus {
+  box-shadow: 0 0 0 2px #0096bfab;
+ 
+}
+ 
+select:focus {
+  box-shadow: 0 0 0 2px #0096bfab;
+ 
+}
+ 
+
+button:focus {
+  box-shadow: 0 0 0 2px #0096bfab;
+ 
+}
+
+ 
+
+textarea:focus {
+  box-shadow: 0 0 0 2px #0096bfab;
+ 
+}
+
+ 
+
+input[type='checkbox']:active,
+input[type='radio']:active,
+input[type='submit']:active,
+input[type='reset']:active,
+input[type='button']:active,
+input[type='range']:active,
+button:active {
+  transform: translateY(2px);
+}
+
+input:disabled,
+select:disabled,
+button:disabled,
+textarea:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+::-moz-placeholder {
+  color: #949494;
+ 
+}
+
+:-ms-input-placeholder {
+  color: #949494;
+ 
+}
+
+::-ms-input-placeholder {
+  color: #949494;
+ 
+}
+
+::placeholder {
+  color: #949494;
+ 
+}
+ 
+
+fieldset {
+  border: 1px #0096bfab solid;
+ 
+  border-radius: 6px;
+  margin: 0;
+  margin-bottom: 12px;
+  padding: 10px;
+}
+
+ 
+legend {
+  font-size: 0.9em;
+  font-weight: 600;
+}
+
+input[type='range'] {
+  margin: 10px 0;
+  padding: 10px 0;
+  background: transparent;
+}
+
+input[type='range']:focus {
+  outline: none;
+}
+
+input[type='range']::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 9.5px;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  background: #efefef;
+
+  border-radius: 3px;
+}
+ 
+
+input[type='range']::-webkit-slider-thumb {
+  box-shadow: 0 1px 1px #000, 0 0 1px #0d0d0d;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: #dbdbdb; 
+  -webkit-appearance: none;
+  margin-top: -7px;
+}
+ 
+input[type='range']:focus::-webkit-slider-runnable-track {
+  background: #efefef;
+
+}
+
+ 
+
+input[type='range']::-moz-range-track {
+  width: 100%;
+  height: 9.5px;
+  -moz-transition: 0.2s;
+  transition: 0.2s;
+  background: #efefef;
+
+  border-radius: 3px;
+}
+ 
+
+input[type='range']::-moz-range-thumb {
+  box-shadow: 1px 1px 1px #000, 0 0 1px #0d0d0d;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: #dbdbdb; 
+}
+ 
+
+input[type='range']::-ms-track {
+  width: 100%;
+  height: 9.5px;
+  background: transparent;
+  border-color: transparent;
+  border-width: 16px 0;
+  color: transparent;
+}
+
+input[type='range']::-ms-fill-lower {
+  background: #efefef;
+
+  border: 0.2px solid #010101;
+  border-radius: 3px;
+  box-shadow: 1px 1px 1px #000, 0 0 1px #0d0d0d;
+}
+ 
+
+input[type='range']::-ms-fill-upper {
+  background: #efefef;
+
+  border: 0.2px solid #010101;
+  border-radius: 3px;
+  box-shadow: 1px 1px 1px #000, 0 0 1px #0d0d0d;
+}
+ 
+
+input[type='range']::-ms-thumb {
+  box-shadow: 1px 1px 1px #000, 0 0 1px #0d0d0d;
+  border: 1px solid #000;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: #dbdbdb;
+ 
+}
+ 
+
+input[type='range']:focus::-ms-fill-lower {
+  background: #efefef;
+
+}
+
+ 
+
+input[type='range']:focus::-ms-fill-upper {
+  background: #efefef;
+
+}
+
+ 
+a {
+  text-decoration: none;
+  color: #0076d1;
+ 
+}
+
+ 
+
+a:hover {
+  text-decoration: underline;
+}
+
+code {
+  background: #efefef;
+
+  color: #000;
+
+  padding: 2.5px 5px;
+  border-radius: 6px;
+  font-size: 1em;
+}
+
+ 
+
+samp {
+  background: #efefef;
+
+  color: #000;
+
+  padding: 2.5px 5px;
+  border-radius: 6px;
+  font-size: 1em;
+}
+ 
+
+time {
+  background: #efefef;
+
+  color: #000;
+
+  padding: 2.5px 5px;
+  border-radius: 6px;
+  font-size: 1em;
+}
+ 
+
+pre > code {
+  padding: 10px;
+  display: block;
+  overflow-x: auto;
+}
+
+var {
+  color: #39a33c;
+ 
+  font-style: normal;
+  font-family: monospace;
+}
+ 
+kbd {
+  background: #efefef;
+
+  border: 1px solid #dbdbdb;
+ 
+  border-radius: 2px;
+  color: #363636;
+ 
+  padding: 2px 4px 2px 4px;
+}
+ 
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #dbdbdb;
+ 
+}
+ 
+
+table {
+  border-collapse: collapse;
+  margin-bottom: 10px;
+  width: 100%;
+  table-layout: fixed;
+}
+
+table caption {
+  text-align: left;
+}
+
+td,
+th {
+  padding: 6px;
+  text-align: left;
+  vertical-align: top;
+  word-wrap: break-word;
+}
+
+thead {
+  border-bottom: 1px solid #dbdbdb;
+ 
+}
+ 
+
+tfoot {
+  border-top: 1px solid #dbdbdb;
+ 
+} 
+
+tbody tr:nth-child(even) {
+  background-color: #efefef;
+ 
+}
+ 
+
+tbody tr:nth-child(even) button {
+  background-color: #f7f7f7;
+ 
+}
+ 
+
+tbody tr:nth-child(even) button:hover {
+  background-color: #fff;
+
+}
+ 
+
+::-webkit-scrollbar {
+  height: 10px;
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #efefef;
+
+  border-radius: 6px;
+}
+
+ 
+
+::-webkit-scrollbar-thumb {
+  background: rgb(170, 170, 170);
+ 
+  border-radius: 6px;
+}
+
+ 
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9b9b9b;
+ 
+}
+ 
+
+::-moz-selection {
+  background-color: #9e9e9e;
+ 
+  color: #000;
+ 
+}
+
+::selection {
+  background-color: #9e9e9e;
+ 
+  color: #000;
+ 
+}
+ 
+ 
+details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: #f7f7f7;
+ 
+  padding: 10px 10px 0;
+  margin: 1em 0;
+  border-radius: 6px;
+  overflow: hidden;
+}
+ 
+details[open] {
+  padding: 10px;
+}
+
+details > :last-child {
+  margin-bottom: 0;
+}
+
+details[open] summary {
+  margin-bottom: 10px;
+}
+
+summary {
+  display: list-item;
+  background-color: #efefef;
+ 
+  padding: 10px;
+  margin: -10px -10px 0;
+  cursor: pointer;
+  outline: none;
+}
+
+ 
+summary:hover,
+summary:focus {
+  text-decoration: underline;
+}
+
+details > :not(summary) {
+  margin-top: 0;
+}
+
+summary::-webkit-details-marker {
+  color: #363636;
+ 
+}
+
+ 
+
+dialog {
+  background-color: #f7f7f7;
+ 
+  color: #363636;
+ 
+  border: none;
+  border-radius: 6px;
+  border-color: #dbdbdb;
+ 
+  padding: 10px 30px;
+}
+
+  
+
+dialog > header:first-child {
+  background-color: #efefef;
+ 
+  border-radius: 6px 6px 0 0;
+  margin: -10px -30px 10px;
+  padding: 10px;
+  text-align: center;
+}
+ 
+
+dialog::-webkit-backdrop {
+  background: #0000009c;
+  -webkit-backdrop-filter: blur(4px);
+          backdrop-filter: blur(4px);
+}
+
+dialog::backdrop {
+  background: #0000009c;
+  -webkit-backdrop-filter: blur(4px);
+          backdrop-filter: blur(4px);
+}
+
+footer {
+  border-top: 1px solid #dbdbdb;
+ 
+  padding-top: 10px;
+  color: #70777f;
+
+}
+ 
+body > footer {
+  margin-top: 40px;
+}
+ 
+</style>
+</head>
+<body>
+<div class="container">
+  {% for order in orders %}
+  <div style="page-break-after: always;">
+    <div style="margin-bottom: 20px;">
+      <img src="data:image/png;base64,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UmVhZHlxyWU8AAADhGlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNi4wLWMwMDIgNzkuMTY0MzUyLCAyMDIwLzAxLzMwLTE1OjUwOjM4ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1wTU06T3JpZ2luYWxEb2N1bWVudElEPSJ4bXAuZGlkOjBmNDlkYTdmLTcwMjAtNDEyYi05NWNiLWNkYTFlNDQwMDBjNyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpFRjk2NzJCNEI2NEMxMUVDQjRFODhDMjgyQUFDNDAxOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpFRjk2NzJCM0I2NEMxMUVDQjRFODhDMjgyQUFDNDAxOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxOSAoV2luZG93cykiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoxMjAxYjQ2Yi1lZjEzLThlNDQtOWNjMS1kOWI3ZDEyZDc3MjAiIHN0UmVmOmRvY3VtZW50SUQ9ImFkb2JlOmRvY2lkOnBob3Rvc2hvcDo1MWE3ZDAyYS1kZTU4LTcyNGItODVlOC04OTRmZTg3ZDhmYTciLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/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" class="icon-logo">
+    </div>
+    <h1>{{ text_invoice }} #{{ order.order_id }}</h1>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <td colspan="2">{{ text_order_detail }}</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="width: 50%;">
+            <address>
+              <strong>NUTRAS.DE</strong><br />
+            </address>
+            <b>{{ text_email }}</b>&nbsp;nutrasstore@gmail.com<br />
+            <b>{{ text_website }}</b> https://nutras.de/<br />
+            <b>Registered office address:</b><br /> 85 Great Portland Street, First Floor, London, England, W1W 7LT</td>
+          <td style="width: 50%;"><b>{{ text_date_added }}</b>&nbsp;{{ order.date_added }}<br />
+            <b>{{ text_order_id }}</b>&nbsp;{{ order.order_id }}<br />
+            <b>{{ text_payment_method }}</b>&nbsp;{{ order.payment_method }}<br />
+            {% if order.shipping_method %}
+            <b>{{ text_shipping_method }}</b>&nbsp;{{ order.shipping_method }}<br />
+            {% endif %}</td>
+        </tr>
+      </tbody>
+    </table>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <td style="width: 50%;"><b>Payment details</b></td>
+          <td style="width: 50%;"><b>{{ text_shipping_address }}</b></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>IBAN:</b> BE17 9672 8470 0521<br>
+              <b>BIC:</b> TRWIBEB1XXX<br>
+              <b>Name der Firma:</b> Nutraviso Limited<br>
+              <b>Firmenanschrift:</b> 85 Great Portland Street, London, W1W 7LT
+          </td>
+          <td><address>
+            {{ order.shipping_address }}
+            </address></td>
+        </tr>
+      </tbody>
+    </table>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <td><b>{{ column_product }}</b></td>
+          <td><b>{{ column_model }}</b></td>
+          <td class="text-right"><b>{{ column_quantity }}</b></td>
+          <td class="text-right"><b>{{ column_price }}</b></td>
+          <td class="text-right"><b>{{ column_total }}</b></td>
+        </tr>
+      </thead>
+      <tbody>
+        {% for product in order.product %}
+        <tr>
+          <td>{{ product.name }}</td>
+          <td>{{ product.model }}</td>
+          <td class="text-right">{{ product.quantity }}</td>
+          <td class="text-right">{{ product.price }}</td>
+          <td class="text-right">{{ product.total }}</td>
+        </tr>
+        {% endfor %}
+        {% for voucher in order.voucher %}
+        <tr>
+          <td>{{ voucher.description }}</td>
+          <td></td>
+          <td class="text-right">1</td>
+          <td class="text-right">{{ voucher.amount }}</td>
+          <td class="text-right">{{ voucher.amount }}</td>
+        </tr>
+        {% endfor %}
+        {% for total in order.total %}
+        <tr>
+          <td class="text-right" colspan="4"><b>{{ total.title }}</b></td>
+          <td class="text-right">{{ total.text }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% endfor %}
+</div></body></html>

@@ -1,0 +1,139 @@
+{{ header }}
+<div id="product-category" class="container" >
+    <ul class="breadcrumb">
+        {% for breadcrumb in breadcrumbs %}
+            {% if loop.last %}
+                <li class="active">{{ breadcrumb.text }}</li>
+            {% else %}
+                <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+ 
+ 
+    <div id="content" class="col-sm-12 ">
+      {{ content_top }} 
+{% if category_id == 72 %}
+{% set class_product = 'col-sm-6 col-lg-3 col-xs-6 p0' %}
+{% else %}
+{% set class_product = 'col-sm-6 col-lg-4 col-xs-6' %}
+{% endif %}
+      <div class="row">
+        {{column_left}}
+        <div class="{% if column_left or column_right %}col-lg-9{% else %}col-lg-12{% endif %}">
+            {% if custom_h1 %}
+                <h1>{{ custom_h1 }}</h1>
+            {% else %}
+                <h1>{{ heading_title }}</h1>
+            {% endif %}
+            {% if products %}
+            <div class="row">
+              {% for product in products %}
+                <div class="{{class_product}}">
+                    <div class="product position-relative {% if product.x2_stiker %} x2_sale {% endif %}">
+                    {% if product.x2_stiker %} 
+                      <p class="x2_stiker_sale">
+                      <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd" clip-rule="evenodd" d="M4.21948 14.2639V8.8333C4.21948 7.96785 4.50019 7.12572 5.01948 6.43333L6.41948 4.56667C6.93877 3.87428 7.21948 3.03215 7.21948 2.16667V1.5C7.21948 0.94772 7.6672 0.5 8.21948 0.5C9.32408 0.5 10.2195 1.39543 10.2195 2.5V6.5H13.7799C15.042 6.5 15.9886 7.65465 15.7411 8.8922L14.5411 14.8922C14.3541 15.8271 13.5333 16.5 12.5799 16.5H7.16375C6.54277 16.5 5.93032 16.3554 5.3749 16.0777L5.32505 16.0528C4.64748 15.714 4.21948 15.0215 4.21948 14.2639ZM1.71948 7.5C0.891052 7.5 0.219482 8.17157 0.219482 9V15C0.219482 15.8284 0.891052 16.5 1.71948 16.5C2.54791 16.5 3.21948 15.8284 3.21948 15V9C3.21948 8.17157 2.54791 7.5 1.71948 7.5Z" fill="white"/>
+                      </svg>
+<span>ACTION</span>
+                    </p>
+                     {% endif %}
+                      <div class="product__title">{{ product.name }}</div>
+                      <div class="product__thumb">
+                        <img class="img-responsive" src="{{ product.thumb }}" alt="{{ product.name }}">
+                      </div>
+                      <p class="product__descr">{{ product.description }}</p>
+                      <div class="text-center">
+                        <a href="{{ product.href }}" class="stretched-link btn btn-primary btn-lg btn-block">{{ button_cart }}</a>
+                      </div>
+                    </div>
+                </div>
+              {% endfor %} 
+          </div>
+          {% endif %}
+        </div>
+        {{column_right}}
+      </div>
+
+
+      {# <div class="row">
+        <div class="col-sm-6 text-left">{{ pagination }}</div>
+        <div class="col-sm-6 text-right">{{ results }}</div>
+      </div> #}
+      
+      {% if not categories and not products %}
+      <p>{{ text_empty }}</p>
+      <div class="buttons">
+        <div class="pull-right"><a href="{{ continue }}" class="btn btn-primary">{{ button_continue }}</a></div>
+      </div>
+      {% endif %}
+      {% if description %}
+      <div class="row">
+        <div class="col-xs-12">
+            {{ description }}
+        </div>
+      </div>
+      {% endif %}
+      {{ content_bottom }}
+    </div>
+    {# {{ column_right }} #}</div>
+
+{% if language_code == 'de-de' %}
+<script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "CollectionPage",
+          "@id": "{{ base }}index.php?route=product/category&path={{ category_id }}",
+      "url": "{{ base }}index.php?route=product/category&path={{ category_id }}",
+      "name": "{{ heading_title }}",
+      "description": "{{ meta_description }}",
+      "inLanguage": "de",
+      "isPartOf": {
+        "@id": "{{ base }}#website"
+      },
+      "about": {
+        "@id": "{{ base }}#organization"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Startseite",
+          "item": "{{ base }}"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "{{ heading_title  }}",
+          "item": "{{ base }}index.php?route=product/category&path={{ category_id }}"
+        }
+      ]
+    },
+    {
+      "@type": "ItemList",
+      "url": "{{ base }}index.php?route=product/category&path={{ category_id }}",
+      "numberOfItems": {{ products|length }},
+      "itemListElement": [
+    {% for product in products %}
+        {
+          "@type": "Product",
+          "position": {{ loop.index }},
+          "name": "{{ product.name  }}",
+          "url": "{{ product.href }}",
+          "image": "{{ product.thumb }}"
+        }{% if not loop.last %},{% endif %}
+    {% endfor %}
+    ]
+  }
+]
+}
+</script>
+{% endif %}
+
+{{ footer }} 

@@ -1,0 +1,49 @@
+<h4>{{ text_received }}</h4>
+ 
+<p>
+Customer: <b>{{ firstname }}&nbsp;{{ lastname }}</b><br>
+{{ text_order_id }}&nbsp;<b>{{ order_id }}</b><br>
+{{ text_date_added }}&nbsp;<b>{{ date_added }}</b><br>
+Email &nbsp;<b>{{ email_customer }}</b><br>
+{{ text_order_status }}&nbsp;<b>{{ order_status }}</b>
+
+</p>
+
+{% if shipping_address_aler %}
+<h4>Address custommer</h4> 
+<p style="border-bottom: 1px solid #DDDDDD;">{{ shipping_address_aler }}</p>
+{% endif %}
+ 
+<h4>{{ text_product }}</h4>
+<ul>
+{% for product in products %}
+<li>{{ product.quantity }}&nbsp;x&nbsp;{{ product.name }}&nbsp;{{ product.total }}<br>
+{% if product.option %}
+{% for option in product.option %}
+ 	- {{ option.name }}&nbsp;{{ option.value }}<br>
+{% endfor %}
+{% endif %}
+<br>
+</li>
+{% endfor %} 
+</ul>
+
+{% if vouchers %}
+{% for voucher in vouchers %}
+1x {{ voucher.description }} {{ voucher.amount }}
+{% endfor %} 
+{% endif %}
+
+
+<h4>{{ text_total }}</h4>
+<ul>
+{% for total in totals %}
+<li>{{ total.title }}: {{ total.value }}</li>
+{% endfor %} 
+</ul>
+
+{% if comment %}
+<h4>{{ text_comment }}</h4>
+<p>{{ comment }}</p>
+{% endif %}
+

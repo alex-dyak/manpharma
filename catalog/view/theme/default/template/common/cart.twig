@@ -1,0 +1,137 @@
+<div id="cart">
+	<a data-toggle="dropdown" data-loading-text="{{ text_loading }}" class="dropdown-toggle">
+		<svg class="icon icon-cart">
+			<use xlink:href="#icon-bag"></use>
+		</svg>
+		<span id="cart-total">{{ text_items|number_format }}</span>
+	</a>
+	<ul class="dropdown-menu pull-right mini-cart" id="mini-cart">
+		<div class="dropdown-header">
+			<div class="dropdown-logo">
+				<svg xmlns="http://www.w3.org/2000/svg" width="179" height="18" viewbox="0 0 179 18" fill="none">
+					<g clip-path="url(#clip0_19_4967)">
+						<path d="M38.8955 17.5451V0.455078H42.1911L49.9442 10.1251V0.455078H54.2014V17.5451H50.8858L43.1026 7.85508V17.5451H38.8955Z" fill="#5537A3"/>
+						<path d="M22.8292 17.5451H18.3115L26.3251 0.455078H29.9011L37.9047 17.5451H33.4772L31.9446 14.0051H24.3618L22.8292 17.5451ZM30.4921 10.6251L28.1682 5.21508L25.8443 10.6251H30.5022H30.4921Z" fill="#5537A3"/>
+						<path d="M0 17.5451V0.455078H3.546L8.66467 12.1351L13.7433 0.455078H17.2592V17.5451H13.3125L13.2925 9.72508L10.047 17.5451H7.18216L3.91663 9.80508V17.5451H0Z" fill="#5537A3"/>
+						<path d="M162.977 17.5451H158.459L166.463 0.455078H170.009L178.042 17.5451H173.585L172.082 14.0051H164.469L162.967 17.5451H162.977ZM170.62 10.6251L168.296 5.21508L165.972 10.6251H170.63H170.62Z" fill="#989898"/>
+						<path d="M140.128 17.5451V0.455078H143.674L148.783 12.1351L153.891 0.455078H157.387V17.5451H153.471L153.44 9.72508L150.175 17.5451H147.34L144.045 9.80508V17.5451H140.128Z" fill="#989898"/>
+						<path d="M122.889 17.5451V0.455078H130.872C132.946 0.455078 134.508 0.905078 135.53 1.81508C136.582 2.69508 137.093 3.96508 137.093 5.58508C137.093 7.11508 136.552 8.36508 135.47 9.32508C134.388 10.2851 132.886 10.7451 130.952 10.7451L133.026 10.3151C133.597 10.3151 134.138 10.4851 134.619 10.8551C135.099 11.2251 135.5 11.7651 135.75 12.4451L137.794 17.5451H132.996L130.782 11.8451C130.642 11.5051 130.411 11.2451 130.071 11.1051C129.73 10.9651 129.36 10.8751 128.989 10.8751H127.346V17.5351H122.889V17.5451ZM127.286 7.53508H130.121C131.113 7.53508 131.794 7.39508 132.224 7.08508C132.655 6.80508 132.876 6.34508 132.876 5.72508C132.876 5.04508 132.645 4.59508 132.224 4.30508C131.794 3.99508 131.113 3.85508 130.121 3.85508H127.286V7.54508V7.53508Z" fill="#989898"/>
+						<path d="M106.841 17.5451H102.323L110.337 0.455078H113.883L121.916 17.5451H117.459L115.956 14.0051H108.373L106.841 17.5451ZM114.484 10.6251L112.16 5.21508L109.836 10.6251H114.494H114.484Z" fill="#989898"/>
+						<path d="M96.9044 17.5451V10.6351H89.9827V17.5451H85.5752V0.455078H89.9827V7.11508H96.9044V0.455078H101.332V17.5451H96.9044Z" fill="#989898"/>
+						<path d="M57.3271 17.5451V0.455078H76.3091C78.2924 0.455078 79.805 0.935078 80.8568 1.87508C81.9386 2.81508 82.4495 4.08508 82.4495 5.67508C82.4495 7.26508 81.9086 8.50508 80.8568 9.47508C79.7749 10.4151 78.2424 10.8951 76.3091 10.8951H61.8448V17.5551H57.3271V17.5451ZM61.8448 7.51508H75.678C76.5595 7.51508 77.2106 7.37508 77.6413 7.06508C78.042 6.75508 78.2424 6.29508 78.2424 5.73508C78.2424 5.11508 78.042 4.65508 77.6413 4.34508C77.2407 4.03508 76.5895 3.86508 75.678 3.86508H61.8448V7.52508V7.51508Z" fill="#989898"/>
+					</g>
+					<defs>
+						<clipPath id="clip0_19_4967">
+							<rect width="178.302" height="18" fill="white"/>
+						</clipPath>
+					</defs>
+				</svg>
+			</div>
+			<div class="dropdown-cross" onclick="closeCart()">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none">
+					<path d="M6 6L18 18" stroke="#989898" stroke-width="1.5" stroke-linecap="round"/>
+					<path d="M18 6L6 18" stroke="#989898" stroke-width="1.5" stroke-linecap="round"/>
+				</svg>
+			</div>
+		</div>
+			<p class="header_cart">{{text_cart}}</p>
+		<div class="products1">
+			{% if products %}
+				{% for product in products %}
+					<li>
+						<div class="row">
+							<div class="col-xs-1 del-wrp">
+								<a href="javascript:void(0)" class="del" onclick="cart.remove('{{ product.cart_id }}', event);" title="{{ button_remove }}">
+									<svg class="icon icon-close">
+										<use xlink:href="#icon-close"/>
+									</svg>
+								</a>
+							</div>
+							<div class="col-sm-4">
+								<img src="{{ product.thumb }}" class="img-responsive" alt="">
+							</div>
+							<div class="col-xs-10 col-sm-7">
+								<div class="cart__row font-weight-bold">
+									<a href="{{ product.href }}">{{ product.name }}</a>
+									{% for option in product.option %}
+										<br/>
+										-
+										<small>{{ option.name }}&nbsp;:&nbsp;{{ option.value }}</small>
+										<div class="row">
+											<div class="coutns">
+												<span class="title"></span>
+												<div class="count-block">
+													{% set qntplus = product.quantity+1 %}
+													{% if product.quantity > 1 %}
+														{% set qntminus = product.quantity-1 %}
+													{% else %}
+														{% set qntminus = 1 %}
+													{% endif %}
+													<span class="q-minus" onclick="cart.update( {{product.cart_id}}, {{qntminus}} );">-</span>
+													<input class="count" type="text" onchange="cart.update({{product.cart_id}} , $(this).val());" name="quantity[{{ product.cart_id }}]" value="{{ product.quantity }}" size="1"/>
+													<span class="q-plus" onclick="cart.update({{product.cart_id}}, {{qntplus}} );">+</span>
+												</div>
+											</div>
+											<div class="price">
+												{{product.price}}
+											</div>
+										</div>
+
+									{% endfor %}
+								</div>
+
+							</div>
+						</div>
+					</li>
+				{% endfor %}
+				{% for voucher in vouchers %}
+					<li>
+						<div class="row">
+							<div class="col-xs-1 del-wrp">
+								<a href="javascript:void(0)" class="del" onclick="voucher.remove('{{ voucher.key }}');" title="{{ button_remove }}">
+									<svg class="icon icon-close">
+										<use xlink:href="#icon-close"/>
+									</svg>
+								</a>
+							</div>
+							<div class="col-xs-11">
+								{{ voucher.description }}
+								x&nbsp;1
+								{{ voucher.amount }}
+							</div>
+						</div>
+					</li>
+				{% endfor %}
+			</div>
+			<ul class="mobile-down">
+				{% for total in totals %}
+					<li class="mini-cart-totals">
+						<div class="row">
+							<div class="col-xs-6 text-right">{{ total.title }}</div>
+							<div class="col-xs-6">
+								<b>{{ total.text }}</b>
+							</div>
+						</div>
+					</li>
+				{% endfor %}
+				<li>
+					<div class="row">
+						<div class="col-xs-12">
+							<a href="{{ checkout }}" class="btn btn-primary btn-block">
+								<i class="fa fa-share"></i>
+								{{ text_checkout }}</a>
+
+							<a onclick="closeCart()" class="btn btn-primary btn-block btn-border">
+								{{ text_backhome }}
+							</a>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</ul>
+	</div>
+{% else %}
+	<li>
+		<p class="text-center">{{ text_empty }}</p>
+	</li>
+{% endif %}

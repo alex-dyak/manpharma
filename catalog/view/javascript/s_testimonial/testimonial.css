@@ -1,0 +1,102 @@
+#testimonial h2 {
+	margin-top: 0px;
+}
+#testimonial .column-avatar{
+	width: 15%;
+}
+#testimonial .column-avatar img.img-responsive {
+	margin:0 auto;
+}
+.s-thumbnail img, .s-thumbnail-info img {
+	margin-bottom: 5px;
+	margin-right: 5px;
+}
+.s-thumbnail a:last-child img, .s-thumbnail-info a:last-child img {
+	margin-right: 0px;
+}
+#testimonial iframe {
+	margin: 5px;
+}
+@media (max-width: 478px) {
+	#testimonial iframe {
+		width: 100%;
+		height: auto;
+		margin-left:0;
+		margin-right:0;
+	}
+}
+.testimonial-alert {
+	position: fixed;
+	width: 100%;
+	top: 0px;
+	left: 0px;
+	z-index: 1000;
+	text-align: center;
+	border-width: 0 0 1px 0;
+	border-radius: 0;
+}
+#form-testimonial .wysibb .wysibb-text-editor {
+	min-height: 200px !important;
+}
+#form-testimonial .wysibb .wysibb-toolbar .wysibb-toolbar-container .wysibb-toolbar-btn .fonticon {
+	   font-family: 'WysiBBiconFont' !important;
+}
+@media (max-width: 991px) {
+	#form-testimonial .wysibb .wysibb-text-editor, #form-testimonial .wysibb .wysibb-toolbar {
+		min-height: 352px !important;
+	}
+}
+#form-testimonial .rating span {
+	cursor: pointer;
+	width: 30px;
+	height: 30px;
+	display: inline-block;
+}
+#form-testimonial .rating i {
+	cursor: pointer;
+}
+#form-testimonial .rating .fa-stack {
+	font-size: 16px !important;
+}
+#form-testimonial .rating .fa-star-o {
+	color: #999;
+	font-size: 30px !important;
+}
+#form-testimonial .rating .fa-star {
+	color: #FC0;
+	font-size: 30px !important;
+}
+#form-testimonial .rating .fa-star + .fa-star-o  {
+	color: #E69500;
+}
+#form-testimonial .image-row {
+	margin-bottom: 15px;
+}
+#form-testimonial .image-row label.btn > span {
+	display: inline !important;
+}
+#image-list input, #button-clear {
+	display: none;
+}
+@media (max-width: 400px) {
+	#testimonial-total > span:last-child > span:first-child{
+		display: none;
+	}
+}
+@media (max-width: 1199px) {
+	#testimonial-total button{
+		width: 100%;
+	}
+}
+#testimonial-total > span {
+	display: inline-block;
+	height: 30px;
+    padding: 6px 0px 6px 0px;
+	margin-bottom: 15px;
+}
+#testimonial-total > span + span {
+	margin-left: 10px;
+}
+.smile {
+	margin: 0 1px;
+}

@@ -1,0 +1,141 @@
+
+<div class="table-responsive">
+	<table class="table table-bordered table-hover">
+		<tfoot>
+			<tr>
+				<td  class="text-right">
+					{{ orderDetails.total }} {{ orderDetails.currency_code }} @ {{ rate }}<br />
+					<strong> Electroneum: </strong> {{ etn }} etn
+					
+				</td>
+			</tr>
+		</tfoot>
+	</table>
+</div>
+
+<div class="container-fluid">
+
+		<div class="col-md-4 col-lg-offset-4 text-center align-items-center align-content-center" style="border: #343a40 3px solid; border-radius: 4px; padding: 15px;">
+			<div class="row">
+				<p>{{ text_logo }}<img src="data:image/jpeg;charset=utf-8;base64, iVBORw0KGgoAAAANSUhEUgAAAHMAAAAiCAYAAABskea0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAFEmlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxNDIgNzkuMTYwOTI0LCAyMDE3LzA3LzEzLTAxOjA2OjM5ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1sbnM6cGhvdG9zaG9wPSJodHRwOi8vbnMuYWRvYmUuY29tL3Bob3Rvc2hvcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgKFdpbmRvd3MpIiB4bXA6Q3JlYXRlRGF0ZT0iMjAxOC0wOS0xNlQxMzowODoxOCswMTowMCIgeG1wOk1vZGlmeURhdGU9IjIwMTgtMDktMTZUMTM6MTI6MDYrMDE6MDAiIHhtcDpNZXRhZGF0YURhdGU9IjIwMTgtMDktMTZUMTM6MTI6MDYrMDE6MDAiIGRjOmZvcm1hdD0iaW1hZ2UvcG5nIiBwaG90b3Nob3A6Q29sb3JNb2RlPSIzIiBwaG90b3Nob3A6SUNDUHJvZmlsZT0ic1JHQiBJRUM2MTk2Ni0yLjEiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6ZTg4M2UyOWMtMDQ3Zi05OTQyLWFlMGItOGIxZDY1ZWYwYjVjIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOmU4ODNlMjljLTA0N2YtOTk0Mi1hZTBiLThiMWQ2NWVmMGI1YyIgeG1wTU06T3JpZ2luYWxEb2N1bWVudElEPSJ4bXAuZGlkOmU4ODNlMjljLTA0N2YtOTk0Mi1hZTBiLThiMWQ2NWVmMGI1YyI+IDx4bXBNTTpIaXN0b3J5PiA8cmRmOlNlcT4gPHJkZjpsaSBzdEV2dDphY3Rpb249ImNyZWF0ZWQiIHN0RXZ0Omluc3RhbmNlSUQ9InhtcC5paWQ6ZTg4M2UyOWMtMDQ3Zi05OTQyLWFlMGItOGIxZDY1ZWYwYjVjIiBzdEV2dDp3aGVuPSIyMDE4LTA5LTE2VDEzOjA4OjE4KzAxOjAwIiBzdEV2dDpzb2Z0d2FyZUFnZW50PSJBZG9iZSBQaG90b3Nob3AgQ0MgKFdpbmRvd3MpIi8+IDwvcmRmOlNlcT4gPC94bXBNTTpIaXN0b3J5PiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PjW/qOcAAAxzSURBVGiB7Zt5dBR1tsc/1WuWTgcSspEQskAg7CEQZROEBw+Q5bE4gICiOCoeQARRQZAoyLB6ZJFVnuC4sAgKg4AKAhJWBzUsysgSErKHLN3ppNNb3fdHGA6LEB4oo5DPOX26qvtXt+79fat+v6pbtxQRyQJqA6VU82fFD8jWXVrgiu9q/pz4af7THlTz21Et5j1EtZj3ELrb2cjpcrFm7afs3LMPW1k5qiooioJOr6NRXD3++vgQYqPq/ta+VlMFiohY+X9c/IyaOIUvvtxFm6RE4uNiqWE2YzQYcHs8lJWVcyE7h5RD32E0Glg2fyYtmzX5Hd2v5gpKb1nMI9//SMfef6Frpw6Mf/5pHA4X3/2YSuqJnygqsuDlZaB+bDTtH2iFv9nM3CXvkX7iOP/c9Q8kLBzxCP5a5S7EdN9SiohYpQq2bP9a0PrLhxs+k1/OpUlSt34CVH4UP8EQKGhrCGgEkJjoOBFLsThVkacOp8sH+RVV7aKaO8da5QVQ6omf6NPvUQ4d+gadwUhcTDRHvtqGMaIhPhEN8KkTgdZkAk8JOi8/5k2ezOHdO9jo9CX4QAkNkyKpc2Ar02fM/t0PzfseqeLMjGrYXFat/rt8tnWHAKINjBTfyHjxiYwXXWBU5dmp9ZVpY1+U0swLkiUiQ7NcwupTMiVPFbHmyY4tW8UcFiU793x7d47R+xPrTcWcPmuu9O7/FzmaekJAJ9SMEN+oRqILirk0zBpk4jOjpCTtnOSJyKgCVdhyXvjgpCwoFxFLvgAyfvI0WfH+Gklo89Bdi+w+5OZitmrbSdZ8vFYGDR8poBFTTFNRTCECBhk2ZLgU/fIvKRSR8UUibM0QzZYzwqbT8mq+iDisEh8dVym6KVh27dkrnbv3lq3bv7pl73anHJSnxrx0x1GOe+0NeWPOO3ds5w+O9Yb3mXv27adWrSDMvibWrduILjQGW3YOEfVi+XnHUXzCwxmcK2zYlgmeCqJNRrIrNEx6IJppJhsxdeqTlp+Hb0xzys6lcvT7VFontmLt+o080r3rLU0BBTk5HN2XcsdTSeqhw4QEB92xnT86NxTz25SDRNeLJa/gIjhL0OtCcHt7U2K18O6aD+n0xEh8y32IMKpoFQMaQINCYbkDAvQMHDCQuUvfpSz3AngFsWf/Ibp16cjR4yev2k95uZ0hz4zh53+dJjCgJqqqkldwkcVzphNeNxJTWO3LbWcvXMqSVR8QFhKMoihcLCwiKbEFHy1fyL5D3zFyzEuY/Uzo9XoAzp5P58NlC+gzsD8vTphMRo/+2GxlfLN5LbtTDjJh6nRCg4PIK7jIgN49eXnscwx9diy5eQX4mXxxudxYSkv5eMVCGsTG0K7nALRaDT7e3ogIOXn5DOjTk/lvTuHw0R94cvRLeHkZMRoM2O0VKIrC15s+5kzaeTZs3sr86VOviv21GXPo3KEdGzZv5Zt9B6gVGIDb7cZoNCIiuFwuKhwONBota959m2aNG96emGmZWYSFhpCbXwDoEBSwFWMrvsCSRUsZP7gvy+o3JClXS6bdTU29QpSPjkU/ZPBeuh+nlizmhdGjaDvkaTKOHefUmXM82q8PeqMBj8eDVqsFYMbMWeScO82+HZtJT0/HbDaTmprK/DlzeXTIY/ibK2+Bz5w9x8ply1i+aAER4eHY7XaCQ0Lo+z/9WbFqNSn7D9C5bWuGDxtKfn4+AKU2G507tGXjP7bTus0DvDNzGlZbGZnZuUybOpVXRo+mflwcBQUX6fJwRya9Ogl7SRFrli0kIyOD4KAg1q5fz+w58xg2eBC2vGyWv7cCR4UdRVEQhDFjXmD4wH4sXrSY7u2TmPDSBDIzM4mKjubliROZMfNv/Ffnh/k+Zd91ffzDgRRC/U0c++cRnn3iMRJbJqDT6xkxdDjNWrRg8tQZiAjJr79OcvIbbNrwye2JKargZTBQarMBblS3m87dezDy8aH0GtiXty96mLk9DR+9lloGDaDwS6kDdHp61g/GA0TWr0/t0BAyjh2lvKICg0GPXqfHXl6Oya9SpDI3hEXXIySwBvayUsxmP6KjotChUG6zotFWumi1leEfEk5cbAw+Pl44Hd5E1g6hpp8/6WnnMfgHMnhgX9q1TrgulszsHBrHx9E6oTkA36cex1gzmCeGDsLXx+dyu2K7iy5du5LYNJ7EpvEAqKqbRSveJ6/YQos2benWse1Vthc2bkZGZhZ6X39iGzYkuKYZlyOQkAB/IsPrUJCTDUYvvILDrvPLEBiCW2cgJCqGQf37EFG7sk39hEQeaPcgrS750LN3b7Z9ueumQt5UTI1GocLpwuRdGazb42ZJ8iQatEygweFCfjmdT1iYL2atglOFMo+Hp2ODeDzMiOmnAyyesZa3l/4vGLygVjg+Xl44nS5cbhfeV3RgvdhoFi5eTrueA3A6nQCUWK20S2pFaO1wXK4jAISFhpCRlUPPwSPwN5tQVcHjUbFYS5nSrStrPvkUVVVvGKiIXF7W6/WgaHC7PVd3hl6PXLOd6lHRanVotVo8Hg/Xomg0mPxMePv6MGHqDD76dDMulwuAtPQLvDNzGqrLDXKt5X8bUBCRq/wTqYztKj10VafRb9giKiKc3IJCml8ap1WHk0Zd+rBh5QI2DezPs3g4W1qBS0BFKPMIbYJNtK2h4ZHps9i24ws0AZF4mXwpz86hYce2WKwWXA7n5SEW4OSJkzw2ZCAfrVx8nQ/rN35O8cVCANLTM4gKD+Xw7u2/+qhn0rQZKMqvpwsdtlJUf3OVneGwlyPXCKZoNDjtdjxu9w3sK9jLy7EWFfPxikX079X9uhYLl6zA7XBc97vLUYHbUYGi0V733+1wQzEfat+G2fMW0K1TezDUQG/2x1VSyIBHB7BzzXvseHwksTszcKqCj1aDIh5GfH2WvC6xfLF9K2NfnsqiuW8jPt7gLqFTuwfJycolNLDmVftpEt+A5JlzmLVwGRaLBRGhrNxOk4ZxJLVsTl52Fs+Me5knhw5Gq6qMfP5FIqMicVQ4UEUoKytjysRxxEZG8OLEKfTq8whWiwWAnLx8pr0ynl49uvFa8kzC69RBo2hIah6Pr9uCqFcLFxddl6XLV6EzGikqLMLsb2bHti9p1jieGn5eWLLTruun0tzz+Bi11AoM5I23ZnPmfAZFRUUA5BVcZNSTw+nQrg3Jb81h3ORkQEGj0WC1Wjl/Lo34p4azZdMGVLf7sk1HQSZOa73L625bCc7CrCrF1CYnJ08CjNf+EVU3kgWLl9AioRleRiPHUvaA00r3Nu0YP30Go7MUThXZKPeo5FhddGhQm887hdDEVsTSJSvY+MWXFNkrcHtUEA2vvjSOtRs+5a8jRxBXL/byfpJataTCrbJrbwpOp4sSi5Xc/Hws1lKee3IY9ePi+HD9Z4x+egQPd+rAhi3bKS21YbGWUlxcwvmMTLp2bM8TQwex59B35OTm4nA6KSsv50JWDnUjavPMiGG4BPbuP4jL5aLTQ+1p1LQFjeMboLti+Or0UDtyC4v54dgJPKpKdnYuNQJq8s6sNwkJCcUvIOi6p0Ci96Z1Ykt69ejGwe9TOX32HGXldkosVtLSLxAUGEDvHl0JCA5i554UVLVyasjKzWPKKy/Su3s37KpCUmICXsZKGcTgTUJCAlGRdSrXtQZq142lRZNGN9PSeWsZoOM/CyBtmieKiMiobBE++VnYeFranLDJIRFxO+yybtFCCQ6tTPFpzWHiG9NMAJkzf0F1Buj35+YZIBGR+k0TZcLkabL9881iSzslz2eJsPKYtEi1yl4RcXtcsmXlCqkTWZntUXyDxDuykXhHNhJAuvXsK9n5hRIa1UC+2rXn7oR1f1K1mF/t3iedO/cQEZG+ZxzCutOyqkxEFZGdf/9A6tVrUpmy8w4Q78hG4lO3kSjm2gLIf/cbIqqIxDROkFEv3HlarpqbUrWYIiKWCof0OpIrQ05ZREQk/8QxCa4ZdCnZrhH0NQVdQGUyHsQnrJ6sXrdJsnLzJCC6ifQd+tTvHUg1ItZbqjRIsbkxmXR4fbubl9+ax4M9HiE0JIi8vAJ+PH6Si4XFlysNHkysnLj37D/IpOlzeHXsc/zt9VdvZr6a34aqy0ZUARXQKVBcUsK4195k7/5DPNiqJQ1/pQYoMyeHfYe+Q6/X8/6ieTSNb3D3wrm/ufUaoCtxuVysvrI6TwSF6uq8/zC3J2Y1f0hKq4ug7yGqxbyHqBbzHqJazHsIHZUv2fpR/bLtnxk/oPT/AJaGcl8qQHceAAAAAElFTkSuQmCC" alt="powered by Electroneum " title="Electroneum"  /></p>
+				<div id="paymentinfo" style="padding-bottom: 8px;">
+					<p class="bg-primary"><strong>- {{ text_order }} #{{orderID}} -</strong><br />{{ text_heading }}</p>
+					<h3 class="text-primary">{{ etn }}etn </h3>
+					<figure class="figure">
+						<img id="qr" alt="Electroneum Payment QR" src="{{ qr }}" class="img-thumbnail figure-img" width="200" height="200" />
+						<figcaption class="figure-caption">{{ text_qr_desc }}</figcaption>
+					</figure>
+				</div>
+
+				<div id="paymentstatus">
+					<div id="awaitingpayment" >
+							<div class="alert alert-info">
+								<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+								<span class="sr-only">Awaiting Payment</span>
+								<strong>{{ text_waiting }}</strong><br/>
+							</div>
+							<div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+					</div>
+					<div id="paymentreceived" >
+							<div class="alert alert-success">
+								<span class="sr-only">payment received</span>
+								<strong> {{ text_paid }}</strong>
+								<p>{{ text_paid_next }}</p>
+							</div>
+					<div><span class="glyphicon glyphicon-ok fa-5x text-success" aria-hidden="true"></span></div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<div class="col-md-4 col-lg-offset-4 text-center align-items-center align-content-center">
+			 <button id="problem" type="button" class="btn btn-link">{{ text_problem }}</button>
+		</div>
+</div>
+
+<script type="text/javascript"><!--
+
+	$.ajax({
+            url:"catalog/view/theme/default/stylesheet/etnloader.css",
+            success:function(data){
+                 $("<style></style>").appendTo("head").html(data);
+            },
+	})
+
+	$("#paymentreceived").hide();
+
+    $("#qr").hover(function(){
+        $(this).css("cursor", "pointer");
+    });
+
+	var orderId = {'orderID' : '{{ orderID }}',
+				 'paymentID' : '{{ paymentId }}' };
+
+
+	$( document ).ready(function() {
+	    setTimeout(checkStatus, 5000);
+	});
+
+
+   	$("#qr").click( function() {
+	    window.open("https://link.electroneum.com/jWEpM5HcxP?vendor=" + "{{ widget }}" );
+	});
+
+    $("#problem").click( function() {
+        setTimeout(placeOrder, 500);
+    });
+
+    function checkStatus() {
+        $.ajax({
+            type: "POST",
+            data: orderId,
+            url: 'index.php?route=extension/payment/electroneum_instant/status',
+            dataType: 'json',
+            beforeSend: function() {
+                $('#status').html('checking....');
+            },
+            success: function(json) {
+                if (json['response']) {
+                    console.log('Payment Check Result:'+ json['response'])
+                    $("#qr").animate({
+                        opacity: '0.4',
+                    });
+                    $('#awaitingpayment').hide();
+                    $('#paymentreceived').show(500);
+                    setTimeout(placeOrder, 3000);
+                }else{
+                    console.log('Payment Check Result:' + json['response']);
+                    setTimeout(checkStatus, 1000);
+                }
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+               console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+            }
+        });
+    }
+
+
+
+    function placeOrder() {
+        $.ajax({
+            url: 'index.php?route=extension/payment/electroneum_instant/confirm',
+            dataType: 'json',
+            beforeSend: function() {
+                $('#button-confirm').button('loading');
+            },
+            complete: function() {
+                $('#button-confirm').button('reset');
+            },
+            success: function(json) {
+                if (json['redirect']) {
+                    location = json['redirect'];
+                }
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+            }
+        });
+    }
+
+
+//--></script>

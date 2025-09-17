@@ -1,0 +1,39 @@
+<div class="list-group list-group--account">
+  {% if group_id and group_id == 2 %}
+  
+  <a href="{{ tracking }}" class="list-group-item">
+    <svg class="icon icon-ref-link">
+          <use xlink:href="#icon-ref-link" />
+        </svg>Your affiliate link</a>
+  {% endif %}
+  <a href="{{ account }}" class="list-group-item"> 
+        <svg class="icon icon-acc">
+          <use xlink:href="#icon-acc" />
+        </svg>{{ text_account }}</a>
+	 <a href="{{ order }}" class="list-group-item">
+        <svg class="icon icon-cart">
+          <use xlink:href="#icon-cart" />
+        </svg>{{ text_order }}
+  </a>
+  {% if logged %}
+  <a href="{{ edit }}" class="list-group-item">
+     <svg class="icon icon-user">
+    <use xlink:href="#icon-user" />
+    </svg>{{ text_edit }}</a> 
+  <a href="{{ password }}" class="list-group-item">
+    <svg class="icon icon-key">
+    <use xlink:href="#icon-key" />
+    </svg>{{ text_password }}</a>
+  <a href="{{ logout }}" class="list-group-item">
+   <svg class="icon icon-logout">
+    <use xlink:href="#icon-logout" />
+    </svg>{{ text_logout }}
+  </a>
+  {% endif %}
+</div>
+<div class="banner-discount">
+  <svg class="icon icon-present">
+    <use xlink:href="#icon-present" />
+  </svg>
+  You will get 10% Discount on next order
+</div>

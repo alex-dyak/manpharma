@@ -1,0 +1,309 @@
+
+//** simple and lightweight mixin library for Sass **
+//-- url : http://bourbon.io/docs ---
+@import 'bourbon/bourbon';
+
+//** Mixins for Rem Font Sizing **
+//-- url : http://hugogiraudel.com/2013/03/18/ultimate-rem-mixin/
+@import 'utilities/rem';
+
+//** Variables for responsive design in bootstrap with sass **
+//-- url : https://gist.github.com/webinfinita/11407836
+@import 'utilities/bootstrap_breakpoints';
+
+//** Makes supporting both left-to-right (LTR) and right-to-left (RTL) easy.**
+//-- url : https://github.com/tysonmatanich/directional-scss
+@import 'utilities/directional';
+
+//Mixins utilities
+@import 'utilities/theme_variables';
+@import 'utilities/utilities';
+
+/* ================================================================================ */
+
+/*.footer-container{
+  margin-top: 40px;
+}*/
+.typefooter-3{
+  margin-top: 0px;
+  background-color: #303030;
+  color: #fff;
+  font-size: 13px;
+  /* GENERAL */
+  
+  .box-footer{
+    .modtitle{
+          color: #fff;
+          font-size: 16px;
+          line-height: 20px;
+          margin-bottom: 30px !important;  
+          font-weight: 700;
+          text-transform: uppercase;     
+          position: relative;
+          padding: 0;
+          span{
+            font-size: 16px;
+          }
+          &:before{
+            position: absolute;
+            content: "";
+            width: 30px;
+            height: 2px;
+            bottom: -13px;
+            #{$left}: 0;
+          }      
+    }   
+    .modcontent{
+      ul{
+        li{           
+               line-height: 25px;
+              a{
+                border: 0 none;               
+                font-size: 12px;
+                padding: 0;       
+                font-weight: 400; 
+                line-height: 30px; 
+                color: #fff; 
+                padding-#{$left}: 12px;
+                position: relative;
+                line-height: 100%;
+                &:before{
+                  position: absolute;
+                  top: 0;
+                  #{$left}: 0;
+                  font-family: 'FontAwesome';     
+            font-size: 13px;
+            content: "\f0da";
+            @include if-rtl {
+              content: "\f0d9";
+            }
+                }
+              }       
+            }
+      }
+    }
+  }
+
+  .footer-col1{
+    p{
+      margin-top: 23px;
+      span{
+
+      }
+    }
+  }
+  .col-footer2{
+    background-color: #212121;
+    margin-top: -58px;
+    padding-top: 30px;
+    position: relative;
+    z-index: 999;
+    padding-bottom: 13px;
+  }
+  .so-page-builder .container{
+    overflow: unset;
+    z-index: 99;
+  }
+  .box-contact{
+    ul.infos{
+      li{
+        padding-#{$left}: 50px;
+        position: relative;
+        &:before{
+          font-family: 'FontAwesome';     
+          font-size: 25px;
+          color: #fff;
+          position: absolute;
+          top: 10px;
+          #{$left}: 0;
+        }
+        &:first-child{
+          &:before{           
+            content: '\f0e0';         
+          }
+        }
+        &:nth-child(2){
+          &:before{
+            content: '\f095';           
+          }
+        } 
+        &:last-child{
+          &:before{           
+            content: '\f041';           
+          }
+        }
+      }
+    }
+    .contactus{
+      float: $right;
+      color: #fff;
+      margin-top: 18px;
+      position: relative;
+      padding-#{$right}: 12px;
+      &:after{
+        position: absolute;
+        top: 0;
+        #{$right}: 0;
+        font-family: 'FontAwesome';     
+        font-size: 13px;
+        content: "\f105";
+        padding-#{$left}: 3px;
+        @include if-rtl {
+          content: "\f104";
+        }
+      }
+    }
+  }
+
+  .newsletter-footer1{
+     
+      .newsletter{
+        padding: 50px 0 40px 0;
+        background-color: transparent !important;
+        text-align: center;
+        width: 55% !important;
+        margin: 0 auto;
+        .title-block{  
+          color: #fff;    
+          .page-heading{
+            @include rem(font-size,25px);
+            line-height: 20px;
+            font-weight: 700;
+            text-transform: uppercase;   
+          }
+          .promotext{
+            font-size: 14px;
+            letter-spacing: 2px;
+            margin-top: 9px;
+          }
+        }
+        .block_content{
+          margin-top: 27px;
+          form.signup{
+            display: block;
+            margin-top: 11px;
+            .form-group{
+              .input-box{
+                background-color: transparent;  
+                vertical-align: top;
+  
+              }
+              .subcribe{
+                
+              }
+
+              #txtemail{
+                height: 42px;
+                line-height: 42px;
+                width: 100%;
+                box-shadow: none;
+                padding: 0;
+                border-radius: 0;
+                border: none;           
+                background-color: transparent;
+                border-bottom: 1px solid #fff;
+                font-weight: 300;
+
+                color: #fff;
+                &::-moz-placeholder {
+                    color: #fff;
+                      opacity: 1; // Override Firefox's unusual default opacity; see https://github.com/twbs/bootstrap/pull/11526
+                  }
+                  &:-ms-input-placeholder { color: #fff; } // Internet Explorer 10+
+                  &::-webkit-input-placeholder  { color: #fff; } // Safari and Chrome
+                    &:focus{
+                        z-index: 0;
+                    }
+              }
+            }
+
+            .subcribe button{           
+              border: 0 none;
+              color: #fff;
+              font-weight: 700;
+              font-size: 12px;              
+              height: 40px;
+              line-height: 40px;
+              border-radius: 20px;
+              padding: 0 30px;    
+              text-transform: uppercase;
+              margin-top: 35px;
+              &:hover{
+                color: #fff;
+              }
+            }
+          }
+        }
+      }
+    }
+  
+  /* POPULAR TAGS */
+  .so-popular-tag{
+    .modtitle{
+      background-color: transparent;
+      color: #fff;
+          font-size: 16px;
+          line-height: 20px;
+          margin-bottom: 37px !important;  
+          font-weight: 700;
+          text-transform: uppercase;     
+          position: relative;
+          padding: 0;
+          &:before{
+            position: absolute;
+            content: "";
+            width: 30px;
+            height: 2px;
+            bottom: -15px;
+            #{$left}: 0;
+          }     
+    }
+    .box-content{
+      padding: 0;
+      background-color: transparent;
+      border: none;
+      a{
+        font-size: 13px !important;
+        background-color: #555;
+          box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.24);
+          color: #fff;
+          display: inline-block;
+          float: $left;
+          margin: side-values(0 5px 5px 0);
+          padding: side-values(8px 18px 8px 22px);
+          position: relative;
+          transition: all 0.3s ease 0s;
+          line-height: 100%;
+          &:before{
+            background: #333 none repeat scroll 0 0;
+            border-radius: 50%;
+            content: "";
+            height: 5px;
+            #{$left}: 9px;
+            position: absolute;
+            top: 13px;
+            width: 5px;
+          }
+      }
+    }
+  }
+  
+  .footer-middle{
+    padding-top: 25px;
+    padding-bottom: 0px;
+  }
+  /* FOOTER BOTTOM */
+  .copyright-w{
+    
+  }
+  .payment-w{
+    text-align: $right;
+  }
+  .footer-bottom{
+      background-color: #2d2d2d;
+      padding: 10px 0;      
+      .copyright{
+          
+      }
+  }
+}

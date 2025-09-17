@@ -1,0 +1,17 @@
+<form id="search" class="navbar-form navbar-left">
+  <div class="form-group">
+  <p class="close_search">×</p>
+  <i class="icon_search_mob">
+  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M2.02311 4.93091C2.02311 3.32498 3.32498 2.02311 4.93091 2.02311C6.53685 2.02311 7.83871 3.32498 7.83871 4.93091C7.83871 6.53685 6.53685 7.83871 4.93091 7.83871C3.32498 7.83871 2.02311 6.53685 2.02311 4.93091ZM4.93091 0.356445C2.4045 0.356445 0.356445 2.4045 0.356445 4.93091C0.356445 7.45732 2.4045 9.50538 4.93091 9.50538C5.89304 9.50538 6.78579 9.20835 7.52247 8.70099L10.2206 11.3991C10.546 11.7245 11.0737 11.7245 11.3991 11.3991C11.7245 11.0737 11.7245 10.546 11.3991 10.2206L8.70098 7.52248C9.20835 6.78579 9.50538 5.89304 9.50538 4.93091C9.50538 2.4045 7.45732 0.356445 4.93091 0.356445Z" fill="#5537A3"/>
+</svg> 
+</i>
+    <input type="text" value="{{ search }}" class="form-control" name='search' placeholder="{{ text_search }}">
+  </div>
+  <button type="submit" class="btn btn-search">
+      <svg class="icon icon-search">
+        <use xlink:href="#icon-search" />
+      </svg>
+      <span>{{text_search}}</span>
+  </button>
+</form>

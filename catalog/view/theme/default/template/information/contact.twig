@@ -1,0 +1,114 @@
+{{ header }}
+<div id="information-contact" class="container contact_page">
+    <ul class="breadcrumb">
+        {% for breadcrumb in breadcrumbs %}
+            {% if loop.last %}
+                <li class="active">{{ breadcrumb.text }}</li>
+            {% else %}
+                <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+  <div class="row"> 
+    {{column_left}}
+    <div id="content" class="{% if column_left or column_right %}col-lg-9{% else %}col-lg-12{% endif %}">
+    {{ content_top }}
+      <h1>{{ heading_title }}</h1>
+   
+      <div class="row">
+      <div class="col-xs-12 col-md-6 col-lg-4">
+          <form action="{{ action }}" method="post" enctype="multipart/form-data" >
+     <div class="text_contact">
+      <h4>{{text_sender_h}}</h4>
+      <p>{{text_sender}}</p>
+     </div>
+              <div class="form-group required">
+                <label class="control-label" for="input-name">{{ entry_name }}</label>
+                <input type="text" name="name" value="{{ name }}" id="input-name" class="form-control" />
+                {% if error_name %}
+                <div class="text-danger">{{ error_name }}</div>
+                {% endif %}
+              </div>
+              <div class="form-group required">
+                <label class="control-label" for="input-email">{{ entry_email }}</label>
+            
+                  <input type="text" name="email" value="{{ email }}" id="input-email" class="form-control" />
+                  {% if error_email %}
+                  <div class="text-danger">{{ error_email }}</div>
+                  {% endif %}
+              
+              </div>
+              <div class="form-group required">
+                <label class="control-label" for="input-enquiry">{{ entry_enquiry }}</label>
+                  <textarea name="enquiry" rows="10" id="input-enquiry" class="form-control">{{ enquiry }}</textarea>
+                  {% if error_enquiry %}
+                  <div class="text-danger">{{ error_enquiry }}</div>
+                  {% endif %}
+              </div>
+              {{ captcha }}
+         
+            <div class="buttons">
+              <div class="pull-right">
+                <input class="btn btn-primary" type="submit" value="{{ button_submit }}" />
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="col-xs-12 col-md-6 col-lg-8 ">
+            {% if image %}
+            <img src="{{ image }}" alt="{{ store }}" class="hidden-xs" title="{{ store }}" />
+            {% endif %}
+            {% if address %}
+            <div class="mb-15" >
+            <h4 >{{text_address}}</h4>
+            {{ address }}</div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      {{ content_bottom }}</div>
+    </div>
+</div>
+
+{% if language_code == 'de-de' %}
+    <script type="application/ld+json">
+        {
+   "@context": "https://schema.org",
+   "@graph": [
+     {
+       "@type": "ContactPage",
+       "@id": "{{ base }}kontakt#webpage",
+      "url": "{{ base }}kontakt",
+      "name": "{{ heading_title }}",
+      "description": "{{ description }}",
+      "inLanguage": "de",
+      "isPartOf": {
+        "@id": "{{ base }}#website"
+      },
+      "publisher": {
+        "@id": "{{ base }}#organization"
+      },
+      "breadcrumb": {
+        "@id": "{{ base }}kontakt#breadcrumb"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "{{ base }}kontakt#breadcrumb",
+      "itemListElement": [
+        {% for breadcrumb in breadcrumbs %}
+        {
+          "@type": "ListItem",
+          "position": {{ loop.index }},
+          "name": "{{ breadcrumb.text }}",
+          "item": "{{ breadcrumb.href }}"
+        }{% if not loop.last %},{% endif %}
+        {% endfor %}
+        ]
+      }
+    ]
+  }
+    </script>
+{% endif %}
+
+{{ footer }}

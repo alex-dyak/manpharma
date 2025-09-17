@@ -1,0 +1,88 @@
+<h3>{{ heading_title }}</h3>
+<div class="row sm-testimonial-carousel">
+  <div id="sm-testimonial-carousel{{ module }}" class="owl-carousel">
+    {% for testimonial in testimonials %}
+    <div class="item">
+      <div class="testimonial-thumb">
+	    {% if testimonial.avatar %}
+        <p class="image"><img src="{{ testimonial.avatar }}" alt="" class="img-responsive" /></p>
+        {% endif %}
+	    <div class="caption">
+	      {% if testimonial.title %}
+          <h4>{{ testimonial.title }}</h4>
+	      {% endif %}
+          {% if testimonial.good %}
+	      <p><strong>{{ entry_good }}</strong><br/>{{ testimonial.good }}</p>
+	      {% endif %}
+	      {% if testimonial.bad %}
+	      <p><strong>{{ entry_bad }}</strong><br/>{{ testimonial.bad }}</p>
+	      {% endif %}
+	      {% if testimonial.text %}
+	      <p><strong>{{ entry_text }}</strong><br/>{{ testimonial.text }}</p>
+	     {% endif %}
+          {% if testimonial.rating %}
+          <p class="rating">
+            {% for i in 1..5 %}
+            {% if testimonial.rating < i %}
+            <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
+            {% else %}
+            <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
+            {% endif %}
+            {% endfor %}
+          </p>
+	      {% endif %}
+          {% if testimonial.name or testimonial.city or testimonial.date_added %}
+          <p>
+            {% if testimonial.name %}
+		    <i>{{ testimonial.name }}</i>
+		    {% endif %}
+		    {% if testimonial.city %}
+		    <i>{{ testimonial.city }}</i>
+		    {% endif %}
+		    {% if testimonial.date_added %}
+		    <i>{{ testimonial.date_added }}</i>
+		    {% endif %}
+          </p>
+	      {% endif %}
+	      {% if testimonial.image %}
+	      <p><strong>{{ entry_image }}</strong></p>
+	      <p class="sm-thumbnail sm-thumbnail{{ module }}{{ testimonial.testimonial_id }}">{% for value in testimonial.image %}<a data-thumbnail="{{ module }}{{ testimonial.testimonial_id }}" href="{{ value.thumb }}"><img src="{{ value.thumbnail }}" class="img-thumbnail"></a>{% endfor %}</p>
+	      {% endif %}
+	    </div>
+		{% if readmore %}
+	    <a href="{{ testimonial.href }}" class="btn btn-primary btn-sm">{{ button_readmore }}</a>
+	    {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% if show_all %}
+<div class="row">
+  <div class="col-md-12">
+    <div class="button-group pull-right">
+      <a class="btn btn-primary" href="{{ show_all_url }}">{{ button_show_all }}</a>
+    </div>
+  </div>
+</div>
+{% endif %}
+<script type="text/javascript"><!--
+$('#sm-testimonial-carousel{{ module }}').owlCarousel({
+	items: {{ carousel_item }},
+	autoPlay: 3000,
+	navigation: true,
+	navigationText: ['<i class="fa fa-chevron-left fa-5x"></i>', '<i class="fa fa-chevron-right fa-5x"></i>'],
+	pagination: true
+});
+{% if image %}
+$('.sm-thumbnail a').on('click', function() {
+	$('.sm-thumbnail' + $(this).data('thumbnail')).magnificPopup({
+		type:'image',
+		delegate: 'a',
+		gallery: {
+			enabled:true
+		}
+	});
+});
+{% endif %}
+--></script>

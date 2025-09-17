@@ -1,0 +1,78 @@
+{{ header }}
+{% if not language_code == 'de-de' %}
+{% if jsonld %}
+<script type="application/ld+json">
+{{ jsonld }}
+</script>
+{% endif %}
+{% endif %}
+<div id="information-information" class="container">
+  <ul class="breadcrumb">
+    {% for breadcrumb in breadcrumbs %}
+      {% if loop.last %}
+        <li class="active">{{ breadcrumb.text }}</li>
+      {% else %}
+        <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+  <div class="row">
+    {{ column_left }}
+    {% if column_left and column_right %}
+    {% set class = 'col-sm-6' %}
+    {% elseif column_left or column_right %}
+    {% set class = 'col-sm-9' %}
+    {% else %}
+    {% set class = 'col-sm-12' %}
+    {% endif %}
+    <div id="content" class="{{ class }}">{{ content_top }}
+      <h1>{{ heading_title }}</h1>
+      <div class="article">
+      {{ description }}
+      </div>
+      {{ content_bottom }}</div>
+    {{ column_right }}</div>
+</div>
+
+{% if language_code == 'de-de' %}
+  <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "AboutPage",
+      "@id": "{{ base }}uber-uns#webpage",
+      "url": "{{ base }}uber-uns",
+      "name": "{{ heading_title }}",
+      "description": "{{ description|escape('js') }}",
+      "inLanguage": "de",
+      "isPartOf": {
+        "@id": "{{ base }}#website"
+      },
+      "publisher": {
+        "@id": "{{ base }}#organization"
+      },
+      "breadcrumb": {
+        "@id": "{{ base }}uber-uns#breadcrumb"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "{{ base }}uber-uns#breadcrumb",
+      "itemListElement": [
+    {% for breadcrumb in breadcrumbs %}
+        {
+          "@type": "ListItem",
+          "position": {{ loop.index }},
+          "name": "{{ breadcrumb.text }}",
+          "item": "{{ breadcrumb.href }}"
+        }{% if not loop.last %},{% endif %}
+    {% endfor %}
+    ]
+  }
+]
+}
+  </script>
+{% endif %}
+
+{{ footer }}

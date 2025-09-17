@@ -1,0 +1,19 @@
+User-agent: *
+Disallow: /*&limit
+Disallow: /*?sort
+Disallow: /*?page=
+Disallow: /metric
+Disallow: /*?route=checkout/
+Disallow: /*?route=account/
+Disallow: /*?route=product/search
+
+Disallow: /login/
+Disallow: /index.php
+Disallow: /vergessen/
+Disallow: /meinebestellungen/
+
+Allow: /image/
+Allow: /catalog/view/
+Allow: /cdn-cgi/
+
+Sitemap: https://manpharma.de/sitemap.xml

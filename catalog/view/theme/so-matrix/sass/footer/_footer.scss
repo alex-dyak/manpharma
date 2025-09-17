@@ -1,0 +1,70 @@
+
+footer #collapse-footer{
+	display: block;
+}
+.footer-container{
+	clear: both;
+}
+footer .so-page-builder .container{
+    padding: 0 15px;
+}
+footer .copyright a{
+	color: $linkColor !important;
+}
+.typefooter-1 .box-contact .contactus:hover,
+.footer-col1 p span,
+.typefooter-1 .box-footer .modcontent ul li a:hover{
+	color: $linkColor;
+}
+.typefooter-1 .so-popular-tag .modtitle::before,
+.typefooter-1 .so-popular-tag .box-content a:hover,
+.typefooter-1 .box-footer .modtitle::before{
+	background-color: $background;
+}
+
+.typefooter-1 .newsletter-footer1 .newsletter .block_content form.signup .subcribe button{
+	background-color: $background;
+	&:hover{
+		background-color: darken($background,10%);
+	}
+}
+
+.typefooter-2 .box-contact .contactus:hover,
+.footer-col1 p span,
+.typefooter-2 .box-footer .modcontent ul li a:hover{
+	color: $linkColor;
+}
+.typefooter-2 .so-popular-tag .modtitle::before,
+.typefooter-2 .so-popular-tag .box-content a:hover,
+.typefooter-2 .box-footer .modtitle::before{
+	background-color: $background;
+}
+
+.typefooter-2 .newsletter-footer1 .newsletter .block_content form.signup .subcribe button{
+	background-color: $background;
+	&:hover{
+		background-color: darken($background,10%);
+	}
+}
+
+
+.typefooter-3 .box-contact .contactus:hover,
+.footer-col1 p span,
+.typefooter-3 .box-footer .modcontent ul li a:hover{
+	color: $linkColor;
+}
+.typefooter-3 .so-popular-tag .modtitle::before,
+.typefooter-3 .so-popular-tag .box-content a:hover,
+.typefooter-3 .box-footer .modtitle::before{
+	background-color: $background;
+}
+
+.typefooter-3 .newsletter-footer1 .newsletter .block_content form.signup .subcribe button{
+	background-color: $background;
+	&:hover{
+		background-color: darken($background,10%);
+	}
+}
+
+
+

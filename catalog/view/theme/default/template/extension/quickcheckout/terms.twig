@@ -1,0 +1,21 @@
+
+
+<div class="terms clearfix" id="terms-block">
+  <div class="clearfix">
+    <div class="terms-agree text-right" {% if not rules.display %} style="display:none;" {% endif %}>{% if text_agree %}
+      <label class="c-checkbox">{{ text_agree }}<input type="checkbox" name="agree" value="1" {% if rules.default or not rules.display %} checked="checked" {% endif %}/><span class="checkmark"></span></label>
+    {% endif %}</div> 
+  </div>
+  <div>
+      <button type="button"  class="btn btn-lg btn-block btn-confirm btn-primary pull-right btn-prev-step"  data-loading-text="{{ text_loading }}" {% if disable_button %}{{ 'disabled' }}{% endif %}>{{ button_back }}</button>
+</div>
+ <div>
+      <button type="button"  class="btn btn-lg btn-block btn-confirm btn-primary pull-right btn-next-step" data-loading-text="{{ text_loading }}" {% if disable_button %}{{ 'disabled' }}{% endif %}>{{ button_continue }}</button>
+</div>
+  <div>
+    <button type="button" id="button-payment-method" class="btn btn-lg btn-block btn-confirm btn-primary pull-right hides" data-loading-text="{{ text_loading }}" {% if disable_button %}{{ 'disabled' }}{% endif %}>{{ button_continue }}</button>
+  </div>
+</div>
+<div class="clearfix">
+  <div id="payment" class="text-left"></div>
+</div>

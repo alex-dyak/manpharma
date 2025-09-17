@@ -1,0 +1,338 @@
+
+
+
+//** simple and lightweight mixin library for Sass **
+//-- url : http://bourbon.io/docs ---
+@import 'bourbon/bourbon';
+
+//** Mixins for Rem Font Sizing **
+//-- url : http://hugogiraudel.com/2013/03/18/ultimate-rem-mixin/
+@import 'utilities/rem';
+
+//** Variables for responsive design in bootstrap with sass **
+//-- url : https://gist.github.com/webinfinita/11407836
+@import 'utilities/bootstrap_breakpoints';
+
+//** Makes supporting both left-to-right (LTR) and right-to-left (RTL) easy.**
+//-- url : https://github.com/tysonmatanich/directional-scss
+@import 'utilities/directional';
+
+//Mixins utilities
+@import 'utilities/theme_variables';
+@import 'utilities/utilities';
+
+/*===============================================
+    [SASS DIRECTORY ]
+    
+    [1] BLOCK HEADER
+
+    
+==============================================*/
+.common-home{
+    .typeheader-1{
+        .header-bottom{
+            border: none;
+        }
+        @media (min-width: 1199px){
+            .container-megamenu.vertical{
+                position: relative;
+                .vertical-wrapper{
+                    @include effect-block-show();
+                  top: 46px;
+                }
+                &:hover{
+                    .vertical-wrapper{
+                        @include effect-block-show();
+                        top: 46px;
+                    }
+                }
+            }
+        }
+    }
+}
+.typeheader-1{
+    //background-color: $background;
+    color: #fff;
+    // MENU ON TOP
+    &.navbar-compact{
+        .header-middle{
+            padding: 10px 0;
+        }
+    }
+    @media (min-width: 992px){
+        .logo{
+            margin-top: 13px;
+        }
+    }
+    .header-top{
+        background-color: rgba(255,255,255,0.12);
+        font-size: 12px;
+        height: 38px;
+        line-height: 38px;
+        
+        .header-top-right{text-align:$right;}
+
+        .dropdown-menu{
+            li{
+                line-height: 22px;
+            }
+        }
+        .header-top-right {display: inline-block;}
+
+        .container{            
+            @media (min-width: 1200px){
+                width: 1170px;
+                padding: 0;
+            }
+        }
+
+    }
+    .header-middle{       
+        clear: both;
+        padding: 30px 0 46px 0;
+        .middle2{
+            padding: 0;
+        }
+    }
+
+    .header-bottom{
+        background-color: rgba(255,255,255,0.12);
+    }
+
+    .socials{
+        li{
+            display: inline-block;
+            margin-#{$right}: 20px;
+            a{
+                color: #fff;
+                font-size: 14px;
+                &:hover{
+                    opacity: 0.7;
+                }
+            }
+        }
+    }
+    
+    ul.top-link{list-style: none;margin:0; vertical-align:top;
+        .dropdown-menu{
+            #{$left}: auto;
+            #{$right}: 0;
+        }
+        > li{                
+            float: $left;
+            position: relative;           
+            list-style: outside none none;
+            padding-#{$left}: 18px;
+            margin-#{$left}: 18px;
+            padding-#{$right}: 0;
+            font-size: 12px;       
+            .btn-group .btn-link{
+                padding: 0;
+                border: none;
+                color: #fff;
+            }
+            .fa-caret-down{
+                font-size: 12px;
+            }
+            /*&:after {
+                background-color: rgba(255,255,255,0.2);
+                content: "";
+                height: 11px;
+                position: absolute;
+                #{$left}: 0;
+                top: 15px;
+                width: 1px;
+            }*/
+            >   a {
+                font-size: 12px;
+                color: #fff;
+                padding-#{$left}: 3px;
+            }
+            
+            &.account{
+                > a{
+                    padding: 0;
+                    margin: 0;
+                }
+                &:before{
+                    content: "\f007"; 
+                    font-family: FontAwesome;
+                    font-size: 12px;
+                }                      
+            }
+            
+            
+
+            &.account:hover  {
+                ul.dropdown-link {top: 34px; z-index: 9999; opacity: 1; border-top: 1px solid rgba(200, 199, 199, 0.3);}
+            }
+
+            &.language{
+
+            }
+   
+            &:first-child{
+                padding-#{$left}: 0px;
+                margin-#{$left}: 0px;
+                &:after{
+                    display: none;
+                }
+            }
+        }
+    }
+
+
+    /*=====SEARCH ======*/
+    #sosearchpro .search{
+        position: relative;
+        float: $right;
+        background-color: #fff;
+        padding: 5px 20px;
+        border-radius: 21px;
+        width: 100%;
+        margin-bottom: 0;
+        .icon-select{
+            border: none;
+            border-#{$right}: 1px solid #e1e1e1;
+            &:after{
+                content: "\f0d7";
+                color: #232f3e;
+                font-size: 14px;
+                line-height: 30px;
+            }
+        }
+            
+        .select_category{
+            display: none;
+            select{
+                display: none;
+                height: 45px;
+                line-height: 45px;
+                color: #232f3e;
+                font-size: 13px;
+                &:hover{
+                    cursor: pointer;
+                }
+            }
+        } 
+
+        .input-group-btn{
+            position: absolute;
+            top: 0px;
+            #{$right}: -1px;
+            width:auto;
+            height: 45px;
+        }
+        button{
+            position: relative;
+            height: 45px;
+            text-align: center;
+            line-height: 45px;
+            padding: 0 20px;
+            font-size: 12px;
+            color: #fff;
+            text-transform: uppercase;
+            background-color: #131313;
+            border-radius: 23px;
+            i{
+                font-size: 16px;
+                margin: side-values(0 0 0 10px);
+            }
+            &:hover{
+         
+            }
+        }
+        
+        input{
+            border: none;
+            border-radius: 3px;            
+            background-color: #fff;
+            z-index: 0;
+            height: 35px;
+            padding-#{$left}: 20px;
+            font-size: 12px;
+            width: 100%;
+            background-color: #fff;
+        }
+
+    }
+  
+    /*BLOCK CART*/
+    .shopping_cart{
+        float: $right;
+        position: relative;
+        .btn-shopping-cart .top_cart{
+            .icon-c{
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                background-color: #fff;                
+                float: $left;
+                box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.24);
+                position: relative;
+                text-align: center;
+                line-height: 50px;
+                i{
+                    font-size: 18px;
+                    
+                }
+                @media (min-width: 991px) and(-webkit-min-device-pixel-ratio:0) {
+                    padding-top: 3px;
+                }
+                @media (max-width: 991px){
+                   
+                }
+            }
+            .shopcart-inner{
+                float: $left;
+                color: #fff;
+                margin-#{$left}: 10px;
+                margin-top: 5px;
+                .text-shopping-cart{
+                    font-size: 14px;
+                    font-weight: 700;
+                    margin-top: 5px;
+                    margin-bottom: 0;
+                    line-height: 100%;
+                    text-transform: uppercase;
+                }
+                .total-shopping-car{
+                    font-size: 12px;
+                }
+            } 
+                
+        } 
+        .dropdown-menu{ top: 100%; #{$right}: -15px; #{$left}: auto;
+            color: #666;
+        }
+        .shoppingcart-box:before{right: 50px;}
+    }
+
+    /*MENU MEGA*/
+    .megamenu-style-dev{
+        .navbar-default{ background: transparent; }
+    }
+
+    @media (min-width: 992px){
+        .container-megamenu.vertical{
+            position: relative;
+            .vertical-wrapper{
+                @include effect-block-hide();
+                position: absolute;
+                top: 55px;
+                #{$left}:0;
+                width: 100%;
+            }
+            &:hover{
+                .vertical-wrapper{
+                    @include effect-block-show();
+                    top: 46px;
+                }
+            }
+        }
+    }
+
+}
+
+
+

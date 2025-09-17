@@ -1,0 +1,34 @@
+<h2 class="h1"><svg class="icon icon-speach">
+  <use xlink:href="#icon-speach"></use>
+</svg>{{ heading_title }}</h2>
+<div class="reviews">
+  {% for testimonial in testimonials %}
+  <div>
+    <div class="reviews__meta">
+		{% if testimonial.name %}
+		<span class="text-primary author">
+		  {{ testimonial.name }}
+		</span>
+		{% endif %}&nbsp;
+		{% if testimonial.rating %}
+		<span class="rating">
+			{% for i in 1..5 %}
+				{% if testimonial.rating < i %}
+				<span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
+				{% else %}
+				<span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
+				{% endif %}
+			{% endfor %}
+		</span>
+		{% endif %}
+		&nbsp;{% if testimonial.date_added %}
+		<span class="small">{{ testimonial.date_added }}</span>
+		{% endif %}
+	</div>
+	{% if testimonial.text %}
+      <div class="reviews__text">{{ testimonial.text }} </div>
+	{% endif %}
+  </div>
+  {% endfor %}
+</div>
+<p><a href="{{ show_all_url }}" class="underline">{{ button_show_all }}</a></p>

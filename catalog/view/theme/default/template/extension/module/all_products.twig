@@ -1,0 +1,36 @@
+{% if groups or products %}
+<div class="list-group">
+  {% if groups %}
+    {% for category_id, category in groups %}
+      {% if category.products %}
+        {% if category.active %}
+        <div class="list-group-item list-group-item-accent active">{{ category.name }}</div>
+        {% else %}
+        <a href="{{ category.href }}" class="list-group-item list-group-item-accent">
+          {{ category.name }}
+        </a>
+        {% endif %}
+        {% for product in category.products %}
+          {% if product.active %}
+          <div class="list-group-item active list-product">{{ product.name }}</div>
+          {% else %}
+          <a href="{{ product.href }}" class="list-group-item list-product">{{ product.name }}</a>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+  {% if products %}
+    {% for product in products %}
+      {% if product.active %}
+        <div class="list-group-item active">{{ product.name }}</div>
+      {% else %}
+        <a href="{{ product.href }}" class="list-group-item">
+        {{ product.name }}
+        </a>
+      {% endif %}
+   {% endfor %}
+  {% endif %}
+</div>
+{% endif %}
+

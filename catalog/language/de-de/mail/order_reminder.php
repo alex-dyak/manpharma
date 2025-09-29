@@ -39,4 +39,4 @@ $_['text_total']			= 'Gesamt';
 $_['text_download']			= 'Mit nachstehendem Link kann - sobald die Zahlung bestätigt ist - der Downloadartikel geladen werden:';
 $_['text_comment']			= 'Kommentar zur Bestellung:';
 $_['text_footer']			= 'Sollten noch Fragen offen sein, einfach auf dieses Email %s.'; 
-$_['bank_transfer_details']  = '<b>IBAN:</b> BE17 9672 8470 0521<br><b>BIC:</b> TRWIBEB1XXX<br><b>Name der Firma:</b> Nutraviso Limited<br><b>Firmenanschrift:</b> 85 Great Portland Street, London, W1W 7LT<br><br>Geben Sie im Verwendungszweck die Bestellnummer <b>%s</b> an.';
+$_['bank_transfer_details']  = '<b>IBAN:</b> BE17 9672 8470 0521<br><b>BIC:</b> TRWIBEB1XXX<br><b>Name der Firma:</b> Nutraviso Limited<br>><br>Geben Sie im Verwendungszweck die Bestellnummer <b>%s</b> an.';

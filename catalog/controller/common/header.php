@@ -102,6 +102,74 @@ class ControllerCommonHeader extends Controller {
 		$data['text_org_microformat'] = $this->language->get('text_org_microformat');
         $data['schema_org_fallback_de'] = true;
         $data['route'] = $this->request->get['route'] ?? 'common/home';
+
+        $canonical = $this->url->link($data['route'], '', true);
+        $get_params = $this->request->get;
+        unset($get_params['_route_'], $get_params['route']);
+
+        if (!empty($get_params)) {
+            $canonical = $this->url->link($data['route'], http_build_query($get_params), true);
+        }
+        $this->document->addLink($canonical, 'canonical');
+
+        // ===== HREFLANG alternate links =====
+        $hreflangs = [];
+        $languages = $this->model_localisation_language->getLanguages();
+
+        if (!empty($languages) && is_array($languages)) {
+
+            // Текущий маршрут и GET-параметры
+            $route = $this->request->get['route'] ?? 'common/home';
+            $get_params = $this->request->get;
+            unset($get_params['_route_'], $get_params['route']);
+
+            $default_code = $this->config->get('config_language');
+            $base_url = rtrim(HTTPS_SERVER ?: HTTP_SERVER, '/');
+
+            foreach ($languages as $lang) {
+                if (empty($lang['status'])) continue;
+
+                $code = strtolower($lang['code']); // de-de, en-gb, fr-FR
+                $hreflang_val = '';
+
+                // нормализация кода
+                if (strpos($code, 'de') === 0) $hreflang_val = 'de-DE';
+                elseif (strpos($code, 'en') === 0) $hreflang_val = 'en';
+                elseif (strpos($code, 'fr') === 0) $hreflang_val = 'fr';
+                else $hreflang_val = explode('-', $code)[0];
+
+                // базовый URL для языка
+                if ($hreflang_val === 'de-DE') {
+                    $lang_url = $base_url . '/';
+                } else {
+                    $lang_url = $base_url . '/' . $hreflang_val . '/';
+                }
+
+                // добавляем маршрут и GET-параметры, если это не главная
+                if ($route !== 'common/home') {
+                    $query = http_build_query($get_params);
+                    $path = str_replace('&', '&amp;', $query); // безопасно для HTML
+                    $lang_url .= $route;
+                    if ($path) $lang_url .= '?' . $path;
+                }
+
+                $hreflangs[] = [
+                    'hreflang' => $hreflang_val,
+                    'href'     => $lang_url
+                ];
+            }
+
+            // x-default → дефолтная домашняя страница
+            $hreflangs[] = [
+                'hreflang' => 'x-default',
+                'href'     => $base_url . '/'
+            ];
+        }
+
+// передаём в Twig
+        $data['hreflangsCustom'] = $hreflangs;
+
+//        var_dump($data['hreflangsCustom']);
         if ($this->session->data['language'] == 'de-de') {
             $information_id = $this->request->get['information_id'] ?? null;
 

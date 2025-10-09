@@ -35,9 +35,9 @@ class ControllerCommonHeader extends Controller {
         $user_ip = $_SERVER['REMOTE_ADDR'];
         $user_agent = $_SERVER['HTTP_USER_AGENT'];
 
-        if ($this->isBot($user_agent)) {
-            return;
-        }
+//        if ($this->isBot($user_agent)) {
+//            return;
+//        }
         if (!$this->model_tool_user_journey->checkSessionExists($user_ip)) {
             $this->model_tool_user_journey->addVisit($user_ip);
         }

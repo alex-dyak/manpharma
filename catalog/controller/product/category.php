@@ -151,11 +151,26 @@ class ControllerProductCategory extends Controller {
 					$image = $this->model_tool_image->resize('placeholder.png', $this->config->get('theme_' . $this->config->get('config_theme') . '_image_product_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_product_height'));
 				}
 
+                $category_prices = [
+                    66 => 16,
+                    71 => 17,
+                    70 => 24,
+                ];
+
+                if (isset($category_prices[$result['category_id']])) {
+                    $base_price = $category_prices[$result['category_id']];
+                    $price = $this->currency->format(
+                        $this->tax->calculate($base_price, $result['tax_class_id'], $this->config->get('config_tax')),
+                        $this->session->data['currency']
+                    );
+                }
+
 				$data['categories'][] = array(
 					'thumb' => $image,
 					'name' => $result['name'] . ($this->config->get('config_product_count') ? ' (' . $this->model_catalog_product->getTotalProducts($filter_data) . ')' : ''),
 					'href' => $this->url->link('product/category', 'path=' . $this->request->get['path'] . '_' . $result['category_id'] . $url),
 					'description' => utf8_substr(trim(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8'))), 0, $this->config->get('theme_' . $this->config->get('config_theme') . '_product_description_length')) . '..',
+                    'price' => $price,
 				);
 			}
 

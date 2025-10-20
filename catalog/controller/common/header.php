@@ -72,7 +72,6 @@ class ControllerCommonHeader extends Controller {
 		$data['base'] = $server;
 		$data['description'] = $this->document->getDescription();
 		$data['keywords'] = $this->document->getKeywords();
-		$data['links'] = $this->document->getLinks();
 		$data['styles'] = $this->document->getStyles();
 		$data['scripts'] = $this->document->getScripts('header');
 		$data['lang'] = $this->language->get('code');
@@ -104,13 +103,15 @@ class ControllerCommonHeader extends Controller {
         $data['route'] = $this->request->get['route'] ?? 'common/home';
 
         $canonical = $this->url->link($data['route'], '', true);
-        $get_params = $this->request->get;
-        unset($get_params['_route_'], $get_params['route']);
-
-        if (!empty($get_params)) {
-            $canonical = $this->url->link($data['route'], http_build_query($get_params), true);
+        if (strpos($canonical, 'index.php?route=') !== false) {
+            $scheme = (!empty($this->request->server['HTTPS']) && $this->request->server['HTTPS'] != 'off') ? 'https' : 'http';
+            $host = $this->request->server['HTTP_HOST'];
+            $uri = $this->request->server['REQUEST_URI'];
+            $path = strtok($uri, '?');
+            $canonical = $scheme . '://' . $host . $path;
         }
         $this->document->addLink($canonical, 'canonical');
+        $data['links'] = $this->document->getLinks();
 
         // ===== HREFLANG alternate links =====
         $hreflangsCustom = [];

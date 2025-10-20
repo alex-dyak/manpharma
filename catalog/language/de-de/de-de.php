@@ -87,3 +87,5 @@ $_['summernote']			= 'de-DE';
 $_['datepicker']			= 'de';
 //$_['datepicker']			= 'de-at';
 //$_['datepicker']			= 'de-ch';
+
+$_['text_price_from']       = 'Ab';

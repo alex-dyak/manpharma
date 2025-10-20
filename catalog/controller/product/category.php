@@ -205,6 +205,34 @@ class ControllerProductCategory extends Controller {
 					$rating = false;
 				}
 
+                $options = $this->model_catalog_product->getProductOptions($result['product_id']);
+                $min_option_price = null;
+                foreach ($options as $option) {
+                    foreach ($option['product_option_value'] as $option_value) {
+                        if (!$option_value['subtract'] || ($option_value['quantity'] > 0)) {
+                            $option_price = (float)$option_value['price'];
+                            if ($option_value['price_prefix'] == '+') {
+                                $total_price = (float)$result['price'] + $option_price;
+                            } elseif ($option_value['price_prefix'] == '-') {
+                                $total_price = (float)$result['price'] - $option_price;
+                            } else {
+                                $total_price = (float)$option_value['price'];
+                            }
+
+                            if (is_null($min_option_price) || $total_price < $min_option_price) {
+                                $min_option_price = $total_price;
+                            }
+                        }
+                    }
+                }
+
+                if ($min_option_price !== null) {
+                    $price = $this->currency->format(
+                        $this->tax->calculate($min_option_price, $result['tax_class_id'], $this->config->get('config_tax')),
+                        $this->session->data['currency']
+                    );
+                }
+
 				$data['products'][] = array(
 					'product_id'  => $result['product_id'],
 					'x2_stiker'  => $result['x2_stiker'],

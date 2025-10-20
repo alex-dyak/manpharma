@@ -84,3 +84,5 @@ $_['error_upload_999'] = 'Attention : aucun code d’erreur disponible !';
 $_['error_curl'] = 'cURL : Code d’erreur (%s) : %s';
 // Datepicker
 $_['datepicker'] = 'fr';
+
+$_['text_price_from']       = 'A partir de';

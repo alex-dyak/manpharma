@@ -736,6 +736,7 @@ $(document).on('click', '#button-payment-method', function() {
 	if($(window).width() < 767){
 		$('#quickcheckoutconfirm .qc-col-1 div[data-row="1"]').after($('.text-coomet'));
 		$('#quickcheckoutconfirm .qc-col-1 ').hide();
+/*disabled scrolling $("html, body").animate({ scrollTop: 0 }, "slow");*/
 
 	}
 
@@ -1038,7 +1039,7 @@ function loadConfirm() {
 		cache: false,
 		beforeSend: function() {
 			{% if confirmation_page %} 
-				$('html, body').animate({ scrollTop: 0 }, 'slow');
+				/*disabled scrolling $('html, body').animate({ scrollTop: 0 }, 'slow'); */
 			
 				{% if slide_effect %} 
 				$('#quickcheckoutconfirm').slideUp('slow');
@@ -1090,7 +1091,7 @@ function loadConfirm() {
 				$('#payment').after('<div class="text-center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
 				{% endif %}
 				
-				$('html, body').animate({ scrollTop: $('#terms').offset().top }, 'slow');
+				/*disabled scrolling $('html, body').animate({ scrollTop: 0 }, 'slow'); */
 				
 				disableCheckout();
                 $('.fa-spinner').remove();

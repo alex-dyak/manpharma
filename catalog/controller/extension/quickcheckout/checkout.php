@@ -11,7 +11,17 @@ class ControllerExtensionQuickCheckoutCheckout extends Controller {
             $lang_parts = explode('-', $full_lang_code);
             $lang_prefix = reset($lang_parts);
             $base_url = rtrim($this->config->get('config_url'), '/');
-            $target_url = $base_url . '/' . $lang_prefix . '/checkout/';
+			if ($lang_prefix == 'de') {
+				// For default language, just use "checkout/" without leading slash to avoid double slash
+				$target_url = $base_url . '/checkout/';
+			} else {
+				// For other languages, add language prefix
+				$target_url = $base_url . '/' . $lang_prefix . '/checkout/';
+			}
+            
+            // Remove any double slashes (except in protocol)
+            $target_url = preg_replace('#(?<!:)//+#', '/', $target_url);
+            
             $this->response->redirect($target_url, 301);
         }
 

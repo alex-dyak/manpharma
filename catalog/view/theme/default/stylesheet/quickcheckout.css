@@ -306,7 +306,7 @@ select {
 		visibility: hidden;
 	}
 	
-	#quickcheckoutconfirm .qc-col-1{
+	/* #quickcheckoutconfirm .qc-col-1{
 		display: none;
-	}
+	} */
 }

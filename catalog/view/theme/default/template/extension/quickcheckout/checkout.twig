@@ -983,7 +983,7 @@ function loadPaymentForm(line) {
 	$('.payment-service-form').show();
     $.ajax({
         url: 'index.php?route=extension/quickcheckout/checkout/getPaymentMethod&code='+selectedPayment,
-        dataType: 'html',
+        dataType: 'json',
         cache: false,
         beforeSend: function() {
 	        {% if confirmation_page %}
@@ -1005,11 +1005,29 @@ function loadPaymentForm(line) {
 	        {% endif %}
 	        {% endif %}
         },
-        success: function(html) {
+        // success: function(html) {
+        success: function(json) {
 			$('#button-payment-method').show();
 			$('#button-payment-method').prop('disabled', false);
 			$('#button-payment-method').button('reset');
-            $('#payment').html(html);
+
+			if (json['payment']) {
+				$('#payment').html(json['payment']);
+			}
+			if (json['totals_html_desktop']) {
+				var $desktop_tbody = $('.quickcheckout-cart.hidden-xs tbody');
+				$desktop_tbody.find('tr.totals').remove();
+				$desktop_tbody.append(json['totals_html_desktop']);
+			}
+			if (json['totals_html_mobile']) {
+				var $mobile_tbody = $('.quickcheckout-cart.visible-xs tbody');
+				$mobile_tbody.find('tr.totals').remove();
+				$mobile_tbody.append(json['totals_html_mobile']);
+			}
+
+            // $('#payment').html(html);
+
+
             //if($('#button-payment-method').is(':visible')) {
             //    $('#button-confirm').hide();
             // } else {

@@ -38,15 +38,44 @@ class ControllerExtensionQuickCheckoutCart extends Controller {
 			
 			array_multisort($sort_order, SORT_ASC, $results);
 			
-			foreach ($results as $result) {
-				if ($this->config->get('total_' . $result['code'] . '_status')) {
-					$this->load->model('extension/total/' . $result['code']);
+		foreach ($results as $result) {
+			if ($this->config->get('total_' . $result['code'] . '_status')) {
+				$this->load->model('extension/total/' . $result['code']);
+	
+				$this->{'model_extension_total_' . $result['code']}->getTotal($total_data);
+			}
+		}
 		
-					$this->{'model_extension_total_' . $result['code']}->getTotal($total_data);
+		// Apply 10% discount for Plisio payment
+		if (isset($this->session->data['payment_method']['code']) && $this->session->data['payment_method']['code'] == 'plisio') {
+			$discount_percentage = 10;
+			$subtotal_before_discount = 0;
+			
+			// Find subtotal before discount
+			foreach ($totals as $total_item) {
+				if ($total_item['code'] == 'sub_total') {
+					$subtotal_before_discount = $total_item['value'];
+					break;
 				}
 			}
 			
-			$total_data = $totals;
+			if ($subtotal_before_discount > 0) {
+				$discount_amount = $subtotal_before_discount * ($discount_percentage / 100);
+				
+				// Apply discount to total
+				$total -= $discount_amount;
+				
+				// Update the total value in totals array
+				foreach ($totals as $key => $value) {
+					if ($value['code'] == 'total') {
+						$totals[$key]['value'] = $total;
+						break;
+					}
+				}
+			}
+		}
+		
+		$total_data = $totals;
 				
 			$sort_order = array(); 
 		  

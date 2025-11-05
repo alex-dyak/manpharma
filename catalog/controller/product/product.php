@@ -339,11 +339,11 @@ class ControllerProductProduct extends Controller {
 
 						// sachets or pills
 						$text_per_item = preg_match('/\bsachets\b/', strtolower($items_name)) ? $this->language->get('text_per_bag') : $this->language->get('text_per_pill');
-if($option_value['x2']){
-	$text_x2_sale =  sprintf($this->language->get('text_x2_sale'), $items_qnt);
-} else{
-	$text_x2_sale = '';
-}
+                        if($option_value['x2']){
+                            $text_x2_sale =  sprintf($this->language->get('text_x2_sale'), $items_qnt);
+                        } else{
+                            $text_x2_sale = '';
+                        }
 						$product_option_value_data[$option_value['option_value_id']] = array(
 							'product_option_value_id' => $option_value['product_option_value_id'],
 							'option_value_id'         => $option_value['option_value_id'],
@@ -504,6 +504,8 @@ if($option_value['x2']){
             $data['reviews'] = $this->model_catalog_review->getReviewsByProductId($product_id);
             $data['base'] = $this->config->get('config_url');
             $data['language_code'] = $this->session->data['language'];
+            $lang_parts = explode('-', $data['language_code']);
+            $data['lang_prefix'] = reset($lang_parts);
 
 			$data['text_package_delivery']   =  $this->language->get('text_package_delivery');
 			$data['text_next_purchase']      =  $this->language->get('text_next_purchase');

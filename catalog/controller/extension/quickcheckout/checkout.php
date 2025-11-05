@@ -4,8 +4,16 @@ class ControllerExtensionQuickCheckoutCheckout extends Controller {
 
 	
 	public function index() {
-
         $this->load->model('tool/user_journey');
+
+        if (isset($this->request->get['language']) && $this->config->get('config_seo_url')) {
+            $full_lang_code = $this->request->get['language'];
+            $lang_parts = explode('-', $full_lang_code);
+            $lang_prefix = reset($lang_parts);
+            $base_url = rtrim($this->config->get('config_url'), '/');
+            $target_url = $base_url . '/' . $lang_prefix . '/checkout/';
+            $this->response->redirect($target_url, 301);
+        }
 
         $user_ip = $_SERVER['REMOTE_ADDR'];
         $this->model_tool_user_journey->setCheckout($user_ip);
@@ -62,7 +70,7 @@ class ControllerExtensionQuickCheckoutCheckout extends Controller {
 				$this->response->redirect($this->url->link('checkout/checkout', '', true));
 			}
 		}
-		
+
 		$this->document->addScript('catalog/view/javascript/jquery/datetimepicker/moment/moment.min.js');
 		$this->document->addScript('catalog/view/javascript/jquery/quickcheckout/bootstrap-datetimepicker.min.js');
 		$this->document->addStyle('catalog/view/javascript/jquery/quickcheckout/bootstrap-datetimepicker.min.css');
@@ -327,11 +335,18 @@ class ControllerExtensionQuickCheckoutCheckout extends Controller {
 		$this->session->data['payment_method']['code'] = $code;
 
 		$data = $this->load->controller('extension/quickcheckout/confirm/getPaymentMethodBeforeConfirm');
-        
 
-		$payment = isset($data['payment']) ? $data['payment'] : 'empty';
-		
-		$this->response->setOutput($payment);
+        $json = array();
+        $json['payment'] = isset($data['payment']) ? $data['payment'] : 'empty';
+        $totals_data = $this->load->controller('extension/quickcheckout/confirm/getTotalsHtml');
+        $json['totals_html_desktop'] = $totals_data['desktop'];
+        $json['totals_html_mobile'] = $totals_data['mobile'];
+
+        $this->response->addHeader('Content-Type: application/json');
+        $this->response->setOutput(json_encode($json));
+
+//		$payment = isset($data['payment']) ? $data['payment'] : 'empty';
+//		$this->response->setOutput($payment);
 	}
 
 }

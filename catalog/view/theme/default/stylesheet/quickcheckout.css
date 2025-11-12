@@ -296,6 +296,9 @@ select {
 .btn-prev-step{
 	display: none;
 }
+.quickcheckoutconfirm select, input {
+	text-transform: none;
+}
 @media(max-width: 768px){
 .btn-next-step{
 	display: block;

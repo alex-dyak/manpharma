@@ -97,6 +97,7 @@ strong {
 .single-product__bottom h4,
 .single-product__bottom h5,
 .single-product__bottom h6,
+.heading-title span,
 a,
 footer a:hover,
 h1 span,
@@ -114,7 +115,8 @@ h6 span {
 }
 
 .h1 .icon,
-h1 .icon {
+h1 .icon,
+.heading-title .icon {
     width: 28px;
     height: 28px;
     float: left;
@@ -170,7 +172,7 @@ h5 {
 }
 
 .h1,
-h1 {
+h1, .heading-title {
     font-size: 30px;
     line-height: 38px;
     display: flex;
@@ -3335,7 +3337,7 @@ line-height: normal;
         font-style: normal;
         font-weight: 400;
         line-height: 100%;
-        text-transform: capitalize;
+        /* text-transform: capitalize; */
     }
 
     #zone_id {
